@@ -4,7 +4,7 @@ Log in as admin
 
 Actions: (A: Admin, O: Organizer, L: Lead)
 - Add users by email address (A,O,L)
-  - this should send an invitation to edit profile
+  - (pri1) this should send an invitation to edit profile
 - Mark users as organizer (A) (for Nowhere: "board member")
 - Add Roles (A,O,L)
 - Add Functional areas (A,O)
@@ -24,18 +24,18 @@ User profile:
 
 Role-based Security (only editable by admins, owners, leads, individual user)
 
-Messaging
-
 
 
 PRIORITY 1
 ==========
+Messaging
 Import email addresses 
 Allow lead / co-lead roles to create schedules 
 Lead roles can create teams (list of volunteers)
 Leads can contact all team members from one place 
 Import roles from list
 Import functional areas from list
+
 
 
 ## Everything below here turns the app from a volunteer management system into an event production system. 
