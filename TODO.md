@@ -2,6 +2,9 @@
 
 ## PRIORITY 0
 
+* ~~add readme~~
+* ~~convert .TODO to Markdown~~
+
 **Log in as admin**
 
 **Actions: (A: Admin, O: Organizer, L: Lead)**
