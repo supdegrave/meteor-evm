@@ -1,3 +1,5 @@
+// main client-side code file 
+
 if (Meteor.isClient) {
   Deps.autorun(function(){
     Meteor.subscribe("functions");

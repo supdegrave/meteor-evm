@@ -1,3 +1,5 @@
+// main server-side code file 
+
 if (Meteor.isServer) {
   // Workshops.allow({
   //   insert: function(userId, doc) {

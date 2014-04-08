@@ -2,24 +2,20 @@
 //   layoutTemplate: 'layout'
 // });
 
-function beforeActionRedirect(condition, path) {
-  if (!path) {
-    path = "home";
-  }
-  
-  if (Meteor.loggingIn()) {
-    this.render(this.loadingTemplate);
-  } else if (condition) {
-    console.log('Redirecting to ' + path);
-    this.redirect(path);
-  }  
-};
+// function beforeActionRedirect(condition, path) {
+//   if (Meteor.loggingIn()) {
+//     this.render(this.loadingTemplate);
+//   } else if (condition) {
+//     console.log('Redirecting to ' + path || home);
+//     this.redirect(path);
+//   }  
+// };
 
 Router.map(function() {
   this.route('home', { path: '/' });
 
   this.route('users', {
-    // onBeforeAction: beforeActionRedirect(!Meteor.user())
+    // onBeforeAction: beforeActionRedirect(!this.userId)
     onBeforeAction: function() {
       if (Meteor.loggingIn()) {
         this.render(this.loadingTemplate);
@@ -32,7 +28,7 @@ Router.map(function() {
 
   this.route('admin', {
     template: 'accountsAdmin',
-    // onBeforeAction: beforeActionRedirect(!Roles.userIsInRole(Meteor.user(), ['admin']))
+    // onBeforeAction: beforeActionRedirect(!Roles.userIsInRole(this.userId, ['admin']))
     onBeforeAction: function() {
       if (Meteor.loggingIn()) {
         this.render(this.loadingTemplate);
