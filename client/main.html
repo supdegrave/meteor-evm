@@ -1,0 +1,21 @@
+<head> 
+  <title>Event Volunteer Manager</title>
+</head> 
+
+<body>
+  <div class="container"> 
+    <header class="navbar">
+      <div class="navbar-inner"> 
+        {{>loginButtons}}
+        
+        {{#if isInRole 'admin'}}
+        <span>| <a href="/admin">admin view</a></span>
+        {{/if}}
+        
+        {{#if currentUser}}
+        <span>| <a href="/users">users</a></span>
+        {{/if}}
+      </div> 
+    </header> 
+  </div>
+</body>

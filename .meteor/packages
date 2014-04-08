@@ -1,0 +1,18 @@
+# Meteor packages used by this project, one per line.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+standard-app-packages
+insecure
+# https://github.com/hharnisc/meteor-accounts-admin-ui-bootstrap-3
+accounts-ui
+accounts-password
+accounts-facebook
+accounts-google
+accounts-twitter
+# https://github.com/alanning/meteor-roles
+# https://github.com/EventedMind/iron-router
+iron-router
+roles
+bootstrap-3
