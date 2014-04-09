@@ -13,7 +13,7 @@
   * ~~(pri1) this should send an invitation to edit profile~~
 * Mark users as organizer (A) (for Nowhere: "board member")
 * Add Roles (A,O,L)
-* Add Teams (A,O,L)
+* Add Teams (~~A~~,O,L)
   * Admin done, still need to allow organizers / leads
   * Leads should only be able to add sub-teams (meaning that they have a parent: Build -> Gate Build). 
 * Add team ownership to board members (A,O)
