@@ -9,8 +9,8 @@
 
 **Actions: (A: Admin, O: Organizer, L: Lead)**
 
-* Add users by email address (A,O,L)
-  * (pri1) this should send an invitation to edit profile
+* ~~Add users by email address (A,O,L)~~
+  * ~~(pri1) this should send an invitation to edit profile~~
 * Mark users as organizer (A) (for Nowhere: "board member")
 * Add Roles (A,O,L)
 * Add Teams (A,O)
