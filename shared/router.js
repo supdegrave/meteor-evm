@@ -17,7 +17,6 @@ Router.map(function() {
   });
 
   this.route('admin', {
-    template: 'accountsAdmin',
     onBeforeAction: function() {
       if (Meteor.loggingIn()) {
         this.render(this.loadingTemplate);
