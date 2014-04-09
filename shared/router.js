@@ -7,7 +7,6 @@ Router.map(function() {
 
   this.route('users', {
     onBeforeAction: function() {
-      beforeActionRedirect(!Meteor.user);
       if (Meteor.loggingIn()) {
         this.render(this.loadingTemplate);
       } else if (!Meteor.user()) {
