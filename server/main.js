@@ -27,7 +27,6 @@ Meteor.publish("allUserData", function () {
 
 Meteor.startup(function() {
   addUsersToRoles("stuart@updegrave.com", "admin");
-  addUsersToRoles(["me@example.com", "you@example.com"], "gleep");
 });
 
 

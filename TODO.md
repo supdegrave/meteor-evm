@@ -5,7 +5,7 @@
 * ~~add readme~~
 * ~~convert .TODO to Markdown~~
 
-**Log in as admin**
+**~~Log in as admin~~**
 
 **Actions: (A: Admin, O: Organizer, L: Lead)**
 
