@@ -13,9 +13,9 @@
   * (pri1) this should send an invitation to edit profile
 * Mark users as organizer (A) (for Nowhere: "board member")
 * Add Roles (A,O,L)
-* Add Functional areas (A,O)
-* Add functional area ownership to board members (A,O)
-* Add function-role combinations to users (Transport Lead, Gate Co-Lead, Build Mentor) (A,O)
+* Add Teams (A,O)
+* Add team ownership to board members (A,O)
+* Add team-role combinations to users (Transport Lead, Gate Co-Lead, Build Mentor) (A,O)
 
 **Org chart (Pri0 according to Aqua!)**
 
@@ -25,7 +25,7 @@
 * basic info
 * notes
   * note types (general, medical / allergies, team-level, etc) 
-  * should be secure to user and functional leads (volunteer lead? admin? organizers?)
+  * should be secure to user and team leads (volunteer lead? admin? organizers?)
 * arrival, departure, unavailable (blocked) dates 
 * ??? 
 
@@ -40,7 +40,7 @@
 * Lead roles can create teams (list of volunteers)
 * Leads can contact all team members from one place 
 * Import roles from list
-* Import functional areas from list
+* Import teams from list
 
 
 
