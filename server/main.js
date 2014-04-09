@@ -1,44 +1,62 @@
 // main server-side code file 
 
-if (Meteor.isServer) {
-  // Workshops.allow({
-  //   insert: function(userId, doc) {
-  //     return true;
-  //   }
-  // });
-  // 
-  // Meteor.publish("workshops", function(){
-  //   return Workshops.find();
-  // });
+// *** allow / deny rules *** 
+// <CollectionName>.(allow|deny)({
+//   (insert|update|remove): function(userId, doc) {
+//     return someCalculatedBooleanValue
+//   },
+//   fetch: ['array of fieldnames', 'to be returned']
+// });
+
+// *** publishing collection data *** 
+// Meteor.publish("collection_name", function(){
+//   return CollectionName.find();
+//   // or 
+//   return CollectionName.find(
+//     {fieldName: value}, // filter collection
+//     {fields: {fieldName: 1, [...] }} // control fields to sync to client
+//   );
+// });
+
+Meteor.publish("allUserData", function () {
+  return Meteor.users.find(
+    {}, 
+    {fields: {"emails": 1, "profile": 1}}
+  );
+});
+
+Meteor.startup(function() {
+  addUsersToRoles("stuart@updegrave.com", "admin");
+  addUsersToRoles(["me@example.com", "you@example.com"], "gleep");
+});
+
+
+// ****************************************************** //
+// function: addUsersToRoles
+// ****************************************************** //
+// emails: array of email addresses
+// - new accounts will be created if they don't exist
+// roles: array of role names
+// - each email address will be added to the listed roles 
+// - roles will be created if they don't already exist
+// 
+// return: none
+// ****************************************************** //
+function addUsersToRoles(emails, roles) {
+  if ("string" === typeof emails) { emails = [emails] };
+  if ("string" === typeof roles) { roles = [roles] };
   
-  Meteor.publish("userData", function () {
-    return Meteor.users.find(
-      {_id: this.userId},
-      {fields: {'other': 1, 'things': 1}}
-    );
-  });
-  
-  Meteor.publish("allUserData", function () {
-    return Meteor.users.find(
-      {}, 
-      {fields: {"emails": 1, "profile": 1}}
-    );
-  });
-  
-  Meteor.startup(function() {
-    var email = "stuart@updegrave.com",
-        user  = Meteor.users.findOne({emails: {$elemMatch: {address: email}}});
-    
-    if (!user) {
-      Accounts.createUser({
-        username: "supdegrave",
-        email: email,
-        password: "changeme"
-      });
-      
-      user = Meteor.users.findOne({emails: {$elemMatch: {address: email}}});
+  emails.forEach(function(email) {
+    var user = Meteor.users.findOne({emails: {$elemMatch: {address: email}}}), 
+        userId = !!user && user._id;
+        
+    if (!userId) {
+      userId = Accounts.createUser( { email: email });
+      Accounts.sendEnrollmentEmail(userId);
     }
-    
-    Roles.addUsersToRoles(user._id, ['admin']);
-  });
+
+    if (!Roles.userIsInRole(userId, roles)){
+      Roles.addUsersToRoles([userId], roles);
+    }
+  }); 
 }
