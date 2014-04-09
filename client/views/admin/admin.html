@@ -1,31 +1,33 @@
 <template name="admin">
-  {{>addUserByEmail}}
-  {{>accountsAdmin}}
-  {{>addTeam}}
-  {{>addRole}}
+  <div class="container">
+    {{>accountsAdmin}}
+    <br/>
+    {{>addUserByEmail}}
+    <br/>
+    {{>addTeam}}
+    <br/>
+    {{>addRole}}
+  </div>
 </template>
 
 <template name="addUserByEmail">
-  <div class="container">
-    <div class="col-sm-offset-4 col-sm-8 col-md-offset-6 col-md-6 col-lg-offset-8 col-lg-4">
-			<div class="input-group">
-				<input type="text" id="adminAddUserEmail" class="form-control" placeholder="Enter email address for new user">
-				<span class="input-group-btn">
-					<button id="adminAddUser" class="btn btn-default" type="button" disabled>Add User</button>
-				</span>
-			</div>
-		</div>
-  </div>
+	<div class="input-group">
+		<input type="text" id="adminAddUserEmail" class="form-control" placeholder="Enter email address for new user">
+		<span class="input-group-btn">
+			<button id="adminAddUserSubmit" class="btn btn-default" type="button" disabled>Add User</button>
+		</span>
+	</div>
 </template>
 
 <template name="addTeam">
-  <div class="container">
-    add team by name
-  </div>
+	<div class="input-group">
+		<input type="text" id="adminAddTeam" class="form-control" placeholder="Enter team name (ex: Gate, Greeters)">
+		<span class="input-group-btn">
+			<button id="adminAddTeamSubmit" class="btn btn-default" type="button" disabled>Add Team</button>
+		</span>
+	</div>
 </template>
 
 <template name="addRole">
-  <div class="container">
-    add role by name
-  </div>
+  add role by name
 </template>

@@ -5,7 +5,7 @@ Accounts.ui.config({
 });
 
 Deps.autorun(function(){
-  Meteor.subscribe("functions");
+  Meteor.subscribe("teams");
   Meteor.subscribe("userData");
   Meteor.subscribe("allUserData");
 })

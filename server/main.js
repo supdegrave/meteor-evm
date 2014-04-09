@@ -25,6 +25,10 @@ Meteor.publish("allUserData", function () {
   );
 });
 
+Meteor.publish('teams', function() {
+  return Teams.find();
+});
+
 Meteor.startup(function() {
   addUsersToRoles("stuart@updegrave.com", "admin");
 });
