@@ -7,15 +7,15 @@
     <header class="navbar">
       <div class="navbar-inner"> 
         {{>loginButtons}}
-        
+
         {{#if isInRole 'admin'}}
         <span>| <a href="/admin">admin view</a></span>
         {{/if}}
-        
+
         {{#if currentUser}}
         <span>| <a href="/users">users</a></span>
         {{/if}}
       </div> 
     </header> 
-  </div>
+  </div> 
 </body>

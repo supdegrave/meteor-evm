@@ -11,7 +11,7 @@
 
 * ~~Add users by email address (A,O,L)~~
   * ~~(pri1) this should send an invitation to edit profile~~
-* Mark users as organizer (A) (for Nowhere: "board member")
+* ~~Mark users as organizer (A) (for Nowhere: "board member")~~
 * Add Roles (A,O,L)
 * Add Teams (~~A~~,O,L)
   * Admin done, still need to allow organizers / leads

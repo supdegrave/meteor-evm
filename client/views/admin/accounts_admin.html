@@ -9,7 +9,6 @@
     <thead>
       <th></th>
       <th>Name</th>
-      <!-- <th>Email</th> -->
       <th>Roles</th>
     </thead>
     {{#each users}}
@@ -22,14 +21,17 @@
         {{/unless}}
       </td>
       <td>
-        {{#if profile.name}}
-          {{profile.name}}
-        {{else}}
-          {{email}}
-        {{/if}}
+        {{displayName}}
       </td>
-      <!-- <td>{{email}}</td> -->
-      <td>{{roles}}</td>
+      <td>
+        <div>
+          {{#if isInRole 'admin'}}
+          <label for="user_{{_id}}">Board Member: </label>
+          <input id="user_{{_id}}" type="checkbox" class="check-organizer" data-id="{{_id}}" checked="{{isOrganizer}}">
+          {{/if}}
+        </div>
+        <div>{{roles}}</div>
+      </td>
     </tr>
     {{/each}}
   </table>

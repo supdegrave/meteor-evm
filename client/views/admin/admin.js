@@ -16,7 +16,7 @@ Template.addUserByEmail.events({
 });
 
 Template.addTeam.events({
-  // enable 'Add Team' button
+  // enable 'Add Team' button unless team name already exists 
   'keyup #adminAddTeam': function(evt, tmpl) {
     var btn      = tmpl.find('#adminAddTeamSubmit'),
         teamName = evt.target.value;
