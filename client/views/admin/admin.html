@@ -1,8 +1,8 @@
 <template name="admin">
   <div class="container">
-    {{>accountsAdmin}}
-    <br/>
     {{>addUserByEmail}}
+    <br/>
+    {{>accountsAdmin}}
     <br/>
     {{>addTeam}}
     <br/>
@@ -12,22 +12,50 @@
 
 <template name="addUserByEmail">
 	<div class="input-group">
-		<input type="text" id="adminAddUserEmail" class="form-control" placeholder="Enter email address for new user">
+		<input type="text" class="form-control add-user-input" placeholder="Enter email address for new user">
 		<span class="input-group-btn">
-			<button id="adminAddUserSubmit" class="btn btn-default" type="button" disabled>Add User</button>
+			<button class="btn btn-success add-user btn-default disabled" type="button">
+			  <span class="glyphicon glyphicon-plus"></span> 
+			  Add User
+			</button>
 		</span>
 	</div>
 </template>
 
 <template name="addTeam">
 	<div class="input-group">
-		<input type="text" id="adminAddTeam" class="form-control" placeholder="Enter team name (ex: Gate, Greeters)">
+		<input type="text" class="form-control add-team-input" placeholder="Enter team name (ex: Gate, Build)">
 		<span class="input-group-btn">
-			<button id="adminAddTeamSubmit" class="btn btn-default" type="button" disabled>Add Team</button>
+			<button class="btn btn-success add-team btn-default disabled" type="button">
+			  <span class="glyphicon glyphicon-plus"></span> 
+			  Add Team
+			</button>
 		</span>
+	</div>
+	<div>
+	  <ul>
+	   {{#each teams}}
+	   <li>{{name}}</li>
+	   {{/each}}
+	  </ul>
 	</div>
 </template>
 
 <template name="addRole">
-  add role by name
+	<div class="input-group">
+		<input type="text" class="form-control add-role-input" placeholder="Enter role name (ex: Lead)">
+		<span class="input-group-btn">
+			<button class="btn btn-success add-role disabled" type="button">
+			  <span class="glyphicon glyphicon-plus"></span> 
+			  Add Role
+			</button>
+		</span>
+	</div>
+  	<div>
+  	  <ul>
+  	   {{#each roles}}
+  	   <li>{{name}}</li>
+  	   {{/each}}
+  	  </ul>
+  	</div>
 </template>

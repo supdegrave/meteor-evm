@@ -9,6 +9,9 @@
     <thead>
       <th></th>
       <th>Name</th>
+      {{#if isInRole 'admin'}}
+      <th>Board<br/>Member</th>
+      {{/if}}
       <th>Roles</th>
     </thead>
     {{#each users}}
@@ -23,13 +26,12 @@
       <td>
         {{displayName}}
       </td>
+      {{#if isInRole 'admin'}}
       <td>
-        <div>
-          {{#if isInRole 'admin'}}
-          <label for="user_{{_id}}">Board Member: </label>
-          <input id="user_{{_id}}" type="checkbox" class="check-organizer" data-id="{{_id}}" checked="{{isOrganizer}}">
-          {{/if}}
-        </div>
+        <input id="user_{{_id}}" type="checkbox" class="check-organizer" data-id="{{_id}}" checked="{{isOrganizer}}">
+      </td>
+      {{/if}}
+      <td>
         <div>{{roles}}</div>
       </td>
     </tr>
@@ -37,7 +39,7 @@
   </table>
 
   
-  {{> updateRolesModal}}
+  <!-- {{> updateRolesModal}} -->
 	{{> deleteAccountModal}}
 	{{> infoAccountModal}}
 	{{> updateAccountModal}}
