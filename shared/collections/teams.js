@@ -11,3 +11,18 @@ Teams.allow({
 // Meteor.publish('teams', function() {
 //   return Teams.find();
 // });
+
+Team = function(name){ 
+  this.name = name.trim(); 
+}
+
+Team.prototype = { 
+  name: null, 
+  parentId: null,
+  email: null,
+  owner: null, 
+  lead: null, 
+  colead: null, 
+  mentor: null, 
+  members: [], 
+}

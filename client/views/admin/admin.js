@@ -55,7 +55,7 @@ Template.addTeam.events({
   // add new team 
   'click .add-team': function(evt, tmpl) {
     var teamField = tmpl.find('.add-team-input');
-    Teams.insert({name: teamField.value});
+    Teams.insert(new Team(teamField.value));
     // TODO: handle insert error
     teamField.value = '';
   }
@@ -63,66 +63,4 @@ Template.addTeam.events({
 
 Template.addTeam.teams = function() {
   return Teams.find();
-}
-
-
-// ********************************************* //
-// *** addRole Template events & helpers
-// ********************************************* //
-
-Template.addRole.events({
-	'click .add-role': function(evt, tmpl) {
-		var input = tmpl.find('.add-role-input'), 
-		    role  = input.value.trim();
-
-		Meteor.call('addRole', role, function(error) {
-			if (error) { // optionally use a meteor errors package
-				if (typeof Errors === "undefined") {
-					Log.error('Error: ' + error.reason);
-				}
-				else {
-					Errors.throw(error.reason);
-				}
-			}
-			else {
-  			input.value = "";
-			}
-		});
-	},
-
-  // 'click .remove-role' : function(event, template) {
-  //  var role = this.name;
-  // 
-  //  Meteor.call('removeRole', role, function(error) {
-  //    if (error) {
-  //      // optionally use a meteor errors package
-  //      if (typeof Errors === "undefined")
-  //        Log.error('Error: ' + error.reason);
-  //      else {
-  //        Errors.throw(error.reason);
-  //      }
-  //    }
-  //  });
-  // },
-
-	'keyup .add-role-input': function(evt, tmpl) {
-		var btn  = tmpl.find('.add-role'),
-		    role = evt.target.value.trim();
-
-		if (!role || Meteor.roles.find({name: role}).count()) {
-			btn.classList.add('disabled');
-		} 
-		else {
-			btn.classList.remove('disabled');
-		}
-
-		if (evt.keyCode === 13 && !!role) {
-		  btn.click();
-		}
-	}
-});
-
-
-Template.addRole.roles = function() {
-  return Roles.getAllRoles();
 }

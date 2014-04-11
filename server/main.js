@@ -21,7 +21,7 @@
 Meteor.publish("allUserData", function () {
   return Meteor.users.find(
     {}, 
-    {fields: {"emails": 1, "profile": 1}}
+    {fields: {"emails": 1, "profile": 1, "username": 1}}
   );
 });
 

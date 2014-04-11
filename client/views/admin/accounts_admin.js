@@ -33,12 +33,6 @@ Template.accountsAdmin.helpers({
   isOrganizer: function() {
     return this.organizer;
   }, 
-  
-  displayName: function() {
-    return (this.profile && this.profile.name) 
-      ? this.profile.name : (this.username) 
-        ? this.username : this.emails[0].address;
-  }
 });
 
 // search no more than 2 times per second

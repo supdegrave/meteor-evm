@@ -3,8 +3,14 @@
 // });
 
 Router.map(function() {
+  // ******************************************** //
+  // home, '/' path
+  // ******************************************** //
   this.route('home', { path: '/' });
-
+  
+  // ******************************************** //
+  // all users
+  // ******************************************** //
   this.route('users', {
     onBeforeAction: function() {
       if (Meteor.loggingIn()) {
@@ -16,6 +22,9 @@ Router.map(function() {
     }
   });
 
+  // ******************************************** //
+  // admin ui 
+  // ******************************************** //
   this.route('admin', {
     onBeforeAction: function() {
       if (Meteor.loggingIn()) {
@@ -26,4 +35,14 @@ Router.map(function() {
       }
     }
   });
+
+  // ******************************************** //
+  // display a team by name  
+  // ******************************************** //
+  this.route('team', {
+    path: '/teams/:name',
+    data: function () {
+      return Teams.findOne({name: this.params.name});
+    },
+  }) 
 });

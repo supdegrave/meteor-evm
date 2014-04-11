@@ -5,8 +5,6 @@
     {{>accountsAdmin}}
     <br/>
     {{>addTeam}}
-    <br/>
-    {{>addRole}}
   </div>
 </template>
 
@@ -35,27 +33,10 @@
 	<div>
 	  <ul>
 	   {{#each teams}}
-	   <li>{{name}}</li>
+	   <li>
+	     <a href="{{pathFor 'team'}}">{{name}}</a>
+     </li>
 	   {{/each}}
 	  </ul>
 	</div>
-</template>
-
-<template name="addRole">
-	<div class="input-group">
-		<input type="text" class="form-control add-role-input" placeholder="Enter role name (ex: Lead)">
-		<span class="input-group-btn">
-			<button class="btn btn-success add-role disabled" type="button">
-			  <span class="glyphicon glyphicon-plus"></span> 
-			  Add Role
-			</button>
-		</span>
-	</div>
-  	<div>
-  	  <ul>
-  	   {{#each roles}}
-  	   <li>{{name}}</li>
-  	   {{/each}}
-  	  </ul>
-  	</div>
 </template>
