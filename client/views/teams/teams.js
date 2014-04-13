@@ -1,9 +1,11 @@
+pageData = Session.get('pageData');
+
 function displayName(user) {
   if (!user) { user = this; }
   
   return user.username 
-          || (user.profile && user.profile.name) 
-            || (user.emails && user.emails[0].address);
+      || (user.profile && user.profile.name) 
+      || (user.emails && user.emails[0].address);
 }
 
 UI.registerHelper('canEdit', function() {
@@ -15,27 +17,24 @@ UI.registerHelper('displayName', displayName);
 
 Template.team.helpers({
   getParent: function(parentId) {
-    return Teams.findOne({id: parentId});
+    return Teams.findOne({_id: parentId});
   },
 });
 
-Template.role.helpers({
+Template.roleTemplate.helpers({
   users: function() {
     return Meteor.users.find();
   },
-  selectedUser: function() {
-    if (this.team)
-    {
-      var user = Meteor.users.findOne({_id: this.team[this.role]});
-      return displayName(user) || "none";
-    } 
+  selectedUserName: function() {
+    var user = Meteor.users.findOne({_id: pageData[this.role]});
+    return (!!user) ? displayName(user) : "none";
   }
 });
 
-Template.role.events({
+Template.roleTemplate.events({
   'DOMNodeInserted select': function(evt) {
-    if (this.team) {
-      $(evt.target).val(this.team[this.role]);
+    if (pageData) {
+      $(evt.target).val(pageData[this.role]);
     }
   }
 });

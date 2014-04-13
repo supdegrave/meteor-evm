@@ -14,6 +14,7 @@ Teams.allow({
 
 Team = function(name){ 
   this.name = name.trim(); 
+  this.email = this.name.toLowerCase() + "goingnowhere.org";
 }
 
 Team.prototype = { 

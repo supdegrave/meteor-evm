@@ -1,3 +1,9 @@
+Router.onBeforeAction(function(){
+  var data = Router.getData();
+  if (data) { Session.set('pageData', data); }
+});
+
+
 // Router.configure({
 //   layoutTemplate: 'layout'
 // });
@@ -19,6 +25,16 @@ Router.map(function() {
         console.log('Redirecting');
         this.redirect('home');
       }
+    }
+  });
+
+  // ******************************************** //
+  // display user by id 
+  // ******************************************** //
+  this.route('user', {
+    path: 'users/:id',
+    data: function() {
+      return Meteor.users.findOne({_id: this.params.id});
     }
   });
 
