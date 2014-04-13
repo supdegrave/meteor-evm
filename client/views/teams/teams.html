@@ -4,10 +4,10 @@
 
     {{#if parentId}}<p>Parent: {{getParent parentId}}</p>{{/if}}
     <p>Email: {{>emailWidget}}</p>
-    <p>Owner: {{>ownerWidget}}</p>
-    <p>Lead: {{>leadWidget}}</p>
-    <p>Co-Lead: {{>coleadWidget}}</p>
-    <p>Mentor: {{>mentorWidget}}</p>
+    <p>Owner: {{>role role="owner" team=this}}</p>
+    <p>Lead: {{>role role="lead" team=this}}</p>
+    <p>Co-Lead: {{>role role="colead" team=this}}</p>
+    <p>Mentor: {{>role role="mentor" team=this}}</p>
 
     <h4>Members:</h4>
     <!-- each membersList -->
@@ -23,76 +23,17 @@
   {{/if}}
 </template>
 
-<!-- 
-need to DRY this up: see the answer regarding Handlebar.registerHelper here: 
-http://stackoverflow.com/questions/10128053/is-there-a-way-to-pass-variables-into-templates-in-meteor
--->
-
-<template name="ownerWidget">
+<template name="role">
   {{#if canEdit}}
   <select>
-    {{#each users 'owner'}}
-    <option value="{{_id}}" selected="{{is_owner}}">
+    <option>Select</option>
+    {{#each users}}
+    <option value="{{_id}}">
       {{displayName}}
     </option>
     {{/each}}
   </select>
   {{else}}
-  <span>{{owner}}</span>
+  <span>{{role}}</span>
   {{/if}}
 </template>
-
-<template name="leadWidget">
-  {{#if canEdit}}
-  <select>
-    <option>Select</option>
-    {{#each users 'lead'}}
-    <option value="{{_id}}" selected="{{is_lead}}">
-      {{displayName}}
-    </option>
-    {{/each}}
-  </select>
-  {{else}}  
-  <span>{{lead}}</span>
-  {{/if}}
-</template>
-
-<template name="coleadWidget">
-  {{#if canEdit}}
-  <select>
-    <option>Select</option>
-    {{#each users 'colead'}}
-    <option value="{{_id}}" selected="{{is_colead}}">
-      {{displayName}}
-    </option>
-    {{/each}}
-  </select>
-  {{else}}
-  <span>{{colead}}</span>
-  {{/if}}
-</template>
-
-<template name="mentorWidget">
-  {{#if canEdit}}
-  <select>
-    <option>Select</option>
-    {{#each users 'mentor'}}
-    <option value="{{_id}}" selected="{{is_mentor}}">
-      {{displayName}}
-    </option>
-    {{/each}}
-  </select>
-  {{else}}
-  <span>{{mentor}}</span>
-  {{/if}}
-</template>
-
-<!-- 
-parentId: 0,
-email: null,
-owner: null, 
-lead: null, 
-colead: null, 
-mentor: null, 
-members: []  
--->
