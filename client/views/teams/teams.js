@@ -25,6 +25,7 @@ Template.roleTemplate.helpers({
   users: function() {
     return Meteor.users.find();
   },
+  
   selectedUserName: function() {
     var user = Meteor.users.findOne({_id: pageData[this.role]});
     return (!!user) ? displayName(user) : "none";

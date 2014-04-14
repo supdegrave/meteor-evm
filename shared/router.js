@@ -1,12 +1,8 @@
-Router.onBeforeAction(function(){
+Router.onData(function(){
   var data = Router.getData();
   if (data) { Session.set('pageData', data); }
 });
 
-
-// Router.configure({
-//   layoutTemplate: 'layout'
-// });
 
 Router.map(function() {
   // ******************************************** //
@@ -29,16 +25,6 @@ Router.map(function() {
   });
 
   // ******************************************** //
-  // display user by id 
-  // ******************************************** //
-  this.route('user', {
-    path: 'users/:id',
-    data: function() {
-      return Meteor.users.findOne({_id: this.params.id});
-    }
-  });
-
-  // ******************************************** //
   // admin ui 
   // ******************************************** //
   this.route('admin', {
@@ -52,6 +38,16 @@ Router.map(function() {
     }
   });
 
+  // ******************************************** //
+  // display user by id 
+  // ******************************************** //
+  this.route('user', {
+    path: 'users/:id',
+    data: function() {
+      return Meteor.users.findOne({_id: this.params.id});
+    }
+  });
+  
   // ******************************************** //
   // display a team by name  
   // ******************************************** //

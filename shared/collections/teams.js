@@ -7,11 +7,6 @@ Teams.allow({
   }
 });
 
-// This throws an error on .publish - moved to server/main.js
-// Meteor.publish('teams', function() {
-//   return Teams.find();
-// });
-
 Team = function(name){ 
   this.name = name.trim(); 
   this.email = this.name.toLowerCase() + "goingnowhere.org";
