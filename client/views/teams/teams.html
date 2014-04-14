@@ -5,10 +5,10 @@
     {{#if parentId}}<p>Parent: {{getParent parentId}}</p>{{/if}}
     
     <p>Email:   {{>emailWidget}}</p>
-    <p>Owner:   {{>roleTemplate role="owner"}}</p>
-    <p>Lead:    {{>roleTemplate role="lead"}}</p>
-    <p>Co-Lead: {{>roleTemplate role="colead"}}</p>
-    <p>Mentor:  {{>roleTemplate role="mentor"}}</p>
+    <p>Owner:   {{>userRole role="owner"}}</p>
+    <p>Lead:    {{>userRole role="lead"}}</p>
+    <p>Co-Lead: {{>userRole role="colead"}}</p>
+    <p>Mentor:  {{>userRole role="mentor"}}</p>
 
     <h4>Members:</h4>
     <!-- each membersList -->
@@ -24,7 +24,7 @@
   {{/if}}
 </template>
 
-<template name="roleTemplate">
+<template name="userRole">
   {{#if canEdit}}
   <select>
     <option>Select</option>

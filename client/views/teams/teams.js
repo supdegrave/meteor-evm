@@ -14,7 +14,7 @@ Template.team.helpers({
   },
 });
 
-Template.roleTemplate.helpers({
+Template.userRole.helpers({
   users: function() {
     return Meteor.users.find();
   },
@@ -25,7 +25,7 @@ Template.roleTemplate.helpers({
   }
 });
 
-Template.roleTemplate.events({
+Template.userRole.events({
   'DOMNodeInserted select': function(evt) {
     if (pageData) {
       $(evt.target).val(pageData[this.role]);
