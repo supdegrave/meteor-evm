@@ -8,13 +8,6 @@ function displayName(user) {
       || (user.emails && user.emails[0].address);
 }
 
-UI.registerHelper('canEdit', function() {
-  return Roles.userIsInRole(Meteor.userId(), 'admin') 
-    || _.contains([this.owner, this.lead, this.colead], Meteor.userId());
-});
-
-UI.registerHelper('displayName', displayName);
-
 Template.team.helpers({
   getParent: function(parentId) {
     return Teams.findOne({_id: parentId});
