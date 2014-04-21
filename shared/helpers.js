@@ -1,9 +1,28 @@
-// global helper methods 
+/*** global helper methods ***/
 
-UI.registerHelper('canEdit', function() {
-  return Roles.userIsInRole(Meteor.userId(), 'admin') 
-    || _.contains([this.owner, this.lead, this.colead], Meteor.userId());
-});
-
+displayName = function(user) {
+  if (!user) { user = this; }
+  else if ("string" === typeof user) {
+    user = Meteor.users.findOne(
+      {_id: user}, 
+      {fields: {"emails": 1, "profile": 1, "username": 1}}
+    );
+  }
+  
+  if (user) {
+    return user.username 
+        || (user.profile && user.profile.name) 
+        || (user.emails && user.emails[0].address);
+  }
+}
 UI.registerHelper('displayName', displayName);
 
+canEdit = function() {
+  if (Meteor.user()) {
+    return _.contains(Meteor.user().roles, 'admin')
+      || _.contains([this.owner, this.lead, this.colead], Meteor.userId());
+  }
+}
+UI.registerHelper('canEdit', function() {
+  return !Meteor.loggingIn() && canEdit();
+});

@@ -23,8 +23,12 @@ Template.addUserByEmail.events({
   // add new user with email address 
   'click .add-user': function(evt, tmpl) {
     var emailField = tmpl.find('.add-user-input');
-    Meteor.call('adminAddUser', emailField.value.trim());
-    // TODO: handle insert error
+    Meteor.call('adminAddUser', emailField.value.trim(), function(err, res) {
+      if (err && !res) {
+        alert('TODO: handle insert error')
+      }
+    });
+    
     emailField.value = '';
   }
 });
@@ -55,8 +59,11 @@ Template.addTeam.events({
   // add new team 
   'click .add-team': function(evt, tmpl) {
     var teamField = tmpl.find('.add-team-input');
-    Teams.insert(new Team(teamField.value));
-    // TODO: handle insert error
+    Teams.insert(new Team(teamField.value), function(err, res) {
+      if (err && !res) {
+        alert('TODO: handle insert error')
+      }
+    });
     teamField.value = '';
   }
 });

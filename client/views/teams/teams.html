@@ -1,19 +1,44 @@
 <template name="team">
-  <div class="container">
+  <div class="container team">
     <h3>{{name}}</h3>
 
     {{#if parentId}}<p>Parent: {{getParent parentId}}</p>{{/if}}
     
     <p>Email:   {{>emailWidget}}</p>
-    <p>Owner:   {{>userRole role="owner"}}</p>
-    <p>Lead:    {{>userRole role="lead"}}</p>
-    <p>Co-Lead: {{>userRole role="colead"}}</p>
-    <p>Mentor:  {{>userRole role="mentor"}}</p>
+    <p>Owner:   {{>userRole role="owner" context=this}}</p>
+    <p>Lead:    {{>userRole role="lead" context=this}}</p>
+    <p>Co-Lead: {{>userRole role="colead" context=this}}</p>
+    <p>Mentor:  {{>userRole role="mentor" context=this}}</p>
+    
+    <div>
+      {{#if canEdit}}
+      <button class="btn btn-danger team-reset">Cancel</button>
+      <button class="btn btn-success team-save">Save</button>
+      {{/if}}
+    </div>
+    
 
     <h4>Members:</h4>
-    <!-- each membersList -->
+    <div>
+      {{#if canEdit}}
+      <button class="btn btn-success add-member" data-toggle="modal" href="#addmember">
+        <span class="glyphicon glyphicon-plus"></span> 
+        Add Member
+      </button>
+      {{/if}}
+    </div>
 
+    <ul>
+      {{#each members}}
+      <li>
+        {{displayName this}}
+        {{#if canEdit}}<span class="remove-member glyphicon glyphicon-trash clickable"></span>{{/if}}
+      </li>
+      {{/each}}
+    </ul>
   </div>
+
+  {{>addMemberModal}}
 </template>
 
 <template name="emailWidget">
@@ -26,8 +51,8 @@
 
 <template name="userRole">
   {{#if canEdit}}
-  <select>
-    <option>Select</option>
+  <select class="user-role" data-role="{{role}}">
+    <option value="">Select</option>
     {{#each users}}
       <option value="{{_id}}">{{displayName}}</option>
     {{/each}}

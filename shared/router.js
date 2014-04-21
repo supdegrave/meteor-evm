@@ -1,18 +1,12 @@
-Router.onData(function(){
-  var data = Router.getData();
-  if (data) { Session.set('pageData', data); }
+Router.configure({
+  loadingTemplate: 'loading'
 });
 
-
 Router.map(function() {
-  // ******************************************** //
-  // home, '/' path
-  // ******************************************** //
+  // *** home, '/' path ************************* //
   this.route('home', { path: '/' });
   
-  // ******************************************** //
-  // all users
-  // ******************************************** //
+  // *** all users ****************************** //
   this.route('users', {
     onBeforeAction: function() {
       if (Meteor.loggingIn()) {
@@ -24,9 +18,7 @@ Router.map(function() {
     }
   });
 
-  // ******************************************** //
-  // admin ui 
-  // ******************************************** //
+  // *** admin ui ******************************* //
   this.route('admin', {
     onBeforeAction: function() {
       if (Meteor.loggingIn()) {
@@ -38,9 +30,7 @@ Router.map(function() {
     }
   });
 
-  // ******************************************** //
-  // display user by id 
-  // ******************************************** //
+  // *** display user by id ********************* //
   this.route('user', {
     path: 'users/:id',
     data: function() {
@@ -48,13 +38,17 @@ Router.map(function() {
     }
   });
   
-  // ******************************************** //
-  // display a team by name  
-  // ******************************************** //
+  // *** display team by name ******************* //
   this.route('team', {
     path: '/teams/:name',
     data: function () {
-      return Teams.findOne({name: this.params.name});
+      Session.set('currentTeam', Teams.findOne({name: this.params.name}));
+      // console.log('data');
+      
+      var team = Teams.findOne({name: this.params.name});
+      if (team) {
+        return team;
+      }
     },
   }) 
 });
