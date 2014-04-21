@@ -1,5 +1,17 @@
 currentTeam = null;
 
+setSelectedUser = function() {
+  $('select.user-role').each(function(idx, elem) {
+    var role  = elem.dataset.role,
+        $elem = $(elem);
+
+    if (currentTeam && currentTeam[role]) {
+      $elem.val(currentTeam[role]);
+    }
+  });
+}
+
+
 Deps.autorun(function() {
   currentTeam = Session.get('currentTeam');
 });
@@ -9,6 +21,8 @@ Template.team.helpers({
     return Teams.findOne({_id: parentId});
   },
 });
+
+Template.userRole.rendered = setSelectedUser;
 
 Template.userRole.helpers({
   users: function() {
@@ -27,12 +41,6 @@ Template.userRole.helpers({
 });
 
 Template.userRole.events({
-  'DOMNodeInserted select': function(evt, tmpl) {
-    if (currentTeam && currentTeam[this.role]) {
-      $(evt.target).val(currentTeam[this.role]);
-    }
-  }, 
-  
   'change select.user-role': function(evt, tmpl) {
     var target = evt.target, 
         role   = $(target).data('role');
@@ -44,6 +52,8 @@ Template.userRole.events({
 });
 
 Template.team.events({
+  'DOMNodeInserted select': setSelectedUser,
+  
   'click button.team-reset': function(evt, tmpl) {
     alert('TODO: add confirmation before reset');
     // reset currentTeam to router-set team data

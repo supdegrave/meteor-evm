@@ -43,8 +43,6 @@ Router.map(function() {
     path: '/teams/:name',
     data: function () {
       Session.set('currentTeam', Teams.findOne({name: this.params.name}));
-      // console.log('data');
-      
       var team = Teams.findOne({name: this.params.name});
       if (team) {
         return team;
