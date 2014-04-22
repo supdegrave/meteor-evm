@@ -1,0 +1,21 @@
+<template name="org">
+  <div class="container">
+    {{#each this}}
+      <div style="width: 48%; display:inline-block;">
+        <span>{{displayName}}</span>
+        <ul>
+          {{#each teams}}
+          <li>
+            <span>{{name}}</span>
+            <ul>
+              <li>Lead: {{displayName lead}}</li>
+              <li>Co-Lead: {{displayName colead}}</li>
+              <li>Mentor: {{displayName mentor}}</li>
+            </ul>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/each}}
+  </div>
+</template>
