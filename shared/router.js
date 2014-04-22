@@ -48,5 +48,19 @@ Router.map(function() {
         return team;
       }
     },
-  }) 
+  });
+  
+  // *** display org chart ********************** //
+  this.route('org', 
+  {
+    data: function () {
+      var organizers = Meteor.users.find({organizer:true}).fetch()
+      
+      _.each(organizers, function(org) { 
+        org.teams = (Teams.find({owner: org._id}).fetch());
+      });
+
+      return organizers;
+    }
+  });
 });
