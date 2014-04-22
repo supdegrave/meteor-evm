@@ -8,9 +8,9 @@
           <li>
             <span>{{name}}</span>
             <ul>
-              <li>Lead: {{displayName lead}}</li>
-              <li>Co-Lead: {{displayName colead}}</li>
-              <li>Mentor: {{displayName mentor}}</li>
+              <li>Lead: <a href="{{pathFor 'users' id=lead}}">{{displayName lead}}</a></li>
+              <li>Co-Lead: <a href="{{pathFor 'users' id=colead}}">{{displayName colead}}</a></li>
+              <li>Mentor: <a href="{{pathFor 'users' id=mentor}}">{{displayName mentor}}</a></li>
             </ul>
           </li>
           {{/each}}
