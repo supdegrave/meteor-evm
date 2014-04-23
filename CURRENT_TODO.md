@@ -2,6 +2,8 @@
   
   * merge team-centric back to master and notify Nico
   * figure out meteor developer account info and send to Nico
+  * move each template into its own file 
+  * ?? refactor data from routes into template helpers ?? 
 
 ## site features 
 
@@ -23,7 +25,7 @@
   
 * ADMIN: 
   - viewable by anyone with canEdit, not just admin 
-  - move 'add team' functionality to org chart 
+  - ~~remove 'add team' functionality~~
   - FUTURE: if lead/co-lead, see 'add to team' button next to user
   
 
