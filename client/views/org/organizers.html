@@ -2,11 +2,11 @@
   <div class="container">
     {{#each this}}
       <div style="width: 48%; display:inline-block;">
-        <span>{{displayName}}</span>
+        <span><a href="{{pathFor 'users' id=_id}}">{{displayName}}</a></span>
         <ul>
           {{#each teams}}
           <li>
-            <span>{{name}}</span>
+            <span><a href="{{pathFor 'team' name=name}}">{{name}}</a></span>
             <ul>
               <li>Lead: <a href="{{pathFor 'users' id=lead}}">{{displayName lead}}</a></li>
               <li>Co-Lead: <a href="{{pathFor 'users' id=colead}}">{{displayName colead}}</a></li>

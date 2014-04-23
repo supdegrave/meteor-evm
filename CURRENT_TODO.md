@@ -8,7 +8,8 @@
 ## site features 
 
 * TEAM: 
-  - add parent team
+  - assign to parent team 
+  - add child team to existing
     sub-team owner is same as parent team
       - FUTURE: sub-team owner is same as lead of parent team
         - and then, edit hierarchy gets really fun!
@@ -16,7 +17,7 @@
     - ?? what happens if you go to /team/:name without /:id ?? 
   - save email address changes! 
   - implement add member
-  - contentEditable on mouseOver (if canEdit)
+  - contentEditable on mouseOver (if canEdit) : https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_Editable
     - how to handle mobile? 
       - edit button? (based on userAgent?)
   - disable cancel / save unless dirty 
@@ -39,7 +40,7 @@
 
 
 * ORG CHART: 
-  - link team name to team, organizer to user page 
+  - ~~link team name to team, organizer to user page~~
   - 'add team' functionality moved here, inline with board member view, below current teams 
     - if board member, see 'add team' below your current teams
     - if admin, see 'add team' below each board member's team list 
