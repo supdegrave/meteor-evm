@@ -1,0 +1,7 @@
+<template name="emailWidget">
+  {{#if canEdit}}
+  <input type="text" class="email" value="{{email}}">
+  {{else}}
+  <span>{{email}}</span>
+  {{/if}}
+</template>

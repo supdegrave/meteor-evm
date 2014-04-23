@@ -1,0 +1,12 @@
+<template name="userRole">
+  {{#if canEdit}}
+  <select class="user-role" data-role="{{role}}">
+    <option value="">Select</option>
+    {{#each users}}
+      <option value="{{_id}}">{{displayName}}</option>
+    {{/each}}
+  </select>
+  {{else}}
+  <span>{{selectedUserName}}</span>
+  {{/if}}
+</template>

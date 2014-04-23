@@ -40,24 +40,3 @@
 
   {{>addMemberModal}}
 </template>
-
-<template name="emailWidget">
-  {{#if canEdit}}
-  <input type="text" class="email" value="{{email}}">
-  {{else}}
-  <span>{{email}}</span>
-  {{/if}}
-</template>
-
-<template name="userRole">
-  {{#if canEdit}}
-  <select class="user-role" data-role="{{role}}">
-    <option value="">Select</option>
-    {{#each users}}
-      <option value="{{_id}}">{{displayName}}</option>
-    {{/each}}
-  </select>
-  {{else}}
-  <span>{{selectedUserName}}</span>
-  {{/if}}
-</template>
