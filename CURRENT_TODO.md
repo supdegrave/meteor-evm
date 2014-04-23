@@ -1,8 +1,6 @@
 ## admin tasks
   
   * merge team-centric back to master and notify Nico
-    - u: nowhere.evm@gmail.com
-    - p: nowhereevm<sitename>
   * figure out meteor developer account info and send to Nico
 
 ## site features 
