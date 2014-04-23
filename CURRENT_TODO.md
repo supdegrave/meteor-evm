@@ -41,9 +41,9 @@
 
 * ORG CHART: 
   - ~~link team name to team, organizer to user page~~
-  - 'add team' functionality moved here, inline with board member view, below current teams 
+  - ~~'add team' functionality moved here, inline with board member view, below current teams 
     - if board member, see 'add team' below your current teams
-    - if admin, see 'add team' below each board member's team list 
+    - if admin, see 'add team' below each board member's team list ~~
   - think about how to do sub-teams 
     - tree control
       - https://github.com/mbraak/jqTree

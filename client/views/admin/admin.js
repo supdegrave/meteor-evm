@@ -59,7 +59,7 @@ Template.addTeam.events({
   // add new team 
   'click .add-team': function(evt, tmpl) {
     var teamField = tmpl.find('.add-team-input');
-    Teams.insert(new Team(teamField.value), function(err, res) {
+        Teams.insert(new Team(teamField.value, teamField.dataset.ownerid), function(err, res) {
       if (err && !res) {
         alert('TODO: handle insert error')
       }

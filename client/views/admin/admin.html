@@ -20,7 +20,7 @@
 
 <template name="addTeam">
 	<div class="input-group">
-		<input type="text" class="form-control add-team-input" placeholder="Enter team name (ex: Gate, Build)">
+		<input type="text" class="form-control add-team-input" placeholder="Enter team name (ex: Gate)" data-ownerid="{{this}}">
 		<span class="input-group-btn">
 			<button class="btn btn-success add-team btn-default disabled" type="button">
 			  <span class="glyphicon glyphicon-plus"></span> 
@@ -28,13 +28,17 @@
 			</button>
 		</span>
 	</div>
-	<div>
-	  <ul>
-	   {{#each teams}}
-	   <li>
-	     <a href="{{pathFor 'team'}}">{{name}}</a>
+
+  <!--  
+  <div>
+    <ul>
+     {{#each teams}}
+     <li>
+       <a href="{{pathFor 'team'}}">{{name}}</a>
      </li>
-	   {{/each}}
-	  </ul>
-	</div>
+     {{/each}}
+    </ul>
+  </div> 
+  -->
+
 </template>

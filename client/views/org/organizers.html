@@ -15,11 +15,11 @@
           </li>
           {{/each}}
         </ul>
+        
+        {{#if canAddTeam}}
+        {{>addTeam _id}}
+        {{/if}}
       </div>
     {{/each}}
-
-    <br/>
-    {{>addTeam}}
-    
   </div>
 </template>

@@ -17,9 +17,13 @@ Teams.allow({
   },
 });
 
-Team = function(name){ 
+Team = function(name, ownerId){ 
   this.name = name.trim(); 
   this.email = this.name.toLowerCase() + "@goingnowhere.org";
+  
+  if (ownerId) {
+    this.owner = ownerId;
+  }
 }
 
 Team.prototype = { 
