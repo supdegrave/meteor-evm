@@ -5,7 +5,7 @@ Template.userProfile.helpers({
 		return Session.get('userInScope');
 	},
   memberOf: function() {
-    var myQuery = Teams.find({"members._id": this._id},{name:1});
+    var myQuery = Teams.find({members: this._id},{name:1});
     if (myQuery.fetch().length) return myQuery;
   },
   roleIn: function(myRole) {
