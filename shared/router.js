@@ -31,13 +31,13 @@ Router.map(function() {
   });
 
   // *** display user by id ********************* //
-  this.route('users', {
+  this.route('user', {
     path: 'users/:id',
     data: function() {
+      // return Meteor.user();
       return Meteor.users.findOne({_id: this.params.id});
     }
   });
-  
   // *** display team by name ******************* //
   this.route('team', {
     path: '/teams/:name',

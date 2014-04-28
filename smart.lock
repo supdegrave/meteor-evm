@@ -3,7 +3,14 @@
   "dependencies": {
     "basePackages": {
       "iron-router": {},
-      "roles": {}
+      "roles": {},
+      "x-editable-bootstrap": {},
+      "accounts-ui-bootstrap-3": {},
+      "typeahead": {},
+      "moment": {},
+      "font-awesome": {},
+      "bootstrap3-datepicker": {},
+      "bootstrap-select": {}
     },
     "packages": {
       "iron-router": {
@@ -16,10 +23,50 @@
         "tag": "v1.2.8",
         "commit": "68844ba216c348d332bdb840825850f497f515bb"
       },
+      "x-editable-bootstrap": {
+        "git": "https://github.com/nate-strauser/meteor-x-editable-bootstrap.git",
+        "tag": "v1.5.1",
+        "commit": "ddb9e4523b570f88d96c4fbafa5f6883e544baf8"
+      },
+      "accounts-ui-bootstrap-3": {
+        "git": "https://github.com/mangasocial/meteor-accounts-ui-bootstrap-3.git",
+        "tag": "v0.3.0-1",
+        "commit": "93ffa5d0e325dc7026de89f6d90c178fa04bdd3a"
+      },
+      "typeahead": {
+        "git": "https://github.com/sergeyt/meteor-typeahead.git",
+        "tag": "v0.0.7",
+        "commit": "23ddb660cf7430c76b37b0dc08ec73001624428d"
+      },
+      "moment": {
+        "git": "https://github.com/acreeger/meteor-moment.git",
+        "tag": "v2.6.0",
+        "commit": "26156df681750fd6e6ed77043eef32b6653ebbdf"
+      },
+      "font-awesome": {
+        "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
+        "tag": "v4.0.3",
+        "commit": "61e9361384347547ae144f8228faa4deffda23db"
+      },
+      "bootstrap3-datepicker": {
+        "git": "https://github.com/rajit/bootstrap3-datepicker.git",
+        "tag": "v0.2.0",
+        "commit": "e773c83065de04af77e95cf9b8f4d10d44615cb6"
+      },
+      "bootstrap-select": {
+        "git": "https://github.com/amrali/bootstrap-select-meteor.git",
+        "tag": "v1.5.2",
+        "commit": "61588ec8326987ded204724d85843eb6997cfcfb"
+      },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
         "tag": "v0.2.4",
         "commit": "b40e9b0612329288d75cf52ad14a7da64bb8618f"
+      },
+      "bootstrap-3": {
+        "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
+        "tag": "v3.1.1-1",
+        "commit": "63dd38968828bb8963636df93e9a1c45e2dfe67e"
       }
     }
   }

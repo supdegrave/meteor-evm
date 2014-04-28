@@ -1,0 +1,35 @@
+<template name="userProfile">
+	<div class="container userProfile">
+        <div class="media">
+            <a class="pull-left" href="#">
+                <img class="media-object profilePic img-circle" src="http://www.empireonline.com/images/features/100greatestcharacters/photos/88.jpg" style="width: 150px;height:150px;">
+            </a>
+            <!-- {{#with userInScope}} -->
+            <div class="media-body">
+                <h4 class="media-heading">{{displayName this}}</h4>
+                <hr style="margin:8px auto">
+                <div>
+                	<h5>Role in team(s):</h5>
+	                {{#if roleIn 'lead'}}
+	                <div class="roleInTeam"><span class="label label-default roleName">Lead</span>{{#each roleIn 'lead'}}<span class="teamName">{{name}}</span>{{/each}}</div>
+	                {{/if}}
+					{{#if roleIn 'colead'}}
+	                <div class="roleInTeam"><span class="label label-default roleName">Co-lead</span>{{#each roleIn 'colead'}}<span class="teamName">{{name}}</span>{{/each}}</div>
+	                {{/if}}
+	                {{#if roleIn 'mentor'}}
+	                <div class="roleInTeam"><span class="label label-default roleName">Mentor</span>{{#each roleIn 'mentor'}}<span class="teamName">{{name}}</span>{{/each}}</div>
+	                {{/if}}
+	                {{#if memberOf}}
+	                <div class="roleInTeam"><span class="label label-default roleName">Member</span>{{#each memberOf}}<span class="teamName">{{name}}</span>{{/each}}</div>
+	                {{/if}}
+				</div>
+            </div>
+            <!-- {{/with}} -->
+        </div>
+
+
+		 
+		 <br>
+		 
+	</div>
+</template>

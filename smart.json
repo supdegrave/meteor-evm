@@ -1,6 +1,13 @@
 {
   "packages": {
     "iron-router": {},
-    "roles": {}
+    "roles": {},
+    "x-editable-bootstrap": {},
+    "accounts-ui-bootstrap-3": {},
+    "typeahead": {},
+    "moment": {},
+    "font-awesome": {},
+    "bootstrap3-datepicker": {},
+    "bootstrap-select": {}
   }
 }

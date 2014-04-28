@@ -1,9 +1,8 @@
 <template name="accountsAdmin">
-	<div>
-		<div>
+	<div class="col-sm-6 filterInput">
 			<input type="text" class="form-control search-input-filter" value="{{searchFilter}}" placeholder="Type to filter users list">
-		</div>
-	</div>
+  </div>
+  <div class="horizontalDivider col-sm-12"></div>
 
   <table class='table table-striped'>
     <thead>
@@ -18,9 +17,9 @@
     <tr class="{{#if myself _id}}info{{/if}}">
       <td>
         {{#unless myself _id}}
-        <span data-toggle="modal" href="#deleteaccount" class="glyphicon glyphicon-trash clickable"></span>
-        <span data-toggle="modal" href="#updateaccount" class="glyphicon glyphicon-pencil clickable"></span>
-        <span data-toggle="modal" href="#infoaccount" class="glyphicon glyphicon-info-sign clickable"></span>
+        <span data-toggle="modal" href="#deleteaccount" class="fa fa-trash-o clickable"></span>
+        <span data-toggle="modal" href="#updateaccount" class="fa fa-pencil clickable"></span>
+        <span data-toggle="modal" href="#infoaccount" class="fa fa-info-circle clickable"></span>
         {{/unless}}
       </td>
       <td>

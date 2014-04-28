@@ -31,13 +31,16 @@
   
 
 * USERS: 
-  - Nico is going to figure out what should be here! 
+  - ~~Nico is going to figure out what should be here!~~ 
+  - Alphabetical list of all users with relevant info
+    - ~~team(s) each user is in~~
+    - filter by team, ~~name,~~
+    - FUTURE: filter by dates available
 
 
 * USER (INDIVIDUAL): 
   - profile edit (from initial TODO.md) if user._id === Meteor.userId() 
   - 'My Teams' links to any team where you have a role 
-
 
 * ORG CHART: 
   - ~~link team name to team, organizer to user page~~

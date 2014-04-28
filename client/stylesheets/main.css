@@ -1,0 +1,45 @@
+.horizontalDivider{
+	border-top: 1px solid #ebebeb;
+	margin:15px 0;
+	clear: both;
+}
+
+
+/*User FILTER*/
+.bootstrap-select .dropdown-menu li > a:hover small.text-muted {
+	color:#555;
+}
+.input-daterange{
+	z-index: 1;
+}
+@media (max-width: 768px){
+	.filterInput{
+		padding-top: 15px;
+	}
+}
+
+/*USER PROFILE*/
+.media{
+    /*box-shadow:0px 0px 4px -2px #000;*/
+    margin: 20px 0;
+    padding:30px;
+}
+.profilePic{
+    border:10px solid #eee;
+    transition: all 0.2s ease-in-out;
+}
+.profilePic:hover{
+    border:2px solid #eee;
+   /* transform:rotate(360deg);
+    -ms-transform:rotate(360deg);  
+    -webkit-transform:rotate(360deg); */ 
+    /*-webkit-font-smoothing:antialiased;*/
+}
+
+.userProfile .roleInTeam {
+	display: inline-block;
+	padding: 10px 5px;
+}
+.userProfile .roleInTeam .teamName:not(:last-child):after{
+	content:' | ';
+}
