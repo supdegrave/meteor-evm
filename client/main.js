@@ -22,3 +22,9 @@ Deps.autorun(function(){
 //     // event handling code
 //   }
 // });
+
+Template._loginButtonsAdditionalLoggedInDropdownActions.helpers({
+	myID:function(){
+		return Meteor.userId();
+	}
+});

@@ -6,7 +6,7 @@
 
 
 /*User FILTER*/
-.bootstrap-select .dropdown-menu li > a:hover small.text-muted {
+.bootstrap-select.btn-group .dropdown-menu li:not(.disabled)>a:hover>span>small.text-muted {
 	color:#555;
 }
 .input-daterange{
