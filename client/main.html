@@ -37,7 +37,6 @@
 </body>
 
 <template name="_loginButtonsAdditionalLoggedInDropdownActions">
-  <button class="btn btn-default btn-block" id="login-buttons-edit-profile"><i class="fa fa-user"></i> View profile</button>
-  <button class="btn btn-default btn-block" id="login-buttons-edit-profile"><i class="fa fa-pencil"></i> Edit profile</button>
-  <button class="btn btn-default btn-block" id="login-buttons-edit-profile"><i class="fa fa-power-off"></i> Logout</button>
+  <a class="btn btn-default btn-block" href="{{pathFor 'user' id=myID}}" id="login-buttons-view-profile"><i class="fa fa-user"></i> View profile</a>
+  <a class="btn btn-default btn-block" id="login-buttons-logout"><i class="fa fa-power-off"></i> Logout</a>
 </template>
