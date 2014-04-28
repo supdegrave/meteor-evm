@@ -6,7 +6,6 @@
 standard-app-packages
 insecure
 # https://github.com/hharnisc/meteor-accounts-admin-ui-bootstrap-3
-accounts-ui
 accounts-password
 accounts-facebook
 accounts-google
@@ -18,3 +17,10 @@ roles
 bootstrap-3
 email
 less
+x-editable-bootstrap
+accounts-ui-bootstrap-3
+typeahead
+moment
+font-awesome
+bootstrap3-datepicker
+bootstrap-select

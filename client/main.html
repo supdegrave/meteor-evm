@@ -3,21 +3,41 @@
 </head> 
 
 <body>
-  <div class="container"> 
-    <header class="navbar">
-      <div class="navbar-inner"> 
-        {{>loginButtons}}
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
 
-        {{#if isInRole 'admin'}}
-        <span>| <a href="/admin">admin view</a></span>
-        {{/if}}
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Let's build Nowhere !</a>
+      </div><!-- /.navbar-header -->
 
-        {{#if currentUser}}
-        <span>| <a href="/users">users</a></span>
-        {{/if}}
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          {{#if currentUser}}
+          <li> <a href="/users"><i class="fa fa-users"></i> Users</a></li>
+          {{/if}}
+          <li> <a href="/org"><i class="fa fa-sitemap"></i> Org chart</a></li>
+        </ul>
 
-        <span>| <a href="/org">org chart</a></span>
-      </div> 
-    </header> 
-  </div> 
+        <ul class="nav navbar-nav navbar-right">
+          {{#if isInRole 'admin'}}
+          <li> <a href="/admin">Admin</a></li>
+          {{/if}}
+          {{>loginButtons}}
+        </ul>
+      </div><!-- /.collapse .navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav> 
 </body>
+
+<template name="_loginButtonsAdditionalLoggedInDropdownActions">
+  <button class="btn btn-default btn-block" id="login-buttons-edit-profile"><i class="fa fa-user"></i> View profile</button>
+  <button class="btn btn-default btn-block" id="login-buttons-edit-profile"><i class="fa fa-pencil"></i> Edit profile</button>
+  <button class="btn btn-default btn-block" id="login-buttons-edit-profile"><i class="fa fa-power-off"></i> Logout</button>
+</template>
