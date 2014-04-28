@@ -1,0 +1,13 @@
+<template name="userProfileModal">
+	<div id="userprofile" class="modal fade" tabindex="-1" data-width="760" style="display:none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			{{#with userInScope}}
+				<!-- {{> userProfileModalInner}} -->
+				{{>userProfile}}
+			{{/with}}
+			</div>
+		</div>
+	</div>
+</template>
+

@@ -1,20 +1,20 @@
 <template name="listUsers">
   <table class='table table-striped'>
       <thead>
-        <th></th>
         <th>Name</th>
         <th>Team</th>
         <th>Add to team</th>
     </thead>
     {{#each users}}
     <tr class="{{#if myself _id}}info{{/if}}">
-        <td>
-          {{#unless myself _id}}
-          <span data-toggle="modal" href="#infoaccount" class="fa fa-info-circle clickable"></span>
-          {{/unless}}
-      </td>
       <td>
+        {{#if myself _id}}
           {{displayName}}
+        {{else}}
+        <!-- <a class="userLink" href="{{pathFor 'user' id=_id}}">{{displayName}}</a> -->
+                <a data-toggle="modal" href="#userprofile" class="userLink">{{displayName}}</a>
+
+        {{/if}}
       </td>
       <td>
           {{#each memberOfTeams _id}}
@@ -32,5 +32,5 @@
     {{/each}}
   </table>
 
-  {{> infoAccountModal}}
+  {{> userProfileModal}}
 </template>

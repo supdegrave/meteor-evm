@@ -1,23 +1,17 @@
 Template.filterUsers.helpers({
-
   teams: function() {
-    return Teams.find({},{name:1, members:1});
+    var query =  Teams.find({},{name:1, members:1});
+    return query;
   },
   teamMemberCount: function() {
-      /*var bodyCount = 0;
-      if (!this.members) {
-          return;
-      }
-      for (member in this.members) {
-          bodyCount++;
-      }
-      return bodyCount;*/
-      return this.members.length;
+    return this.members.length;
   },
   searchFilter: function() {
     return Session.get("userFilter");
-  }
+  },
+    
 });
+
 
 /*Search Magic*/
 
@@ -34,13 +28,18 @@ Template.filterUsers.events({
   },
 });
 
+
 Template.filterUsers.rendered = function(){
   
   $('.input-daterange.input-group.date').datepicker({
     autoclose: true
   });
 
-  $('select.selectpicker').selectpicker();
+  $('select.selectpicker').selectpicker().selectpicker('refresh');
+  /*Temporary fix for data not loading programattically as it should*/
+  $('button.selectpicker').click(function() {
+    $('select.selectpicker').selectpicker('refresh');
+  });
 
   var searchElement = document.getElementsByClassName('search-input-filter');
   if(!searchElement)  return;
@@ -53,7 +52,5 @@ Template.filterUsers.rendered = function(){
 
   searchElement[0].focus();
   searchElement[0].setSelectionRange(pos, pos);
-
-
 };
 

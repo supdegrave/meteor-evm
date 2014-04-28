@@ -14,7 +14,7 @@ Template.listUsers.helpers({
 });
 
 Template.listUsers.events({
-  'click .glyphicon-info-sign': function(event, template) {
+  'click .userLink': function(event, template) {
     Session.set('userInScope', this);
   }   
 });
