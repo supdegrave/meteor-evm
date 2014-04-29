@@ -34,19 +34,17 @@ Router.map(function() {
   this.route('user', {
     path: 'users/:id',
     data: function() {
-      // return Meteor.user();
       return Meteor.users.findOne({_id: this.params.id});
     }
   });
   // *** display team by name ******************* //
   this.route('team', {
     path: '/teams/:name',
-    data: function () {
+    waitOn: function() {
       Session.set('currentTeam', Teams.findOne({name: this.params.name}));
-      var team = Teams.findOne({name: this.params.name});
-      if (team) {
-        return team;
-      }
+    },
+    data: function() {
+      return Teams.findOne({name: this.params.name});
     },
   });
   
