@@ -20,10 +20,15 @@ Router.map(function() {
   
   // *** all users ****************************** //
   this.route('users', {
+    waitOn: function() {
+      Session.set('userFilter', null);
+      Session.set('teamFilter', null);
+    },
     onBeforeAction: function() {
       if (Meteor.loggingIn()) {
         this.render(this.loadingTemplate);
-      } else if (!Meteor.user()) {
+      } 
+      else if (!Meteor.user()) {
         console.log('Redirecting');
         this.redirect('home');
       }

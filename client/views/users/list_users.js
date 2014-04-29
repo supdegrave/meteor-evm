@@ -1,21 +1,37 @@
 Template.listUsers.helpers({
   users: function() {
-    var filter        = Session.get("userFilter"), 
-        filterOptions = {$regex: filter, $options: 'i'},
-        queryLimit    = 25;
-    
-    if(!!filter) {      
-  		users = Meteor.users.find({
-  			$or: [
-  				{'profile.name': filterOptions},
-  				{'emails.address': filterOptions},
-  				{'username': filterOptions},
-  			]
-  		}, {sort: {emails: 1}, limit: queryLimit});
-  	} else {
-  		users = Meteor.users.find({}, {sort: {emails: 1}, limit: queryLimit});
-  	}
-  	return users;
+    var userFilter = Session.get("userFilter"), 
+        teamFilter = Session.get("teamFilter"), 
+        query      = {}, 
+        userQuery  = teamQuery = null;
+
+    if (!!userFilter) {
+      var userFilterOptions = {$regex: userFilter, $options: 'i'};
+      userQuery = {
+      	$or: [
+      		{'profile.name': userFilterOptions},
+      		{'emails.address': userFilterOptions},
+      		{'username': userFilterOptions},
+      	]
+      };
+    }
+
+    if (teamFilter) {
+      var teams = Teams
+        .find({name: {$in: teamFilter}})
+        .fetch()
+        .map(function(team) { 
+          return team.members; 
+        });
+
+      teamQuery = {_id: {$in: _.uniq(_.flatten(teams))}};
+    };
+
+    if (userQuery && teamQuery) { query = {$and: [userQuery, teamQuery]}; }
+    else if (userQuery) { query = userQuery; }
+    else if (teamQuery) { query = teamQuery; }
+
+    return Meteor.users.find(query);
   },
 
   myself: function(userId) {
@@ -26,8 +42,8 @@ Template.listUsers.helpers({
     return this.organizer;
   }, 
 
-  memberOfTeams: function(userId) {
-    return Teams.find({members:{$in: [this._id]}},{name:1});
+  memberOfTeams: function() {
+    return Teams.find({members: {$in: [this._id]}}, {name: 1});
   }
 });
 

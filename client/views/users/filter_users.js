@@ -40,6 +40,10 @@ Template.filterUsers.events({
   'keyup .search-input-filter': function(event, template) {
     setUserFilter(template);
     return false;
+  }, 
+  
+  'change select.selectpicker': function(evt, tmpl) {
+    Session.set("teamFilter", $(evt.currentTarget).val());
   }
 });
 
