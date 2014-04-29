@@ -1,31 +1,36 @@
 <template name="listUsers">
   <table class='table table-striped'>
-      <thead>
-        <th></th>
-        <th>Name</th>
-        <th>Team</th>
-        <th>Add to team</th>
+    <thead>
+      <!-- <th></th> -->
+      <th>Name</th>
+      <th>Teams</th>
+      {{#if canEdit}}
+      <th>Add to team</th>
+      {{/if}}
     </thead>
     {{#each users}}
     <tr class="{{#if myself _id}}info{{/if}}">
-        <td>
-          {{#unless myself _id}}
-          <span data-toggle="modal" href="#infoaccount" class="fa fa-info-circle clickable"></span>
-          {{/unless}}
+      <!-- 
+      <td>
+        {{#unless myself}}
+        <span data-toggle="modal" href="#infoaccount" class="fa fa-info-circle clickable"></span>
+        {{/unless}}
+      </td>
+      -->
+      <td>
+        {{displayName}}
       </td>
       <td>
-          {{displayName}}
+        {{#each memberOfTeams _id}}
+        <a class="btn btn-default btn-xs" href="{{pathFor 'team' name=name}}">{{name}}</a>
+        {{/each}}
       </td>
+      <!-- {{#if isInRole 'admin'}} -->
+      {{#if canEdit}}
       <td>
-          {{#each memberOfTeams _id}}
-              <a class="btn btn-default btn-xs" href="{{pathFor 'team' name=name}}">{{name}}</a>
-          {{/each}}
-      </td>
-      {{#if isInRole 'admin'}}
-      <td>
-          <button type="button" class="btn btn-xs btn-default">
-            <span class="fa fa-plus"></span>
-          </button>
+        <button type="button" class="btn btn-xs btn-default">
+          <span class="fa fa-plus"></span>
+        </button>
       </td>
       {{/if}}
     </tr>

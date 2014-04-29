@@ -5,18 +5,6 @@ Router.configure({
 Router.map(function() {
   // *** home, '/' path ************************* //
   this.route('home', { path: '/' });
-  
-  // *** all users ****************************** //
-  this.route('users', {
-    onBeforeAction: function() {
-      if (Meteor.loggingIn()) {
-        this.render(this.loadingTemplate);
-      } else if (!Meteor.user()) {
-        console.log('Redirecting');
-        this.redirect('home');
-      }
-    }
-  });
 
   // *** admin ui ******************************* //
   this.route('admin', {
@@ -28,6 +16,18 @@ Router.map(function() {
         this.redirect('home');
       }
     }
+  });
+  
+  // *** all users ****************************** //
+  this.route('users', {
+    onBeforeAction: function() {
+      if (Meteor.loggingIn()) {
+        this.render(this.loadingTemplate);
+      } else if (!Meteor.user()) {
+        console.log('Redirecting');
+        this.redirect('home');
+      }
+    }, 
   });
 
   // *** display user by id ********************* //
