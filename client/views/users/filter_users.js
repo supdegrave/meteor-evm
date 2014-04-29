@@ -1,9 +1,10 @@
-var updateSelect = function(){
-  //myDep.depend();
-  // Making sure we don't target a non existing input
-  if ($('select.selectpicker')){ 
+var updateSelect = function() {
+  var sel = $('select.selectpicker');
+  if (sel) { 
     // Hacky fix to bug: change event trigerred before original select to read from is re-populated
-    setTimeout(function(){$('select.selectpicker').selectpicker('refresh');},0);
+    setTimeout(function() {
+      sel.selectpicker('refresh');
+    }, 0);
   }
   else console.log("$('select.selectpicker') cannot be found!");
 };
@@ -12,9 +13,9 @@ Template.filterUsers.helpers({
   teams: function() {
     var query = Teams.find({},{name:1, members:1});
     query.observeChanges({
-      added:function(){ updateSelect(); },
-      removed:function(){ updateSelect(); },
-      changed:function(){ updateSelect(); },
+      added:   updateSelect,
+      removed: updateSelect,
+      changed: updateSelect,
     });
     return query;
   },
@@ -26,7 +27,6 @@ Template.filterUsers.helpers({
   searchFilter: function() {
     return Session.get("userFilter");
   },
-    
 });
 
 /*Search Magic*/
