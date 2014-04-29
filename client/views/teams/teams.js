@@ -18,7 +18,7 @@ Deps.autorun(function() {
 
 Template.team.helpers({
   getParent: function(parentId) {
-    return Teams.findOne({_id: parentId});
+    return Teams.findOne({_id: parentId},{name:1});
   },
 });
 

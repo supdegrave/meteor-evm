@@ -32,7 +32,7 @@ Router.map(function() {
 
   // *** display user by id ********************* //
   this.route('user', {
-    path: 'users/:id',
+    path: '/users/:id',
     data: function() {
       return Meteor.users.findOne({_id: this.params.id});
     }

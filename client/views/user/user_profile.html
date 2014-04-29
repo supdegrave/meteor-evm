@@ -1,5 +1,5 @@
 <template name="userProfile">
-	<div class="container userProfile">
+	<div class="userProfile">
         <div class="media">
             <a class="pull-left" href="#">
                 <img class="media-object profilePic img-circle" src="http://www.empireonline.com/images/features/100greatestcharacters/photos/88.jpg" style="width: 150px;height:150px;">
@@ -7,7 +7,7 @@
             <!-- {{#with userInScope}} -->
             <div class="media-body">
                 <h4 class="media-heading">{{displayName this}}</h4>
-                <hr style="margin:8px auto">
+                <div class="horizontalDivider col-sm-12"></div>
                 <div>
                 	<h5>Role in team(s):</h5>
 	                {{#if roleIn 'lead'}}

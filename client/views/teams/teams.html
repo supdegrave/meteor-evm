@@ -1,13 +1,13 @@
 <template name="team">
   <div class="container team">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb h3">
     {{#if parentId}} 
-    <li><a href="#">{{getParent parentId}}</a></li>
+      {{#with getParent parentId}}<li><a href="{{pathFor 'team' name=name}}">{{name}}</a></li>{{/with}}
     {{/if}}
-    <li class="active"><h3>{{name}}</h3></li>
+    <li class="active">{{name}}</li>
   </ol> 
 
-    {{#if parentId}}<p>Parent: {{getParent parentId}}</p>{{/if}}
+    {{#if parentId}}{{#with getParent parentId}} <p>Parent: {{name}}</p>{{/with}}{{/if}}
     
     <p>Email:   {{>emailWidget}}</p>
     <p>Owner:   {{>userRole role="owner" context=this}}</p>
