@@ -49,10 +49,10 @@ Template.filterUsers.events({
 
 
 Template.filterUsers.rendered = function(){
-  $('.input-daterange.input-group.date').datepicker({
-    autoclose: true
-  });
   
+  /*$('.input-daterange.input-group.date').datepicker({
+    autoclose: true
+  });*/ /*Disabled for now*/
   setTimeout(function(){$('select.selectpicker').selectpicker();},0);
 
   var searchElement = document.getElementsByClassName('search-input-filter');
