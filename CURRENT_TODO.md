@@ -36,6 +36,8 @@
     - ~~team(s) each user is in~~
     - filter by team, ~~name,~~
     - FUTURE: filter by dates available
+  - Limit number of results per page and add pagination
+    - This might be a good clue: https://github.com/TimHeckel/meteor-paginator
 
 
 * USER (INDIVIDUAL): 
