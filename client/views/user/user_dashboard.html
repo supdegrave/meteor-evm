@@ -1,0 +1,53 @@
+<template name="userDashboard">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">My teams</h3>
+    </div>
+    <div class="panel-body">
+      {{#each leadRoleInTeams}}
+        <div class="col-sm-12 col-md-6">
+          <h4>{{name}}</h4>
+          <div class="horizontalDivider col-sm-12"></div>
+
+          <div class="roleInTeam form-group col-md-12">
+            <label class="label label-primary roleName col-sm-3">Lead</label>
+            <div class="col-sm-9">
+              {{#if leadIsFilled}}
+                {{#with fetchLeadName lead}}<span class="teamName">{{displayName}}</span>{{/with}}
+              {{else}}
+              {{> addLeadButton}}
+              {{/ if}}
+            </div>
+          </div>
+
+          <div class="roleInTeam form-group col-md-12">
+            <label class="label label-warning roleName col-sm-3">Co-lead</label>
+            <div class="col-sm-9">
+              {{#if coleadIsFilled}}
+                {{#with fetchLeadName colead}}<span class="teamName">{{displayName}}</span>{{/with}}
+              {{else}}
+              {{> addLeadButton}}
+              {{/ if}}
+            </div>
+          </div>
+
+          <div class="roleInTeam form-group col-md-12">
+            <label class="label label-info roleName col-sm-3">Mentor</label>
+            <div class="col-sm-9">
+              {{#if mentorIsFilled}}
+                {{#with fetchLeadName mentor}}<span class="teamName">{{displayName}}</span>{{/with}}
+              {{else}}
+              {{> addLeadButton}}
+              {{/ if}}
+            </div>
+          </div>
+
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="addLeadButton">
+  <button class="btn btn-danger btn-xs missing"><i class="fa fa-exclamation-triangle"></i>Add a user</button>
+</template>

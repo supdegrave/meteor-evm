@@ -3,7 +3,9 @@
 	margin:15px 0;
 	clear: both;
 }
-
+button .fa{
+  margin-right: 1em;
+}
 
 /*User FILTER*/
 .bootstrap-select.btn-group .dropdown-menu li:not(.disabled)>a:hover>span>small.text-muted {
@@ -19,30 +21,39 @@
 }
 
 /*USER PROFILE*/
-.userProfile{
-	height: 210px;
+.userProfile .media{
+  /*box-shadow:0px 0px 4px -2px #000;*/
+  margin: 0;
+  padding:30px;
 }
-.media{
-    /*box-shadow:0px 0px 4px -2px #000;*/
-    margin: 20px 0;
-    padding:30px;
-}
-.profilePic{
-    border:10px solid #eee;
-    transition: all 0.2s ease-in-out;
-}
-.profilePic:hover{
-    border:2px solid #eee;
-   /* transform:rotate(360deg);
-    -ms-transform:rotate(360deg);  
-    -webkit-transform:rotate(360deg); */ 
-    /*-webkit-font-smoothing:antialiased;*/
+.userProfile .media .label {
+  padding: 0.5em .6em .5em;
 }
 
-.userProfile .roleInTeam {
-	display: inline-block;
-	padding: 10px 5px;
+.profilePic{
+  border:10px solid #eee;
+  transition: all 0.2s ease-in-out;
 }
-.userProfile .roleInTeam .teamName:not(:last-child):after{
-	content:' | ';
+.profilePic:hover{
+  border:2px solid #eee;
+ /* transform:rotate(360deg);
+  -ms-transform:rotate(360deg);  
+  -webkit-transform:rotate(360deg); */ 
+  /*-webkit-font-smoothing:antialiased;*/
+}
+
+.userProfile .form-group
+{
+ margin-bottom: 5px;
+}	
+
+.userProfile .roleInTeam {
+ display: inline-block;
+ padding: 5px 0;
+}
+.userProfile .roleInTeam .teamName {
+padding: 0 10px;
+}
+.userProfile .roleInTeam .teamName:not(:last-child){
+ border-right: 1px solid #CCC;
 }

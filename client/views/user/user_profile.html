@@ -1,35 +1,75 @@
 <template name="userProfile">
-	<div class="userProfile">
-        <div class="media">
-            <a class="pull-left" href="#">
-                <img class="media-object profilePic img-circle" src="http://www.empireonline.com/images/features/100greatestcharacters/photos/88.jpg" style="width: 150px;height:150px;">
-            </a>
-            <!-- {{#with userInScope}} -->
-            <div class="media-body">
-                <h4 class="media-heading">{{displayName this}}</h4>
-                <div class="horizontalDivider col-sm-12"></div>
-                <div>
-                	<h5>Role in team(s):</h5>
-	                {{#if roleIn 'lead'}}
-	                <div class="roleInTeam"><span class="label label-default roleName">Lead</span>{{#each roleIn 'lead'}}<span class="teamName">{{name}}</span>{{/each}}</div>
-	                {{/if}}
-					{{#if roleIn 'colead'}}
-	                <div class="roleInTeam"><span class="label label-default roleName">Co-lead</span>{{#each roleIn 'colead'}}<span class="teamName">{{name}}</span>{{/each}}</div>
-	                {{/if}}
-	                {{#if roleIn 'mentor'}}
-	                <div class="roleInTeam"><span class="label label-default roleName">Mentor</span>{{#each roleIn 'mentor'}}<span class="teamName">{{name}}</span>{{/each}}</div>
-	                {{/if}}
-	                {{#if memberOf}}
-	                <div class="roleInTeam"><span class="label label-default roleName">Member</span>{{#each memberOf}}<span class="teamName">{{name}}</span>{{/each}}</div>
-	                {{/if}}
-				</div>
+  <div class="userProfile">
+    <div class="media">
+      <a class="pull-left" href="#">
+        <img class="media-object profilePic img-circle" src="http://www.empireonline.com/images/features/100greatestcharacters/photos/88.jpg" style="width: 150px;height:150px;">
+      </a>
+      <div class="media-body">
+          <h4 class="media-heading">{{displayName}}</h4>
+
+        <div class="horizontalDivider col-sm-12"></div>
+        
+        <adress>
+            {{#each emails}}
+            <div class="form-group col-md-12">
+              <label class="col-sm-3">
+                <abbr title="E-mail address" class="fa fa-envelope-o"> :</abbr>
+              </label>
+              <div class="col-sm-9">
+                <a href="mailto:{{address}}">{{address}}</a>
+              </div>
             </div>
-            <!-- {{/with}} -->
+            {{/each}}
+            <br/>
+            {{#if skype}}
+            <div class="form-group col-md-12">
+              <label class="col-sm-3">
+                <abbr title="Skype I.D." class="fa fa-skype"> :</abbr>
+              </label>
+              <div class="col-sm-9">
+                {{skype}}
+              </div>
+            </div>
+            {{/if}}
+          <br/>
+        </adress>
+
+        <div class="horizontalDivider col-sm-12"></div>
+
+        {{#if roleIn 'lead'}}
+        <div class="roleInTeam form-group col-md-12">
+          <label class="label label-primary roleName col-sm-3">Lead</label>
+          <div class="col-sm-9">
+            {{#each roleIn 'lead'}}<span class="teamName">{{name}}</span>{{/each}}
+          </div>
         </div>
-
-
-		 
-		 <br>
-		 
-	</div>
+        {{/if}}
+        {{#if roleIn 'colead'}}
+        <div class="roleInTeam form-group col-md-12">
+          <label class="label label-warning roleName col-sm-3">Co-lead</label>
+          <div class="col-sm-9">
+            {{#each roleIn 'colead'}}<span class="teamName">{{name}}</span>{{/each}}
+          </div>
+        </div>
+        {{/if}}
+        {{#if roleIn 'mentor'}}
+        <div class="roleInTeam form-group col-md-12">
+          <label class="label label-info roleName col-sm-3">Mentor</label>
+          <div class="col-sm-9">
+            {{#each roleIn 'mentor'}}<span class="teamName">{{name}}</span>{{/each}}
+          </div>
+        </div>
+        {{/if}}
+        {{#if memberOf}}
+        <div class="roleInTeam form-group col-md-12">
+          <label class="label label-success roleName col-sm-3">Member</label>
+          <div class="col-sm-9">
+            {{#each memberOf}}<span class="teamName">{{name}}</span>{{/each}}
+          </div>
+        </div>
+        {{/if}}
+          
+      </div>
+    </div>
+  </div>
 </template>

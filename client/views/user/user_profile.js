@@ -1,9 +1,4 @@
-Session.set('userInScope', this);
-
 Template.userProfile.helpers({
-	userInScope: function() {
-		return Session.get('userInScope');
-	},
   memberOf: function() {
     var myQuery = Teams.find({members: this._id},{name:1});
     if (myQuery.fetch().length) return myQuery;
