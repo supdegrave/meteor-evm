@@ -12,12 +12,11 @@
 * ~~Add users by email address (A,O,L)~~
   * ~~(pri1) this should send an invitation to edit profile~~
 * ~~Mark users as organizer (A) (for Nowhere: "board member")~~
-* Add Roles (~~A~~,O,L)
-* Add Teams (~~A~~,O,L)
-  * Admin done, still need to allow organizers / leads
+* Add Roles (~~A~~)
+* Add Teams (~~A,O~~,L)
+  * Admin and organizer done, still need to allow leads
   * Leads should only be able to add sub-teams (meaning that they have a parent: Build -> Gate Build). 
 * Add team ownership to board members (A,O)
-* Add team-role combinations to users (Transport Lead, Gate Co-Lead, Build Mentor) (A,O)
 
 **Org chart (Pri0 according to Aqua!)**
 
@@ -32,7 +31,6 @@
 * ??? 
 
 **Role-based Security (only editable by admins, owners, leads, individual user)**
-
 
 ## PRIORITY 1
 

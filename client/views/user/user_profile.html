@@ -5,7 +5,11 @@
         <img class="media-object profilePic img-circle" src="http://www.empireonline.com/images/features/100greatestcharacters/photos/88.jpg" style="width: 150px;height:150px;">
       </a>
       <div class="media-body">
-          <h4 class="media-heading">{{displayName}}</h4>
+        <h4 class="media-heading">{{displayName}}</h4>
+
+        <!-- Playa name (optional) -->
+
+        <!-- Gender (necessary for some shift scheduling: male, female, other - text input) -->
 
         <div class="horizontalDivider col-sm-12"></div>
         
@@ -21,7 +25,11 @@
             </div>
             {{/each}}
             <br/>
-            {{#if skype}}
+
+            <!-- Address (optional) -->
+
+            <!-- Phone (optional) -->
+
             <div class="form-group col-md-12">
               <label class="col-sm-3">
                 <abbr title="Skype I.D." class="fa fa-skype"> :</abbr>
@@ -30,9 +38,27 @@
                 {{skype}}
               </div>
             </div>
-            {{/if}}
           <br/>
         </adress>
+
+        <!-- Emergency contact: name / relation / phone / email -->
+
+        <!-- Dietary restrictions 
+        (Aqua: "editable table; I would like to limit the available options, 
+              with some way for people to send email to the volunteer feeders 
+              to indicate the more esoteric restrictions") -->
+
+        <!-- Medical notes -->
+
+        <!-- Skills 
+        (Aqua: editable table. Skills should have a description/explanation, 
+              including skill levels. Gender should go under skills for shift 
+              scheduling. Skill levels should include descriptions, so that 
+              people can indicate what their skill level is based on 
+              definitions we give them. This can also be handy for the gender 
+              ‘skill’, because what we really want to know is, for example: 
+              is someone masculine enough to impress drunken locals, feminine 
+              enough to make them go away quietly, etc.) -->
 
         <div class="horizontalDivider col-sm-12"></div>
 
