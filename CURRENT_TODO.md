@@ -34,7 +34,7 @@
   - ~~Nico is going to figure out what should be here!~~ 
   - Alphabetical list of all users with relevant info
     - ~~team(s) each user is in~~
-    - filter by team, ~~name,~~
+    - ~~filter by team, name,~~
     - FUTURE: filter by dates available
   - Limit number of results per page and add pagination
     - This might be a good clue: https://github.com/TimHeckel/meteor-paginator
