@@ -1,75 +1,153 @@
 <template name="userProfile">
   <div class="userProfile">
     <div class="media">
-      <a class="pull-left" href="#">
-        <img class="media-object profilePic img-circle" src="http://www.empireonline.com/images/features/100greatestcharacters/photos/88.jpg" style="width: 150px;height:150px;">
-      </a>
       <div class="media-body">
-          <h4 class="media-heading">{{displayName}}</h4>
+        <a class="pull-left" href="#">
+          <img class="media-object profilePic img-circle" src="http://www.empireonline.com/images/features/100greatestcharacters/photos/88.jpg">
+        </a>
+        <h3 class="media-heading">{{displayName}}{{#if playaName}} – {{playaName}}{{/if}}</h3>
+
+        <!-- Gender (necessary for some shift scheduling: male, female, other - text input) -->
+
+        {{#if roleIn 'lead'}}
+        <div class="roleInTeam form-group">
+          <label class="label label-primary">Lead of{{#each roleIn 'lead'}}<span class="teamName">{{name}}</span>{{/each}}</label>
+        </div>
+        {{/if}}
+        {{#if roleIn 'colead'}}
+        <div class="roleInTeam form-group">
+          <label class="label label-warning">Co-lead of{{#each roleIn 'colead'}}<span class="teamName">{{name}}</span>{{/each}}</label>
+        </div>
+        {{/if}}
+        {{#if roleIn 'mentor'}}
+        <div class="roleInTeam form-group">
+          <label class="label label-info">Mentor of{{#each roleIn 'mentor'}}<span class="teamName">{{name}}</span>{{/each}}</label>
+        </div>
+        {{/if}}
+        {{#if memberOf}}
+        <div class="roleInTeam form-group">
+          <label class="label label-success">Member of{{#each memberOf}}<span class="teamName">{{name}}</span>{{/each}}</label>
+
+        </div>
+        {{/if}}
 
         <div class="horizontalDivider col-sm-12"></div>
+      </div>
+
+      <div class="media-body">
+        {{#if gender}}
+          <div class="form-group col-md-12 ">
+            <label class="col-xs-1">
+              <abbr title="Gender" class="fa fa-leaf"></abbr>
+            </label>
+            <div class="col-sm-11">
+              {{gender}}
+            </div>
+          </div>
+        {{/if}}
         
         <adress>
             {{#each emails}}
             <div class="form-group col-md-12">
-              <label class="col-sm-3">
-                <abbr title="E-mail address" class="fa fa-envelope-o"> :</abbr>
+              <label class="col-xs-1">
+                <abbr title="E-mail address" class="fa fa-envelope-o"></abbr>
               </label>
-              <div class="col-sm-9">
+              <div class="col-sm-11">
                 <a href="mailto:{{address}}">{{address}}</a>
               </div>
             </div>
             {{/each}}
-            <br/>
+
             {{#if skype}}
-            <div class="form-group col-md-12">
-              <label class="col-sm-3">
-                <abbr title="Skype I.D." class="fa fa-skype"> :</abbr>
+            <div class="form-group col-md-12 ">
+              <label class="col-xs-1">
+                <abbr title="Skype I.D." class="fa fa-skype"></abbr>
               </label>
-              <div class="col-sm-9">
+              <div class="col-sm-11">
                 {{skype}}
               </div>
             </div>
             {{/if}}
-          <br/>
+
+            {{#each phones}}
+            <div class="form-group col-md-12 ">
+              <label class="col-xs-1">
+                <abbr title="Phone number" class="fa fa-phone"></abbr>
+              </label>
+              <div class="col-sm-11">
+                {{#if countryCode}}(+{{countryCode}}) {{/if}}{{number}}
+              </div>
+            </div>
+            {{/each}}
+
+            {{#each address}}
+            <div class="form-group col-md-12 address">
+              <label class="col-xs-1">
+                <abbr title="Address" class="fa fa-home"></abbr>
+              </label>
+              <div class="col-sm-11">
+                <p>{{streetNumber}}, {{address1}}</p>
+                <p>{{address2}}</p>
+                <p>{{postalCode}} {{city}}, {{country}}</p>
+              </div>
+            </div>
+            {{/each}}
         </adress>
-
         <div class="horizontalDivider col-sm-12"></div>
-
-        {{#if roleIn 'lead'}}
-        <div class="roleInTeam form-group col-md-12">
-          <label class="label label-primary roleName col-sm-3">Lead</label>
-          <div class="col-sm-9">
-            {{#each roleIn 'lead'}}<span class="teamName">{{name}}</span>{{/each}}
-          </div>
-        </div>
-        {{/if}}
-        {{#if roleIn 'colead'}}
-        <div class="roleInTeam form-group col-md-12">
-          <label class="label label-warning roleName col-sm-3">Co-lead</label>
-          <div class="col-sm-9">
-            {{#each roleIn 'colead'}}<span class="teamName">{{name}}</span>{{/each}}
-          </div>
-        </div>
-        {{/if}}
-        {{#if roleIn 'mentor'}}
-        <div class="roleInTeam form-group col-md-12">
-          <label class="label label-info roleName col-sm-3">Mentor</label>
-          <div class="col-sm-9">
-            {{#each roleIn 'mentor'}}<span class="teamName">{{name}}</span>{{/each}}
-          </div>
-        </div>
-        {{/if}}
-        {{#if memberOf}}
-        <div class="roleInTeam form-group col-md-12">
-          <label class="label label-success roleName col-sm-3">Member</label>
-          <div class="col-sm-9">
-            {{#each memberOf}}<span class="teamName">{{name}}</span>{{/each}}
-          </div>
-        </div>
-        {{/if}}
-          
       </div>
+
+      {{#if skills}}
+      <div class="media-body">
+        <div class="form-group col-md-12 skillSet">
+          <label class="col-xs-1">
+            <abbr title="Skills" class="fa fa-wrench"></abbr>
+          </label>
+          <div class="col-sm-11">
+          {{#each skills}}<span class="skill">{{this}}</span>{{/each}}
+          {{#if myself}} <button class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>I can do more stuff!</button>{{/if}}
+          </div>
+        </div>
+        <div class="horizontalDivider col-sm-12"></div>
+      </div>
+      {{/if}}
+      <!-- Skills 
+      (Aqua: editable table. Skills should have a description/explanation, 
+            including skill levels. Gender should go under skills for shift 
+            scheduling. Skill levels should include descriptions, so that 
+            people can indicate what their skill level is based on 
+            definitions we give them. This can also be handy for the gender 
+            ‘skill’, because what we really want to know is, for example: 
+            is someone masculine enough to impress drunken locals, feminine 
+            enough to make them go away quietly, etc.) -->
+
+
+
+      <!-- Visibility of sections below should restricted -->
+      {{#if emergency contact}}
+      <div class="media-body">
+        <adress>
+            <h5>Emergency contact:</h5>
+            <div class="form-group col-md-12 emergencyContact">
+              <label class="col-xs-1">
+                <abbr title="Emergency contact" class="fa fa-ambulance"></abbr>
+              </label>
+              <div class="col-sm-11">
+                <p>{{name}} – {{relation}}</p>
+                <p>{{phone}}</p>
+                <p>{{email}}</p>
+              </div>
+            </div>
+        </adress>
+        <div class="horizontalDivider col-sm-12"></div>
+      </div>
+      {{/if}}
+
+        <!-- Dietary restrictions 
+        (Aqua: "editable table; I would like to limit the available options, 
+              with some way for people to send email to the volunteer feeders 
+              to indicate the more esoteric restrictions") -->
+
+        <!-- Medical notes -->
     </div>
   </div>
 </template>

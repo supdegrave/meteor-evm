@@ -9,6 +9,9 @@ Template.userDashboard.helpers({
       {name:1});
     if (myQuery.fetch().length) return myQuery;
   },
+  teamMembersCount: function() {
+    return this.members.length;
+  },
   fetchLeadName:function(leadId){
     return Meteor.users.findOne( { _id: leadId},{name:1});
   },
@@ -21,10 +24,6 @@ Template.userDashboard.helpers({
   mentorIsFilled :function(){
     return !!this.mentor;
   },
-  /*fetchMembers :function () {
-    var myQuery = Meteor.users.find({_id: {$in: this.members}},{name:1});
-    return myQuery;
-  },*/
   log : function(toLog){
     console.log("Log called from template // "+ toLog);
   },

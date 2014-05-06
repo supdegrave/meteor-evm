@@ -1,31 +1,45 @@
 .horizontalDivider{
-	border-top: 1px solid #ebebeb;
-	margin:15px 0;
-	clear: both;
+  border-top: 1px solid #ebebeb;
+  margin:12px 0;
+  /*clear: both;*/
 }
 button .fa{
   margin-right: 1em;
 }
 
+.alert .bigAlertIcon {
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+
 /*User FILTER*/
 .bootstrap-select.btn-group .dropdown-menu li:not(.disabled)>a:hover>span>small.text-muted {
-	color:#555;
+  color:#555;
 }
 .input-daterange{
-	z-index: 1;
+  z-index: 1;
 }
 @media (max-width: 768px){
-	.filterInput{
-		padding-top: 15px;
-	}
+  .filterInput{
+    padding-top: 15px;
+  }
 }
 
 /*USER PROFILE*/
 .userProfile .media{
   /*box-shadow:0px 0px 4px -2px #000;*/
   margin: 0;
-  padding:30px;
+  padding:15px;
 }
+.userProfile .media .media-heading{
+  margin: 25px 0 5px;
+}
+.userProfile .media .profilePic{
+  width: 140px;
+  height: 140px;
+  margin: 0 25px 15px 0;
+}
+
 .userProfile .media .label {
   padding: 0.5em .6em .5em;
 }
@@ -44,16 +58,23 @@ button .fa{
 
 .userProfile .form-group
 {
- margin-bottom: 5px;
-}	
+ margin-bottom: 0px;
+} 
+.userProfile .emergencyContact p,
+.userProfile .address p{
+  margin:0;
+}
 
 .userProfile .roleInTeam {
  display: inline-block;
  padding: 5px 0;
 }
-.userProfile .roleInTeam .teamName {
-padding: 0 10px;
+.userProfile .roleInTeam .teamName,
+.userProfile .skillSet .skill{
+  padding: 0 6px;
 }
-.userProfile .roleInTeam .teamName:not(:last-child){
- border-right: 1px solid #CCC;
+
+.userProfile .roleInTeam .teamName:not(:last-child),
+.userProfile .skillSet .skill:not(:last-child){
+  border-right: 1px solid #CCC;
 }

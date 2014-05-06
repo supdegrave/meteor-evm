@@ -34,7 +34,7 @@ Template.listUsers.helpers({
     return Meteor.users.find(query);
   },
 
-  myself: function(userId) {
+  myself: function() {
     return Meteor.userId() === this._id;
   },
 
