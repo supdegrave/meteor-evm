@@ -4,6 +4,7 @@
   * figure out meteor developer account info and send to Nico
   * ~~move each template into its own file~~
   * ?? refactor data from routes into template helpers ?? 
+  * stuart: determine why emails are not being sent as users are added in admin ui
 
 ## site features 
 

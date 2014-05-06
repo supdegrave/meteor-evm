@@ -7,7 +7,10 @@
         </a>
         <h3 class="media-heading">{{displayName}}{{#if playaName}} – {{playaName}}{{/if}}</h3>
 
-        <!-- Gender (necessary for some shift scheduling: male, female, other - text input) -->
+        <!-- 
+          Gender (necessary for some shift scheduling: male, female, other - other-select) 
+          - discuss legal requirements around gender with Aqua before implementing
+        -->
 
         {{#if roleIn 'lead'}}
         <div class="roleInTeam form-group">
@@ -46,7 +49,8 @@
           </div>
         {{/if}}
         
-        <adress>
+        <address>
+          <!-- just display first email -->
             {{#each emails}}
             <div class="form-group col-md-12">
               <label class="col-xs-1">
@@ -58,7 +62,6 @@
             </div>
             {{/each}}
 
-            {{#if skype}}
             <div class="form-group col-md-12 ">
               <label class="col-xs-1">
                 <abbr title="Skype I.D." class="fa fa-skype"></abbr>
@@ -67,8 +70,8 @@
                 {{skype}}
               </div>
             </div>
-            {{/if}}
 
+            <!-- only one phone number for now -->
             {{#each phones}}
             <div class="form-group col-md-12 ">
               <label class="col-xs-1">
@@ -80,6 +83,7 @@
             </div>
             {{/each}}
 
+            <!-- only one address for now -->
             {{#each address}}
             <div class="form-group col-md-12 address">
               <label class="col-xs-1">
@@ -92,11 +96,10 @@
               </div>
             </div>
             {{/each}}
-        </adress>
+        </address>
         <div class="horizontalDivider col-sm-12"></div>
       </div>
 
-      {{#if skills}}
       <div class="media-body">
         <div class="form-group col-md-12 skillSet">
           <label class="col-xs-1">
@@ -109,7 +112,6 @@
         </div>
         <div class="horizontalDivider col-sm-12"></div>
       </div>
-      {{/if}}
       <!-- Skills 
       (Aqua: editable table. Skills should have a description/explanation, 
             including skill levels. Gender should go under skills for shift 
@@ -118,11 +120,25 @@
             definitions we give them. This can also be handy for the gender 
             ‘skill’, because what we really want to know is, for example: 
             is someone masculine enough to impress drunken locals, feminine 
-            enough to make them go away quietly, etc.) -->
+            enough to make them go away quietly, etc.) 
+            
+            ¿list / descriptions populated in admin UI?
+      -->
 
 
 
-      <!-- Visibility of sections below should restricted -->
+      <!-- 
+        Visibility of sections below should be restricted 
+        only visible to admin, organizers, ¿team leads?, malfare (but what scope?)
+        
+        future: 
+        - either authorization pkg aka devise
+        - or admin controlled 
+          - list of 'sensitive data' 
+          - list of users who can see sensitive data 
+          - is current user in list of ^^^
+          - in router.js, return {fieldname: [0|1] [, ...]} depending on whether user can view 
+      -->
       {{#if emergency contact}}
       <div class="media-body">
         <adress>
@@ -145,9 +161,16 @@
         <!-- Dietary restrictions 
         (Aqua: "editable table; I would like to limit the available options, 
               with some way for people to send email to the volunteer feeders 
-              to indicate the more esoteric restrictions") -->
+              to indicate the more esoteric restrictions") 
+              
+              multi-select list: omnivore, vegetarian, vegan (aka annoying), glutard, lactose-annoying, other
+              other shows a text field 
+              
+              in the future, these options should be manageable from admin UI
+              something like this: {{>selectWithOther type='multi' src=datasrc}}
+        -->
 
-        <!-- Medical notes -->
+        <!-- Medical notes: open text area -->
     </div>
   </div>
 </template>
