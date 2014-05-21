@@ -16,8 +16,9 @@
         - and then, edit hierarchy gets really fun!
   - edit team name, change to filter by _id (new route: /:name/:id, filter .findOne({_id: id}))
     - ?? what happens if you go to /team/:name without /:id ?? 
+      - 404 style page 
   - save email address changes! 
-  - implement add member
+  - ~~implement add member~~
   - contentEditable on mouseOver (if canEdit) : https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_Editable
     - how to handle mobile? 
       - edit button? (based on userAgent?)
@@ -26,9 +27,8 @@
 
   
 * ADMIN: 
-  - viewable by anyone with canEdit, not just admin 
+  - ~~viewable by admin and organizers~~
   - ~~remove 'add team' functionality~~
-  - FUTURE: if lead/co-lead, see 'add to team' button next to user
   
 
 * USERS: 
@@ -39,11 +39,12 @@
     - FUTURE: filter by dates available
   - Limit number of results per page and add pagination
     - This might be a good clue: https://github.com/TimHeckel/meteor-paginator
-
+    
 
 * USER (INDIVIDUAL): 
   - profile edit (from initial TODO.md) if user._id === Meteor.userId() 
-  - 'My Teams' links to any team where you have a role 
+  - ~~'My Teams' links to any team where you have a role~~
+
 
 * ORG CHART: 
   - ~~link team name to team, organizer to user page~~
@@ -54,6 +55,11 @@
     - tree control
       - https://github.com/mbraak/jqTree
       
-## other / future 
 
-* find Rails resource-based permissions package (cancan, devise?), and whether there is a Meteor / Node / JS equivalent
+* GENERAL DATA ISSUES - Stuart 
+  - count / skip for pagination
+  - granular control over fields (this should derive from the various visibility roles discussed with Aqua)
+  - field hash must be assembled in advance and passed, specifically either all 0 or all 1
+    - from docs: "it is not possible to mix inclusion and exclusion styles: the keys must either be all 1 or all 0"
+  - in admin: array of fields with roles that can see them? (Need To Know screen)
+

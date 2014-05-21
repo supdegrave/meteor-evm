@@ -23,12 +23,12 @@
 **User profile:**
 
 * editable by user only! (??) 
-* basic info
+* ~~basic info~~
 * notes
   * note types (general, medical / allergies, team-level, etc) 
   * should be secure to user and team leads (volunteer lead? admin? organizers?)
 * arrival, departure, unavailable (blocked) dates 
-* ??? 
+
 
 **Role-based Security (only editable by admins, owners, leads, individual user)**
 

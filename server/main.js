@@ -36,7 +36,11 @@ Meteor.startup(function() {
 Meteor.methods({
   adminAddUser: function(email) {
     if (email.match(EMAIL_REGEXP)) {
-      Accounts.createUser( {email: email} );
+      var userId = Accounts.createUser( {email: email} );
+      if (userId) {
+        console.log(userId);
+        Accounts.sendVerificationEmail(userId, email);
+      }
     }
     else {
       throw new Meteor.Error(500, 'Unable to create user.', 'The email address appears to be invalid.');
