@@ -16,7 +16,6 @@ dietary, medical, emergency contact visibility should all be restricted by roles
     	// visible to anyone with user access
     	playaName: "Call Me Pope", // required, Aqua says should be unique (I sort of disagree)
     	
-    	"organizer" : true,
     	"profile" : {
     		"name" : "Robert Anton Wilson"
     	},
