@@ -29,6 +29,7 @@ Template.userRole.events({
         
     if (currentTeam) {
       currentTeam[role] = target.value;
+      Roles.addUsersToRoles(target.value, currentTeam.name + " " + role);
     }
   }
 });
