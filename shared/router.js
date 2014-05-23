@@ -57,7 +57,7 @@ Router.map(function() {
   this.route('org', 
   {
     data: function () {
-      var organizers = Meteor.users.find({organizer:true}).fetch()
+      var organizers = Roles.getUsersInRole("organizer").fetch()
       
       _.each(organizers, function(org) { 
         org.teams = (Teams.find({owner: org._id}).fetch());

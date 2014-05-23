@@ -39,7 +39,7 @@ Template.listUsers.helpers({
   },
 
   isOrganizer: function() {
-    return this.organizer;
+    return Roles.userIsInRole(this._id, "organizer");
   }, 
 
   memberOfTeams: function() {

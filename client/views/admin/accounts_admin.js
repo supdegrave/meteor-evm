@@ -31,7 +31,7 @@ Template.accountsAdmin.helpers({
   },
   
   isOrganizer: function() {
-    return this.organizer;
+    return Roles.userIsInRole(this._id, "organizer");
   }, 
 });
 
@@ -64,7 +64,7 @@ var setUserFilter = _.throttle(function(template) {
           user = Meteor.users.findOne({_id: id});
       
       if (user) {
-        Meteor.users.update(id, {$set: {organizer: !user.organizer}})
+        Roles.addUsersToRoles(id, "organizer");
       }
     }
   });

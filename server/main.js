@@ -41,6 +41,13 @@ Meteor.methods({
         console.log(userId);
         Accounts.sendVerificationEmail(userId, email);
       }
+
+      // Exception while invoking method 'adminAddUser' 
+      // Error: Accounts.createUser with callback not supported on the server yet.
+      // Accounts.createUser( {email: email}, function() {
+      //   console.log(userId);
+      //   // Accounts.sendVerificationEmail(userId, email);
+      // });
     }
     else {
       throw new Meteor.Error(500, 'Unable to create user.', 'The email address appears to be invalid.');

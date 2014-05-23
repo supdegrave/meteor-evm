@@ -7,10 +7,11 @@ Template.userRole.rendered = setSelectedUser;
 
 Template.userRole.helpers({
   users: function() {
-    var users = Meteor.users.find().fetch();
+    // if current role is 'owner', only return users who are in the 'organizers' role
+    // otherwise all users 
     return ("owner" === this.role) 
-      ? _.where(users, {organizer: true})
-        : users;
+      ? Roles.getUsersInRole("organizer")
+        : Meteor.users.find();
   },
   
   selectedUserName: function(user) {
