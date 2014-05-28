@@ -8,6 +8,7 @@
     "moment": {},
     "font-awesome": {},
     "bootstrap3-datepicker": {},
-    "bootstrap-select": {}
+    "bootstrap-select": {},
+    "collection2": {}
   }
 }

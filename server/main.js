@@ -29,8 +29,27 @@ Meteor.publish('teams', function() {
   return Teams.find();
 });
 
+Meteor.publish('userdatarestrictions', function() {
+  return UserDataRestrictions.find();
+})
+
 Meteor.startup(function() {
   addUsersToRoles("stuart@updegrave.com", "admin");
+  
+  console.log('populate UserDataRestrictions');
+  UserDataRestrictions.remove({});
+  var schema = Meteor.users.simpleSchema().schema();
+  for (prop in schema) { 
+    if (schema[prop].hasOwnProperty('restricted') && schema[prop]['restricted']) { 
+      if (0 === UserDataRestrictions.find({property: prop}).count()) {
+        UserDataRestrictions.insert(new Restriction(prop, schema[prop].label), function(err, res) {
+          if (err && !res) {
+            alert('TODO: handle UserDataRestrictions insert error')
+          }
+        });
+      }
+    } 
+  }
 });
 
 Meteor.methods({
