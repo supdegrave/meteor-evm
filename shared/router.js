@@ -15,6 +15,9 @@ Router.map(function() {
         console.log('redirecting');
         this.redirect('home');
       }
+    },
+    waitOn: function() {
+      UserDataRestrictions.findOne();
     }
   });
   

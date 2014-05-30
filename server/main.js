@@ -36,20 +36,7 @@ Meteor.publish('userdatarestrictions', function() {
 Meteor.startup(function() {
   addUsersToRoles("stuart@updegrave.com", "admin");
   
-  console.log('populate UserDataRestrictions');
-  UserDataRestrictions.remove({});
-  var schema = Meteor.users.simpleSchema().schema();
-  for (prop in schema) { 
-    if (schema[prop].hasOwnProperty('restricted') && schema[prop]['restricted']) { 
-      if (0 === UserDataRestrictions.find({property: prop}).count()) {
-        UserDataRestrictions.insert(new Restriction(prop, schema[prop].label), function(err, res) {
-          if (err && !res) {
-            alert('TODO: handle UserDataRestrictions insert error')
-          }
-        });
-      }
-    } 
-  }
+  initializeUserDataRestrictions();
 });
 
 Meteor.methods({
@@ -103,4 +90,34 @@ function addUsersToRoles(emails, roles) {
       Roles.addUsersToRoles([userId], roles);
     }
   }); 
+}
+
+
+// ****************************************************** //
+// function: initializeUserDataRestrictions
+// ****************************************************** //
+// on server startup, clears and populates the collection
+// UserDataRestrictions, based on elements with 
+// restricted: true in Meteor.users.simpleSchema().schema()
+// 
+// return: none
+// ****************************************************** //
+function initializeUserDataRestrictions() {
+  console.log('populating UserDataRestrictions');
+  
+  UserDataRestrictions.remove({});
+  
+  var schema = Meteor.users.simpleSchema().schema();
+  
+  for (prop in schema) { 
+    if (schema[prop].hasOwnProperty('restricted') && schema[prop]['restricted']) { 
+      if (0 === UserDataRestrictions.find({property: prop}).count()) {
+        UserDataRestrictions.insert(new Restriction(prop, schema[prop].label), function(err, res) {
+          if (err && !res) {
+            console.log('TODO: handle UserDataRestrictions insert error');
+          }
+        });
+      }
+    } 
+  }
 }

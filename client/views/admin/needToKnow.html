@@ -13,7 +13,7 @@
       <td>{{label}}</td>
       <td>{{visibleTo}}</td>
       <td>
-        <span data-toggle="modal" data-property="{{property}}" href="#needtoknow" class="fa fa-pencil clickable"></span>
+        <span data-toggle="modal" data-property="{{property}}" data-target="#needtoknow" class="fa fa-pencil clickable">[edit]</span>
       </td>
     </tr>
     {{/each}}
@@ -23,15 +23,21 @@
 </template>
 
 <template name="needToKnowModal">
+  {{#with restriction}}
   <div id="needtoknow" class="modal fade" tabindex="-1" data-width="760" style="display:none;">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Modal title</h4>
+          <h4 class="modal-title">{{label}}</h4>
         </div>
         <div class="modal-body">
-          <p>One fine body&hellip;</p>
+          <p>Visible to:</p>
+          {{#each visibleTo}}
+          <div>
+            <input type="checkbox"> {{this}}
+          </div>
+          {{/each}}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -40,6 +46,5 @@
       </div>
     </div>
   </div>
+  {{/with}}
 </template>
-
-
