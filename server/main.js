@@ -96,17 +96,14 @@ function addUsersToRoles(emails, roles) {
 // ****************************************************** //
 // function: initializeUserDataRestrictions
 // ****************************************************** //
-// on server startup, clears and populates the collection
-// UserDataRestrictions, based on elements with 
-// restricted: true in Meteor.users.simpleSchema().schema()
+// on startup, populates UserDataRestrictions collection
+// based on elements with restricted: true in 
+// Meteor.users.simpleSchema().schema()
 // 
 // return: none
 // ****************************************************** //
 function initializeUserDataRestrictions() {
   console.log('populating UserDataRestrictions');
-  
-  UserDataRestrictions.remove({});
-  
   var schema = Meteor.users.simpleSchema().schema();
   
   for (prop in schema) { 

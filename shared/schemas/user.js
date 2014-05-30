@@ -109,7 +109,7 @@ userSchema = new SimpleSchema({
   emails: {
     type: [Object],
     restricted: true,
-    label: "Email addresses"
+    label: "Email Addresses"
   },
   "emails.$.address": {
     type: String,

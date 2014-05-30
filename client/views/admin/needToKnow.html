@@ -9,9 +9,13 @@
     </thead>
 
     {{#each restrictedFields}}
-    <tr>
+    <tr style="vertical-align:top;">
       <td>{{label}}</td>
-      <td>{{visibleTo}}</td>
+      <td>
+      {{#each visibleTo}}
+        {{this}}<br>
+      {{/each}}
+      </td>
       <td>
         <span data-toggle="modal" data-property="{{property}}" data-target="#needtoknow" class="fa fa-pencil clickable">[edit]</span>
       </td>
@@ -33,9 +37,10 @@
         </div>
         <div class="modal-body">
           <p>Visible to:</p>
-          {{#each visibleTo}}
+          {{#each visibleToRoles}}
           <div>
-            <input type="checkbox"> {{this}}
+            <input id={{_id}} type="checkbox" checked={{checked}} value={{name}}> 
+            <label for={{_id}}>{{name}}</label>
           </div>
           {{/each}}
         </div>
