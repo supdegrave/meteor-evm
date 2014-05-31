@@ -9,7 +9,7 @@
     </thead>
 
     {{#each restrictedFields}}
-    <tr style="vertical-align:top;">
+    <tr style="vertical-align:top; border-bottom: 1px solid #ccc;">
       <td>{{label}}</td>
       <td>
       {{#each visibleTo}}
@@ -17,7 +17,7 @@
       {{/each}}
       </td>
       <td>
-        <span data-toggle="modal" data-property="{{property}}" data-target="#needtoknow" class="fa fa-pencil clickable">[edit]</span>
+        <span data-toggle="modal" data-property="{{property}}" data-target="#needtoknow" class="fa fa-pencil clickable"></span>
       </td>
     </tr>
     {{/each}}
