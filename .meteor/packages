@@ -4,7 +4,6 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-insecure
 # https://github.com/hharnisc/meteor-accounts-admin-ui-bootstrap-3
 accounts-password
 accounts-facebook
