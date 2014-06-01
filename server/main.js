@@ -39,7 +39,7 @@ Meteor.publish('teams', function() {
 });
 
 Meteor.publish('userdatarestrictions', function() {
-  return UserDataRestrictions.find();
+  return UserDataRestrictions.find({}, {sort: {label: 1}});
 })
 
 Meteor.startup(function() {
