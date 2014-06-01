@@ -28,10 +28,7 @@ Meteor.publish("allUserData", function () {
     }
   });
   
-  return Meteor.users.find(
-    {}, 
-    {fields: fieldsFilter}
-  );
+  return Meteor.users.find({}, {fields: fieldsFilter});
 });
 
 Meteor.publish('teams', function() {
