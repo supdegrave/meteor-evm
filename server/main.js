@@ -19,9 +19,18 @@
 // });
 
 Meteor.publish("allUserData", function () {
+  var fieldsFilter = {}, 
+      currentUser  = Meteor.users.findOne(this.userId);
+      
+  UserDataRestrictions.find().forEach(function(restriction) {
+    if (!_.intersection(currentUser.roles, restriction.visibleTo).length) {
+      fieldsFilter[restriction.property] = 0;
+    }
+  });
+  
   return Meteor.users.find(
     {}, 
-    {fields: {"emails": 1, "profile": 1, "username": 1}}
+    {fields: fieldsFilter}
   );
 });
 

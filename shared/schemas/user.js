@@ -17,7 +17,6 @@ userProfileSchema = new SimpleSchema({
   playaName: {
     type: String,
     regEx: /^[a-zA-Z- ]{2,40}$/,
-    restricted: true,
     label: "Playa Name"
     // custom: function() {/* verify uniqueness */}
   },
