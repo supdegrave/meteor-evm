@@ -11,14 +11,16 @@ Template.needToKnow.helpers({
   },
 });
 
+function setRestriction(evt, tmpl) {
+  console.log(this);
+  restriction = UserDataRestrictions.findOne({property: this.property});
+  restrictionDep.changed();
+}
+
 Template.needToKnow.events({
-  'mouseenter, click .clickable': function(evt, tmpl) {
-    var value  = evt.target.dataset.property, 
-        filter = !!value ? {property: value} : {};
-        
-    restriction = UserDataRestrictions.findOne(filter);
-    restrictionDep.changed();
-  },
+  // duplicate for mouseenter & click due to apparent Meteor bug
+  'mouseenter span.clickable': setRestriction,
+  'click span.clickable': setRestriction
 });
 
 Template.needToKnowModal.restriction = getRestriction;
