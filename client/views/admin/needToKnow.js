@@ -1,9 +1,28 @@
-var restriction    = null,
-    restrictionDep = new Deps.Dependency, 
-    getRestriction = function() {
-      restrictionDep.depend();
-      return restriction;
-    };
+var restriction, restrictionDep, getRestriction, setRestriction;
+
+restriction    = null;
+restrictionDep = new Deps.Dependency;
+
+getRestriction = function() {
+  restrictionDep.depend();
+  return restriction;
+};
+
+setRestriction = function (evt, tmpl) {
+  var prop = (this === window) ? {} : {property: this.property};
+  restriction = UserDataRestrictions.findOne(prop);
+  restrictionDep.changed();
+};
+
+Template.needToKnow.rendered = function() {
+  // set initial restriction value when page renders
+  // modal edit dialog won't initialize without this data
+  var cursorHandle = UserDataRestrictions.find().observe({
+    added: function(doc) {
+      setRestriction();
+    }
+  });
+};
 
 Template.needToKnow.helpers({
   restrictedFields: function() {
@@ -11,15 +30,7 @@ Template.needToKnow.helpers({
   },
 });
 
-function setRestriction(evt, tmpl) {
-  console.log(this);
-  restriction = UserDataRestrictions.findOne({property: this.property});
-  restrictionDep.changed();
-}
-
 Template.needToKnow.events({
-  // duplicate for mouseenter & click due to apparent Meteor bug
-  'mouseenter span.clickable': setRestriction,
   'click span.clickable': setRestriction
 });
 
