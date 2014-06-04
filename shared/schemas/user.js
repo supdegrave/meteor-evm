@@ -1,3 +1,5 @@
+var EMAIL_REGEXP = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+
 SimpleSchema.extendOptions({
   restricted: Match.Optional(Boolean)
 });
@@ -75,7 +77,7 @@ userProfileSchema = new SimpleSchema({
   },
   "emergencyContact.email": {
     type: String,
-    regEx: SimpleSchema.RegEx.Email
+    regEx: EMAIL_REGEXP
   },
   "emergencyContact.phone": {
     type: phoneSchema
@@ -111,7 +113,8 @@ userSchema = new SimpleSchema({
   username: {
     type: String,
     regEx: /^[a-z0-9A-Z_]{3,15}$/,
-    // restricted: true
+    // restricted: true,
+    optional: true
   },
   emails: {
     type: [Object],
@@ -120,7 +123,7 @@ userSchema = new SimpleSchema({
   },
   "emails.$.address": {
     type: String,
-    regEx: SimpleSchema.RegEx.Email
+    regEx: EMAIL_REGEXP
   },
   "emails.$.verified": {
     type: Boolean
