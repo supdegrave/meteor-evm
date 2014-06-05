@@ -47,12 +47,12 @@ Router.map(function() {
   });
   // *** display team by name ******************* //
   this.route('team', {
-    path: '/teams/:name',
+    path: '/teams/:name/:id',
     waitOn: function() {
-      Session.set('currentTeam', Teams.findOne({name: this.params.name}));
+      Session.set('currentTeam', Teams.findOne({_id: this.params.id}));
     },
     data: function() {
-      return Teams.findOne({name: this.params.name});
+      return Teams.findOne({_id: this.params.id});
     },
   });
   

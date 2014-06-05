@@ -19,7 +19,7 @@
       </td>
       <td>
         {{#each memberOfTeams _id}}
-        <a class="btn btn-default btn-xs" href="{{pathFor 'team' name=name}}">{{name}}</a>
+        <a class="btn btn-default btn-xs" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>
         {{/each}}
       </td>
       {{#if canEdit}}

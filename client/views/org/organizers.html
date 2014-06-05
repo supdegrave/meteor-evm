@@ -6,7 +6,7 @@
         <ul>
           {{#each teams}}
           <li>
-            <span><a href="{{pathFor 'team' name=name}}">{{name}}</a></span>
+            <span><a href="{{pathFor 'team' name=name id=_id}}">{{name}}</a></span>
             <ul>
               <li>Lead: <a href="{{pathFor 'users' id=lead}}">{{displayName lead}}</a></li>
               <li>Co-Lead: <a href="{{pathFor 'users' id=colead}}">{{displayName colead}}</a></li>
