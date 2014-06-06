@@ -45,9 +45,6 @@ userProfileSchema = new SimpleSchema({
     restricted: true,
     label: "Gender"
   },
-  roles: {
-    type: [String],
-  },
 
   phones: {
     type: [phoneSchema],
@@ -139,7 +136,10 @@ userSchema = new SimpleSchema({
     type: Object,
     optional: true,
     blackbox: true
-  }
+  },
+  roles: {
+    type: [String],
+  },
 });
 
 Meteor.users.attachSchema(userSchema);
