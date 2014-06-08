@@ -1,19 +1,17 @@
 <template name="team">
   <div class="container team">
     <ol class="breadcrumb h3">
-    {{#if parentId}} 
+      {{#if parentId}} 
       {{#with getParent parentId}}<li><a href="{{pathFor 'team' name=name id=_id}}">{{name}}</a></li>{{/with}}
-    {{/if}}
-    <li class="active">{{name}}</li>
-  </ol> 
+      {{/if}}
+      <li class="active">{{name}}</li>
+    </ol> 
 
-    {{#if parentId}}{{#with getParent parentId}} <p>Parent: {{name}}</p>{{/with}}{{/if}}
-    
     <p>Email:   {{>emailWidget}}</p>
-    <p>Owner:   {{>userRole role="owner" context=this}}</p>
-    <p>Lead:    {{>userRole role="lead" context=this}}</p>
-    <p>Co-Lead: {{>userRole role="colead" context=this}}</p>
-    <p>Mentor:  {{>userRole role="mentor" context=this}}</p>
+    
+    {{#each roles}}
+      <p>{{label}}:   {{>userRole role=name}}</p>
+    {{/each}} 
     
     <div>
       {{#if canEdit}}

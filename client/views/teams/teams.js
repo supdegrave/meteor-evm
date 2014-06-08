@@ -20,6 +20,9 @@ Template.team.helpers({
   getParent: function(parentId) {
     return Teams.findOne({_id: parentId},{name:1});
   },
+  roles: function() {
+    return TEAM_ROLES;
+  }
 });
 
 Template.team.events({
