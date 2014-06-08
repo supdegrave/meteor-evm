@@ -23,7 +23,7 @@ Meteor.publish("allUserData", function () {
       currentUser  = Meteor.users.findOne(this.userId);
       
   UserDataRestrictions.find().forEach(function(restriction) {
-    if (!_.intersection(currentUser.roles, restriction.visibleTo).length) {
+    if (currentUser.roles && !_.intersection(currentUser.roles, restriction.visibleTo).length) {
       fieldsFilter[restriction.property] = 0;
     }
   });

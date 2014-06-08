@@ -139,6 +139,7 @@ userSchema = new SimpleSchema({
   },
   roles: {
     type: [String],
+    optional: true
   },
 });
 
