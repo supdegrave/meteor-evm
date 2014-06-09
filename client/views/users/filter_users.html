@@ -1,31 +1,52 @@
 <template name="filterUsers">
   <div class="horizontalDivider"></div>
-  
-  <div class="form-group col-sm-6 col-md-3">
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-user"></i></span>
-      <input type="text" class="form-control search-input-filter" value="{{searchFilter}}" placeholder="Filter by username"/>
-    </div>
-  </div>
-    <div class="form-group col-sm-6 col-md-3">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-users"></i></span>
-        <select class="form-control selectpicker" multiple  data-header="Filter by teams">
-          {{#each teams}}
-          <option value="{{name}}" data-subtext="{{teamMemberCount}}">{{name}}</option>
-          {{/each}}
-        </select>
-      </div>    
-    </div>
 
-  <div class="form-group col-sm-12 col-md-6">
-    <div class="input-daterange input-group date" id="datepicker">
-      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-      <input type="text" class="form-control" name="start" disabled placeholder="Start date"/>
-      <span class="input-group-addon">to</span>
-      <input type="text" class="form-control" name="end" disabled placeholder="End date"/>
-    </div>
+  <div class="ui four column doubling grid">
+
+      <div class="column">
+        <div class="ui left icon fluid input">
+          <input type="text" class="search-input-filter" value="{{searchFilter}}" placeholder="Filter by username"/>
+          <i class="user icon"></i>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="ui fluid multi selection dropdown">
+          <i class="users icon"></i>Filter by teams <i class="dropdown icon"></i>
+          <div class="ui vertical menu teamSelectMenu">
+          {{#each teams}}
+            <div class="item">
+              <div class="ui checkbox">
+                <input type="checkbox" id="{{name}}">
+                <label for="{{name}}">{{name}}</label>
+              </div>
+              <div class="ui teal label">
+                {{teamMemberCount}}
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div> 
+      </div> 
+
+      <div class="column">
+        <div class="ui left icon fluid input">
+          <input type="text" name="start" disabled placeholder="Start date"/>
+          <i class="calendar icon"></i>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="ui left icon fluid input">
+          <input type="text" class="form-control" name="end" disabled placeholder="End date"/>
+          <i class="right arrow icon"></i>
+        </div>
+      </div>
+
   </div>
 
   <div class="horizontalDivider"></div>
 </template>
+
+
+  

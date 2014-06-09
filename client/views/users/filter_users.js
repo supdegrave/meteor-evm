@@ -35,7 +35,7 @@ var setUserFilter = _.throttle(function(template) {
   var search = template.find(".search-input-filter").value;
   Session.set("userFilter", search);
 }, 500);
-
+var teamFilterArray=[];
 Template.filterUsers.events({
   'keyup .search-input-filter': function(event, template) {
     setUserFilter(template);
@@ -43,8 +43,17 @@ Template.filterUsers.events({
   }, 
   
   'change select.selectpicker': function(evt, tmpl) {
+    console.log($(evt.currentTarget).val());
     Session.set("teamFilter", $(evt.currentTarget).val());
+  },
+
+  'change .teamSelectMenu input[type="checkbox"]': function(evt, tmpl) {
+    $(evt.currentTarget).prop("checked")
+      ? teamFilterArray.push($(evt.currentTarget).attr("id"))
+      : teamFilterArray.splice( $.inArray($(evt.currentTarget).attr("id"),teamFilterArray) ,1 );
+    Session.set("teamFilter", teamFilterArray);
   }
+  
 });
 
 
@@ -53,6 +62,9 @@ Template.filterUsers.rendered = function(){
   /*$('.input-daterange.input-group.date').datepicker({
     autoclose: true
   });*/ /*Disabled for now*/
+
+  $('.ui.dropdown').dropdown();
+
   setTimeout(function(){$('select.selectpicker').selectpicker();},0);
 
   var searchElement = document.getElementsByClassName('search-input-filter');

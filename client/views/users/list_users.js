@@ -16,7 +16,7 @@ Template.listUsers.helpers({
       };
     }
 
-    if (teamFilter) {
+    if (teamFilter && teamFilter.length > 0) {
       var teams = Teams
         .find({name: {$in: teamFilter}})
         .fetch()
@@ -50,8 +50,7 @@ Template.listUsers.helpers({
 Template.listUsers.events({
   'click .userLink': function(event, template) {
     Session.set('userInScope', this);
+    $('.modal').modal('setting', 'transition', 'vertical flip').modal('show');
   }   
 });
 
-// Template.listUsers.rendered = function() { 
-// };

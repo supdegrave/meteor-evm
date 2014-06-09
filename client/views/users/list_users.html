@@ -1,5 +1,6 @@
 <template name="listUsers">
-  <table class='table table-striped'>
+{{> userProfileModal}}
+  <table class='ui basic compact table'>
     <thead>
       <th>Name</th>
       <th>Team</th>
@@ -13,19 +14,20 @@
         {{#if myself}}
         {{displayName}}
         {{else}}
+        
         <!-- <a class="userLink" href="{{pathFor 'user' id=_id}}">{{displayName}}</a> -->
         <a data-toggle="modal" href="#userprofile" class="userLink">{{displayName}}</a>
         {{/if}}
       </td>
       <td>
         {{#each memberOfTeams _id}}
-        <a class="btn btn-default btn-xs" href="{{pathFor 'team' name=name}}">{{name}}</a>
+        <div class="ui tiny label"><a href="{{pathFor 'team' name=name}}">{{name}}</a></div>
         {{/each}}
       </td>
       {{#if canEdit}}
       <td>
-        <button type="button" class="btn btn-xs btn-default">
-          <span class="fa fa-plus"></span>
+        <button type="button" class="ui tiny teal icon button">
+          <i class="plus icon"></i>
         </button>
       </td>
       {{/if}}
@@ -33,5 +35,4 @@
     {{/each}}
   </table>
 
-  {{> userProfileModal}}
 </template>
