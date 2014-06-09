@@ -9,6 +9,7 @@
     "font-awesome": {},
     "bootstrap3-datepicker": {},
     "bootstrap-select": {},
-    "collection2": {}
+    "collection2": {},
+    "semantic-ui": {}
   }
 }

@@ -11,7 +11,8 @@
       "font-awesome": {},
       "bootstrap3-datepicker": {},
       "bootstrap-select": {},
-      "collection2": {}
+      "collection2": {},
+      "semantic-ui": {}
     },
     "packages": {
       "iron-router": {
@@ -61,8 +62,13 @@
       },
       "collection2": {
         "git": "https://github.com/aldeed/meteor-collection2.git",
-        "tag": "v0.3.11",
-        "commit": "7e970671305657678e8508d8107d5e6c5e158559"
+        "tag": "v0.4.0",
+        "commit": "5648f7c53ee98f3ac8fbe82a55e6fd78fc67cfbc"
+      },
+      "semantic-ui": {
+        "git": "https://github.com/nooitaf/meteor-semantic-ui.git",
+        "tag": "v0.17.0",
+        "commit": "820b4a05267733aa8124ba6ebc5b88eaf93361c4"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
