@@ -74,3 +74,9 @@ Example: Nowhere 2014 -> Build -> MON
 **Volunteer Lead has ability to add users to other projects? (Nowhere-specific?)**
 
 * this could be done (abstractly, non-Nowhere-specific) if vol lead is added as owner of projects they'll need to manage
+
+## FUTURE / WHITE-LABEL
+
+* populate user schema under admin area
+* allow ordering of profile items (stored in custom UserProfileDisplay (??) object, along with icons, input type, ???)
+* dynamically populate user profile page from schema 

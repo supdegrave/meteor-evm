@@ -17,7 +17,7 @@ setRestriction = function (evt, tmpl) {
 Template.needToKnow.rendered = function() {
   // set initial restriction value when page renders
   // modal edit dialog won't initialize without this data
-  var cursorHandle = UserDataRestrictions.find().observe({
+  UserDataRestrictions.find().observe({
     added: function(doc) {
       setRestriction();
     }

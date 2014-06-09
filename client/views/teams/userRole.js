@@ -25,7 +25,7 @@ Template.userRole.helpers({
 Template.userRole.events({
   'change select.user-role': function(evt, tmpl) {
     var target   = evt.target, 
-        role     = $(target).data('role'),
+        role     = this.role,
         roleName = currentTeam.name + " " + role.charAt(0).toUpperCase() + role.slice(1).toLowerCase(),
         userId   = target.value;
         

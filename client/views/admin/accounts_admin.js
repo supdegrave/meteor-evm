@@ -60,11 +60,12 @@ var setUserFilter = _.throttle(function(template) {
     },
     
     'click .check-organizer': function(evt, tmpl) {
-      var id   = evt.target.dataset.id, 
-          user = Meteor.users.findOne({_id: id});
-      
-      if (user) {
-        Roles.addUsersToRoles(id, "organizer");
+      var method = evt.currentTarget.checked 
+        ? 'addUsersToRoles' 
+          : 'removeUsersFromRoles';
+          
+      if (this) {
+        Roles[method](this, "organizer");
       }
     }
   });

@@ -21,7 +21,7 @@
       </td>
       <td>
         {{#each memberOfTeams _id}}
-        <div class="ui tiny label"><a href="{{pathFor 'team' name=name}}">{{name}}</a></div>
+        <div class="ui tiny label"><a href="{{pathFor 'team' name=name id=_id}}">{{name}}</a></div>
         {{/each}}
       </td>
       {{#if canEdit}}
