@@ -4,15 +4,15 @@
     "basePackages": {
       "iron-router": {},
       "roles": {},
-      "x-editable-bootstrap": {},
-      "accounts-ui-bootstrap-3": {},
       "typeahead": {},
       "moment": {},
       "font-awesome": {},
-      "bootstrap3-datepicker": {},
-      "bootstrap-select": {},
       "collection2": {},
-      "semantic-ui": {}
+      "semantic-ui": {},
+      "normalize.css": {
+        "git": "https://github.com/rithis-archive/meteor-normalize.css.git",
+        "branch": "master"
+      }
     },
     "packages": {
       "iron-router": {
@@ -24,16 +24,6 @@
         "git": "https://github.com/alanning/meteor-roles.git",
         "tag": "v1.2.9",
         "commit": "969b17fac5dfec66b6b12bfce4e37471d1a241d4"
-      },
-      "x-editable-bootstrap": {
-        "git": "https://github.com/nate-strauser/meteor-x-editable-bootstrap.git",
-        "tag": "v1.5.1",
-        "commit": "ddb9e4523b570f88d96c4fbafa5f6883e544baf8"
-      },
-      "accounts-ui-bootstrap-3": {
-        "git": "https://github.com/mangasocial/meteor-accounts-ui-bootstrap-3.git",
-        "tag": "v0.3.0-1",
-        "commit": "93ffa5d0e325dc7026de89f6d90c178fa04bdd3a"
       },
       "typeahead": {
         "git": "https://github.com/sergeyt/meteor-typeahead.git",
@@ -50,35 +40,25 @@
         "tag": "v4.1.0",
         "commit": "ce6b1e92715d1938babc5d69c655c17e387f5926"
       },
-      "bootstrap3-datepicker": {
-        "git": "https://github.com/rajit/bootstrap3-datepicker.git",
-        "tag": "v0.2.1",
-        "commit": "442484eb1c8eb00c6b9e0e9c88accc934cf8f04a"
-      },
-      "bootstrap-select": {
-        "git": "https://github.com/amrali/bootstrap-select-meteor.git",
-        "tag": "v1.5.2",
-        "commit": "61588ec8326987ded204724d85843eb6997cfcfb"
-      },
       "collection2": {
         "git": "https://github.com/aldeed/meteor-collection2.git",
-        "tag": "v0.4.0",
-        "commit": "5648f7c53ee98f3ac8fbe82a55e6fd78fc67cfbc"
+        "tag": "v0.4.1",
+        "commit": "a9ffc9b285c3af8ad631f9cda4851b0ffc30c5ce"
       },
       "semantic-ui": {
         "git": "https://github.com/nooitaf/meteor-semantic-ui.git",
-        "tag": "v0.17.0",
-        "commit": "820b4a05267733aa8124ba6ebc5b88eaf93361c4"
+        "tag": "v0.18.0",
+        "commit": "a27035712167b248366a7719399a2257513530ee"
+      },
+      "normalize.css": {
+        "git": "https://github.com/rithis-archive/meteor-normalize.css.git",
+        "branch": "master",
+        "commit": "f9a0b29953a4b6ed541530c79c96f58d499af312"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
         "tag": "v0.2.4",
         "commit": "b40e9b0612329288d75cf52ad14a7da64bb8618f"
-      },
-      "bootstrap-3": {
-        "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
-        "tag": "v3.1.1-1",
-        "commit": "63dd38968828bb8963636df93e9a1c45e2dfe67e"
       },
       "simple-schema": {
         "git": "https://github.com/aldeed/meteor-simple-schema.git",

@@ -2,14 +2,13 @@
   "packages": {
     "iron-router": {},
     "roles": {},
-    "x-editable-bootstrap": {},
-    "accounts-ui-bootstrap-3": {},
     "typeahead": {},
     "moment": {},
     "font-awesome": {},
-    "bootstrap3-datepicker": {},
-    "bootstrap-select": {},
     "collection2": {},
-    "semantic-ui": {}
+    "semantic-ui": {},
+    "normalize.css": {
+        "git": "https://github.com/rithis-archive/meteor-normalize.css.git"
+    }
   }
 }
