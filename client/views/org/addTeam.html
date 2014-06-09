@@ -1,11 +1,6 @@
 <template name="addTeam">
-	<div class="input-group">
-		<input type="text" class="form-control add-team-input" placeholder="Enter team name (ex: Gate)" data-ownerid="{{this}}">
-		<span class="input-group-btn">
-			<button class="btn btn-success add-team btn-default disabled" type="button">
-			  <span class="glyphicon glyphicon-plus"></span> 
-			  Add Team
-			</button>
-		</span>
-	</div>
+<div class="ui action fluid input right">
+  <input type="text" placeholder="Enter team name (ex: Gate)" data-ownerid="{{this}}">
+  <div class="ui teal right labeled icon button"><i class="plus icon"></i> Add team</div>
+</div>
 </template>

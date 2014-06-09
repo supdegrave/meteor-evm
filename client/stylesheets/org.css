@@ -1,0 +1,48 @@
+.orgChartTeamContainer{
+  padding-left: 1.5em;
+}
+
+.orgChartTeamContainer li{
+  list-style: none;
+}
+
+.orgChartTeamContainer,
+/*.orgChartTeamContainer .orgTreeListItem,*/
+.orgChartTeamContainer .orgTreeListItem:after,
+.orgChartTeamContainer.basic.accordion .orgTreeListItem .content {
+  border-left: 1px #e7e7e7 solid;
+}
+.orgChartTeamContainer .orgTreeListItem:after {
+  content: "";
+  position: relative;
+  height: 100%;
+  left: -1.5em; /*Equals to minus orgChartTeamContainer padding*/
+  display: inherit;
+  float: left;
+}
+
+.orgChartTeamContainer .orgTreeListItem .title:before {
+  content: "";
+  position: relative;
+  border-top: 1px #e7e7e7 solid;
+  top: 0.5em;
+  right: 1.5em; /*Equals to minus orgChartTeamContainer padding*/
+  width: 1.5em; /*Equals to orgChartTeamContainer padding*/
+  display: inherit;
+}
+.orgChartTeamContainer.basic.accordion .orgTreeListItem .content {
+  padding: 0;
+  margin-left: 0.6em; /*Half the size of the dropdown icon*/
+}
+.orgChartTeamContainer .orgTreeListItem .orgChartTeamContainer {
+  border: 0;
+}
+
+.orgChartTeamContainer .orgTreeListItem .roles{
+  padding-left: 1em; 
+}
+
+.ui.multi.selection.dropdown .ui.checkbox {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
