@@ -61,10 +61,11 @@ Router.map(function() {
   {
     data: function () {
       var organizers = Roles.getUsersInRole("organizer").fetch()
-      
+
       _.each(organizers, function(org) { 
-        org.teams = (Teams.find({owner: org._id}).fetch());
+        org.teams = (Teams.find({owner: org._id, parentId: null}).fetch());
       });
+
 
       return organizers;
     }
