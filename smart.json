@@ -4,11 +4,10 @@
     "roles": {},
     "typeahead": {},
     "moment": {},
-    "font-awesome": {},
     "collection2": {},
     "semantic-ui": {},
     "normalize.css": {
-        "git": "https://github.com/rithis-archive/meteor-normalize.css.git"
+      "git": "https://github.com/rithis-archive/meteor-normalize.css.git"
     }
   }
 }
