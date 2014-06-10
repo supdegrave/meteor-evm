@@ -1,4 +1,4 @@
-Template.deleteAccountModalInner.helpers({
+Template.deleteAccountModal.helpers({
 	email: function () {
 		if (this.emails && this.emails.length)
 			return this.emails[0].address;
@@ -22,8 +22,8 @@ Template.deleteAccountModalInner.helpers({
 	}
 });
 
-Template.deleteAccountModalInner.events({
-	'click .btn-danger': function(event, template) {
+Template.deleteAccountModal.events({
+	'click .positive': function(event, template) {
 		Meteor.call('deleteUser', this._id, function(error) {
 			if (error) {
 				// optionally use a meteor errors package

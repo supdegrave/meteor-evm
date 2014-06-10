@@ -1,55 +1,61 @@
 <template name="updateAccountModal">
-	<div id="updateaccount" class="modal fade" tabindex="-1" data-width="760" style="display:none;">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				{{> updateAccountModalInner}}
-			</div>
-		</div>
-	</div>
-</template>
-
-<template name="updateAccountModalInner">
-	{{#with userInScope}}
-		<div class="modal-header">
-			<h4>Update {{email}}</h4>
-		</div>
-		<div class="modal-body">
-			<div class="form-group">
-				<div class="input-group">
-					<span class="input-group-addon">Name</span>
-					<input data-user-id="{{_id}}" class="form-control admin-user-info" name="profile.name" value="{{profile.name}}" placeholder="{{email}}">
-				</div>
-			</div>
-			{{#if roles}}
-				<ul class="list-group">
-					{{#each roles}}
-						<li class="list-group-item">
-							<button data-user-id="{{../_id}}" class="btn btn-danger btn-xs remove-role" type="button">Remove</button>
-							<span class="pull-right">{{this}}</span>
-						</li>
-					{{/each}}
-				</ul>
-			{{else}}
-				This account has no roles.
-			{{/if}}
-			<br/>
-			{{#if unsetRoles}}
-			<div class="btn-group clearfix full-width">
-				<button type="button" class="btn btn-success dropdown-toggle pull-right" data-toggle="dropdown">
-					<span class="glyphicon glyphicon-plus"></span> Add Role 
-				</button>
-				<ul class="dropdown-menu pull-right" role="menu">
-					{{#each unsetRoles}}
-						<li><a href="#" class="add-role" data-user-id="{{../_id}}">{{this}}</a></li>
-					{{/each}}
-				</ul>
-			</div>
-			{{else}}
-			<em>All roles already set.</em>
-			{{/if}}
-		</div>
-		<div class="modal-footer">
-			<button type="button" data-dismiss="modal" class="btn btn-primary">Done</button>
-		</div>
-	{{/with}}
+  <div id="updateaccount" class="ui small modal">
+    <i class="close icon"></i>
+    {{#with userInScope}}
+    <div class="header">
+      Update {{email}}
+    </div>
+    <div class="content">
+      <div class="ui vertically divided grid">
+        <div class="row">
+          <div class="ui column form">
+            <div class="inline field">
+              <label>Name</label>
+              <input type="text" data-user-id="{{_id}}" class="admin-user-info" name="profile.name" value="{{profile.name}}" placeholder="{{email}}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          {{#if roles}}
+          {{#each roles}}
+          <div class="column">
+            <div class="ui tiny red labeled icon button remove-role" data-user-id="{{../_id}}">
+              {{this}}
+              <i class="remove icon"></i>
+            </div>
+          </div>
+          {{/each}}
+          {{else}}
+          <div class="column">
+            <p>This account has no roles.</p>
+          </div>
+          {{/if}}
+        </div>
+        <div class="row">
+          <div class="column">
+          {{#if unsetRoles}}
+            <div class="ui tiny teal labeled icon dropdown button">
+              <i class="add icon"></i>
+              <span class="text">Add Role</span>
+              <div class="menu">
+                {{#each unsetRoles}}
+                  <div class="item add-role" data-user-id="{{../_id}}">{{this}}</div>
+                {{/each}}
+              </div>
+            </div>
+          {{else}}
+          <em>All roles already set.</em>
+          {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/with}}
+    <div class="actions">
+      <div class="ui positive right labeled icon button">
+        Done
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+  </div>
 </template>

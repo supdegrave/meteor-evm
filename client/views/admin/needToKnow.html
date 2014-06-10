@@ -1,7 +1,8 @@
 <template name="needToKnow">
-  <div class="horizontalDivider col-sm-12"></div>
+  <div class="ui divider"></div>
 
-  <table class='table table-striped'>
+  <div class="sixteen wide column">
+  <table class='ui compact table'>
     <thead>
       <th>Restricted User Information</th>
       <th>Visible To</th>
@@ -17,36 +18,43 @@
       {{/each}}
       </td>
       <td>
-        <span data-toggle="modal" data-target="#needtoknow" class="fa fa-pencil clickable"></span>
+        <span data-target="#needtoknow" class="modalCallButton"><i class="pencil icon"></i></span>
       </td>
     </tr>
     {{/each}}
   </table>
+  </div>
   
   {{>needToKnowModal}}
 </template>
 
 <template name="needToKnowModal">
   {{#with restriction}}
-  <div id="needtoknow" class="modal fade" tabindex="-1" data-width="760" style="display:none;">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">{{label}}</h4>
+  <div id="needtoknow" class="ui small modal">
+    <i class="close icon"></i>
+    <div class="header">
+      {{label}}
+    </div>
+    <div class="content">
+      <p>Visible to:</p>
+      {{#each visibleToRoles}}
+      <div class="ui divided horizontal list">
+        <div class="ui checkbox item">
+          <input id={{_id}} type="checkbox" checked={{checked}} value={{name}}> 
+          <label for={{_id}}>{{name}}</label>
         </div>
-        <div class="modal-body">
-          <p>Visible to:</p>
-          {{#each visibleToRoles}}
-          <div>
-            <input id={{_id}} type="checkbox" checked={{checked}} value={{name}}> 
-            <label for={{_id}}>{{name}}</label>
-          </div>
-          {{/each}}
+      </div>
+      {{/each}}
+    </div>
+    <div class="actions">
+      <div class="two fluid ui buttons">
+        <div class="ui negative labeled icon button">
+          <i class="remove icon"></i>
+          Close
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="ui positive right labeled icon button">
+          Save
+          <i class="checkmark icon"></i>
         </div>
       </div>
     </div>
