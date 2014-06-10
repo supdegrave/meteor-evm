@@ -1,14 +1,3 @@
-var updateSelect = function() {
-  var sel = $('select.selectpicker');
-  if (sel) { 
-    // Hacky fix to bug: change event trigerred before original select to read from is re-populated
-    setTimeout(function() {
-      sel.selectpicker('refresh');
-    }, 0);
-  }
-  else console.log("$('select.selectpicker') cannot be found!");
-};
-
 Template.filterUsers.helpers({
   teams: function() {
     var query = Teams.find({},{name:1, members:1});
@@ -36,16 +25,12 @@ var setUserFilter = _.throttle(function(template) {
   Session.set("userFilter", search);
 }, 500);
 var teamFilterArray=[];
+
 Template.filterUsers.events({
   'keyup .search-input-filter': function(event, template) {
     setUserFilter(template);
     return false;
   }, 
-  
-  'change select.selectpicker': function(evt, tmpl) {
-    console.log($(evt.currentTarget).val());
-    Session.set("teamFilter", $(evt.currentTarget).val());
-  },
 
   'change .teamSelectMenu input[type="checkbox"]': function(evt, tmpl) {
     $(evt.currentTarget).prop("checked")
@@ -53,9 +38,7 @@ Template.filterUsers.events({
       : teamFilterArray.splice( $.inArray($(evt.currentTarget).attr("id"),teamFilterArray) ,1 );
     Session.set("teamFilter", teamFilterArray);
   }
-  
 });
-
 
 Template.filterUsers.rendered = function(){
   
@@ -64,8 +47,6 @@ Template.filterUsers.rendered = function(){
   });*/ /*Disabled for now*/
 
   $('.ui.dropdown').dropdown();
-
-  setTimeout(function(){$('select.selectpicker').selectpicker();},0);
 
   var searchElement = document.getElementsByClassName('search-input-filter');
   if(!searchElement)  return;
