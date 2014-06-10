@@ -7,11 +7,19 @@
       <li class="active">{{name}}</li>
     </ol> 
 
-    <p>Email:   {{>emailWidget}}</p>
+    <div class="ui selection list blue labels">
+      <a class="item">
+        <div class="ui horizontal label">Email</div>
+        {{>emailWidget}}        
+      </a>
     
-    {{#each roles}}
-      <p>{{label}}:   {{>userRole role=name}}</p>
-    {{/each}} 
+      {{#each roles}}
+      <a class="item">
+        <div class="ui horizontal label">{{label}}</div>
+        {{>userRole role=name}}      
+      </a>
+      {{/each}} 
+    </div>
     
     <div>
       {{#if canEdit}}
