@@ -24,18 +24,6 @@ Template.userRole.helpers({
 
 Template.userRole.events({
   'change select.user-role': function(evt, tmpl) {
-    var target   = evt.target, 
-        role     = this.role,
-        roleName = currentTeam.name + " " + role.charAt(0).toUpperCase() + role.slice(1).toLowerCase(),
-        userId   = target.value;
-        
-    if (currentTeam) {
-      // remove role from current user
-      Roles.removeUsersFromRoles(currentTeam[role], roleName);
-      
-      // assign new user to role 
-      currentTeam[role] = userId;
-      Roles.addUsersToRoles(userId, roleName);
-    }
+    currentTeam[this.role] = evt.target.value || null;
   }
 });

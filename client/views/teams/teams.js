@@ -41,12 +41,28 @@ Template.team.events({
   },
 
   'click button.team-save': function(evt, tmpl) {
-    if (canEdit()) {
+    if (canEdit() && !_.isEqual(this, currentTeam)) {
+      _.each(TEAM_ROLES, function(role) {
+        if (this[role.name] !== currentTeam[role.name]) {
+          var teamRole = this.name + " " + role.label;
+
+          // remove current user from role (use `this` object)
+          if (this[role.name]) {        
+            Roles.removeUsersFromRoles(this[role.name], teamRole);
+          }
+          
+          // assign new user to role (use currentTeam object)
+          if (currentTeam[role.name]) {
+            Roles.addUsersToRoles(currentTeam[role.name], teamRole);
+          }
+        }
+      }, this);
+      
       Meteor.call('teamSave', currentTeam, function(err, res) {
         if (res) {
-          alert('TODO: add verification after save');
+          console.log('TODO: add verification after save');
         }
-        else {
+        else if (err) {
           alert('TODO: handle failed save')
         }
       });
