@@ -1,11 +1,6 @@
 Template.filterUsers.helpers({
   teams: function() {
     var query = Teams.find({},{name:1, members:1});
-    query.observeChanges({
-      added:   updateSelect,
-      removed: updateSelect,
-      changed: updateSelect,
-    });
     return query;
   },
 
