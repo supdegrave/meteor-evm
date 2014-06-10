@@ -1,0 +1,26 @@
+html,
+body {
+  font-size: 15px;
+}
+
+body {
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif/*rtl:prepend:"Droid Arabic Kufi","Droid Sans", */;
+  margin: 0px;
+  padding: 0px;
+  color: #666666;
+  min-width: 320px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif/*rtl:prepend:"Droid Arabic Kufi","Droid Sans", */;
+}
+
+.main.container{
+  max-width: 915px;
+  margin-left: auto;
+  margin-right: auto;
+}
