@@ -22,6 +22,9 @@ Template.needToKnow.rendered = function() {
       setRestriction();
     }
   });
+
+  $('.modal').modal('setting', 'transition', 'vertical flip');
+  $('.ui.checkbox').checkbox();
 };
 
 Template.needToKnow.helpers({
@@ -31,7 +34,11 @@ Template.needToKnow.helpers({
 });
 
 Template.needToKnow.events({
-  'click span.clickable': setRestriction
+  // 'click span.clickable': setRestriction
+  'click .modalCallButton': function(event, template) {
+    setRestriction
+    $($(event.currentTarget).data("target")).modal('show');
+  },
 });
 
 Template.needToKnowModal.restriction = getRestriction;

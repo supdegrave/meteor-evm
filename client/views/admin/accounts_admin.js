@@ -47,16 +47,9 @@ var setUserFilter = _.throttle(function(template) {
       return false;
     },
 
-    'click .glyphicon-trash': function(event, template) {
+    'click .modalCallButton': function(event, template) {
       Session.set('userInScope', this);
-    },
-
-    'click .glyphicon-info-sign': function(event, template) {
-      Session.set('userInScope', this);
-    },
-
-    'click .glyphicon-pencil': function(event, template) {
-      Session.set('userInScope', this);
+      $($(event.currentTarget).data("target")).modal('show');
     },
     
     'click .check-organizer': function(evt, tmpl) {
@@ -82,4 +75,7 @@ var setUserFilter = _.throttle(function(template) {
 
     searchElement[0].focus();
     searchElement[0].setSelectionRange(pos, pos);
+
+    $('.modal').modal('setting', 'transition', 'vertical flip');
+    $('.ui.checkbox').checkbox();
   };

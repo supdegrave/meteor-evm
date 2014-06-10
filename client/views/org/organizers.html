@@ -5,12 +5,7 @@
         <div class="raised segment column">
           <div class="ui two column stackable grid">
             <div class="five wide column">
-              <h2 class="ui header"><a href="{{pathFor 'users' id=_id}}">{{displayName}}</a></h2>
-            </div>        
-            <div class="eleven wide column">
-              {{#if canAddTeam}}
-                {{>addTeam _id}}
-              {{/if}}
+              <div class="ui header"><a href="{{pathFor 'users' id=_id}}">{{displayName}}</a></div>
             </div>        
           </div>        
           <div class="orgChartTeamContainer ui basic accordion">
@@ -18,6 +13,13 @@
               {{>orgTreeItem}}
             {{/each}}
           </div>        
+          <div class="ui divider"></div>
+          <div class="column">
+            {{#if canAddTeam}}
+              {{>addTeam _id}}
+            {{/if}}
+          </div>        
+          <div class="ui divider"></div>
         </div>
       {{/each}}
     </div>
@@ -39,7 +41,7 @@
           {{#if mentor}}
           <a href="{{pathFor 'users' id=mentor}}">{{displayName mentor}}</a>
           {{else}}
-          <div class="ui labeled icon teal button"><i class="small plus icon"></i>Fill this role</div>
+          <a href="" class="ui link orange button"><i class="add icon"></i>Fill this role</a>
           {{/if}}
         </li>
       </ul>

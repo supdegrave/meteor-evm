@@ -15,12 +15,10 @@ iron-router
 roles
 email
 less
-x-editable-bootstrap
 accounts-ui-bootstrap-3
 typeahead
 moment
 font-awesome
 bootstrap3-datepicker
-bootstrap-select
 collection2
 semantic-ui

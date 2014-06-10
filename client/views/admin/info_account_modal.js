@@ -1,4 +1,4 @@
-Template.infoAccountModalInner.helpers({
+Template.infoAccountModal.helpers({
 	email: function () {
 		if (this.emails && this.emails.length)
 			return this.emails[0].address;

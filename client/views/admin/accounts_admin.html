@@ -1,45 +1,53 @@
 <template name="accountsAdmin">
-	<div class="col-sm-6 filterInput">
-			<input type="text" class="form-control search-input-filter" value="{{searchFilter}}" placeholder="Type to filter users list">
+  <div class="eight wide column filterInput">
+      <div class="ui fluid input">
+      <input type="text" class="search-input-filter" value="{{searchFilter}}" placeholder="Type to filter users list">
+      </div>
   </div>
-  <div class="horizontalDivider col-sm-12"></div>
 
-  <table class='table table-striped'>
-    <thead>
-      <th></th>
-      <th>Name</th>
-      {{#if isInRole 'admin'}}
-      <th>Board<br/>Member</th>
-      {{/if}}
-      <th>Roles</th>
-    </thead>
-    {{#each users}}
-    <tr class="{{#if myself _id}}info{{/if}}">
-      <td>
-        {{#unless myself _id}}
-        <span data-toggle="modal" href="#deleteaccount" class="fa fa-trash-o clickable"></span>
-        <span data-toggle="modal" href="#updateaccount" class="fa fa-pencil clickable"></span>
-        <span data-toggle="modal" href="#infoaccount" class="fa fa-info-circle clickable"></span>
-        {{/unless}}
-      </td>
-      <td>
-        {{displayName}}
-      </td>
-      {{#if isInRole 'admin'}}
-      <td>
-        <input id="user_{{_id}}" type="checkbox" class="check-organizer" data-id="{{_id}}" checked="{{isOrganizer}}">
-      </td>
-      {{/if}}
-      <td>
-        <div>{{roles}}</div>
-      </td>
-    </tr>
-    {{/each}}
-  </table>
+  <div class="ui divider"></div>
+
+  <div class="sixteen wide column">
+    <table class='ui compact table'>
+      <thead>
+        <th></th>
+        <th>Name</th>
+        {{#if isInRole 'admin'}}
+        <th>Board Member</th>
+        {{/if}}
+        <th>Roles</th>
+      </thead>
+      {{#each users}}
+      <tr class="{{#if myself _id}}info{{/if}}">
+        <td>
+          {{#unless myself _id}}
+          <span data-target="#deleteaccount" class="modalCallButton"><i class="trash icon"></i></span>
+          <span data-target="#updateaccount" class="modalCallButton"><i class="pencil icon"></i></span>
+          <span data-target="#infoaccount" class="modalCallButton"><i class="info icon"></i></span>
+          {{/unless}}
+        </td>
+        <td>
+          {{displayName}}
+        </td>
+        {{#if isInRole 'admin'}}
+        <td>
+          <div class="ui toggle checkbox">
+            <input id="user_{{_id}}" type="checkbox" class="check-organizer" data-id="{{_id}}" checked="{{isOrganizer}}">
+            <label for="user_{{_id}}"></label>
+          </div>
+        </td>
+        {{/if}}
+        <td>
+          <div>{{roles}}</div>
+        </td>
+      </tr>
+      {{/each}}
+    </table>
+  </div>
 
   
   <!-- {{> updateRolesModal}} -->
-	{{> deleteAccountModal}}
-	{{> infoAccountModal}}
-	{{> updateAccountModal}}
+  {{> deleteAccountModal}}
+  {{> infoAccountModal}}
+  {{> updateAccountModal}}
 </template>

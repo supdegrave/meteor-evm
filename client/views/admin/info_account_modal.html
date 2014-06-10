@@ -1,38 +1,44 @@
 <template name="infoAccountModal">
-	<div id="infoaccount" class="modal fade" tabindex="-1" data-width="760" style="display:none;">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				{{> infoAccountModalInner}}
-			</div>
-		</div>
-	</div>
-</template>
-
-<template name="infoAccountModalInner">
-	<div class="modal-header">
-		<h4>Account Info</h4>
-	</div>
-	{{#with userInScope}}
-	 	<div class="modal-body">
-			<ul class="list-group">
-				<li class="list-group-item"><strong>Name</strong>
-					<span class="pull-right">
-						{{#if profile.name}}
-							{{profile.name}}
-						{{else}}
-							{{email}}
-						{{/if}}
-					</span>
-				</li>
-				<li class="list-group-item"><strong>Email</strong><span class="pull-right">{{email}}</span></li>
-				<li class="list-group-item"><strong>ID</strong><span class="pull-right">{{_id}}</span></li>
-				{{#each rolePairs}}
-					<li class="list-group-item"><strong>{{key}}</strong><span class="pull-right">{{value}}</span></li>
-				{{/each}}
-			</ul>
-	 	</div>
-	 	<div class="modal-footer">
-			<button type="button" data-dismiss="modal" class="btn btn-primary">OK</button>
-		</div>
-	{{/with}}
+  <div id="infoaccount" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+      <div>Account Info</div>
+    </div>
+    {{#with userInScope}}
+    <div class="content">
+      <div class="ui divided list">
+        <div class="item">
+          <div class="header">Name</div>
+          <span class="right">
+            {{#if profile.name}}
+              {{profile.name}}
+            {{else}}
+              {{email}}
+            {{/if}}
+          </span>
+        </div>
+        <div class="item">
+          <div class="header">Email</div>
+          <span class="right">{{email}}</span>
+        </div>
+        <div class="item">
+          <div class="header">ID</div>
+          <span class="right">{{_id}}</span>
+        </div>
+        {{#each rolePairs}}
+        <div class="item">
+          <div class="header">{{key}}</div>
+          <span class="right">{{value}}</span>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui positive right labeled icon button">
+        Ok, I'm done.
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+    {{/with}}
+  </div>
 </template>
