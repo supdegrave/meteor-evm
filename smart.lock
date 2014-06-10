@@ -11,7 +11,8 @@
       "normalize.css": {
         "git": "https://github.com/rithis-archive/meteor-normalize.css.git",
         "branch": "master"
-      }
+      },
+      "meteor-editable": {}
     },
     "packages": {
       "iron-router": {
@@ -48,6 +49,11 @@
         "git": "https://github.com/rithis-archive/meteor-normalize.css.git",
         "branch": "master",
         "commit": "f9a0b29953a4b6ed541530c79c96f58d499af312"
+      },
+      "meteor-editable": {
+        "git": "https://github.com/davidworkman9/meteor-editable.git",
+        "tag": "v0.0.13",
+        "commit": "b96bdd847e9d9fb3056bb9c5092ecf0fbad87d3f"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

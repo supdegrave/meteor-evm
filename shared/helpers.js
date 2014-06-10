@@ -19,7 +19,7 @@ UI.registerHelper('displayName', displayName);
 
 canEdit = function() {
   if (Meteor.user()) {
-    return _.contains(Meteor.user().roles, 'admin')
+    return _.intersection(Meteor.user().roles, ['admin', 'organizer']).length 
       || _.contains([this.owner, this.lead, this.colead], Meteor.userId());
   }
 }

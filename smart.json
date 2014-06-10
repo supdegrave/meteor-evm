@@ -8,6 +8,7 @@
     "semantic-ui": {},
     "normalize.css": {
       "git": "https://github.com/rithis-archive/meteor-normalize.css.git"
-    }
+    },
+    "meteor-editable": {}
   }
 }
