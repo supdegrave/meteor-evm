@@ -3,7 +3,7 @@
 </head> 
 
 <body>
-  <nav class="ui orange inverted pointing menu">
+  <nav class="ui orange inverted menu">
     <a class="header item">
       Let's build Nowhere !
     </a>
@@ -21,21 +21,22 @@
         <i class="settings icon"></i> Admin
       </a>
       {{/if}}
-      <!-- {{>loginButtons}} -->
-      <div class="ui dropdown item">
-        <i class="dropdown icon"></i> {{displayName}} 
-        <div class="menu">
-          <a class="ui button" href="{{pathFor 'user' id=myID}}"><i class="user icon"></i> My profile</a>
-          <a class="ui button"><i class="off icon"></i> Logout</a>
-        </div>
-      </div>
+      {{>loginDropdown}}
     </div>
   </nav>
 </body>
 
-<template name="_loginButtonsAdditionalLoggedInDropdownActions">
-  <a class="btn btn-default btn-block" href="{{pathFor 'user' id=myID}}" id="login-buttons-view-profile"><i class="fa fa-user"></i> View profile</a>
-  <a class="btn btn-default btn-block" id="login-buttons-logout"><i class="fa fa-power-off"></i> Logout</a>
+<template name="loginDropdown">
+  {{#with currentUser}}
+  <div class="ui simple dropdown item">
+    Howdy, <strong>{{displayName}}</strong> !
+    <i class="dropdown icon"></i>
+    <div class="orange menu">
+      <a class="item" href="{{pathFor 'user' id=this._id}}"><i class="teal user icon"></i> My profile</a>
+      <a class="item" id="login-buttons-logout"><i class="red off icon"></i> Logout</a>
+    </div>
+  </div>
+  {{/with}}
 </template>
 
 

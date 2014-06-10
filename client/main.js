@@ -10,21 +10,16 @@ Deps.autorun(function(){
   Meteor.subscribe("allUserData");
 })
 
-// Template-specific methods
-// Template.<template-name>.<method-name> = function(args?) {
-//   // do something 
-//   return someValue;
-// }
+Template.loginDropdown.events({
+  'click #login-buttons-logout': function() {
+    Meteor.logout(function() {
+      $("#login-buttons").dropdown("close");
+    });
+  }
+});
 
-// Template-specific events
-// Template.<template-name>.events({
-//   '<event-name> <selector>': function(evt, tmpl) {
-//     // event handling code
-//   }
-// });
-
-Template._loginButtonsAdditionalLoggedInDropdownActions.helpers({
-	myID:function(){
-		return Meteor.userId();
-	}
+Template.loginDropdown.helpers({
+  myID:function(){
+    return Meteor.userId();
+  }
 });
