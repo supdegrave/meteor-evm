@@ -2,6 +2,13 @@ Router.configure({
   loadingTemplate: 'loading'
 });
 
+Router.onBeforeAction(function() {
+  if (this.path !== '/' && !Meteor.user() && !Meteor.loggingIn()) {
+    console.log('Redirecting');
+    this.redirect('home');
+  }
+});
+
 Router.map(function() {
   // *** home, '/' path ************************* //
   this.route('home', { path: '/' });
@@ -27,24 +34,18 @@ Router.map(function() {
       Session.set('userFilter', null);
       Session.set('teamFilter', null);
     },
-    onBeforeAction: function() {
-      if (Meteor.loggingIn()) {
-        this.render(this.loadingTemplate);
-      } 
-      else if (!Meteor.user()) {
-        console.log('Redirecting');
-        this.redirect('home');
-      }
-    }, 
   });
 
   // *** display user by id ********************* //
   this.route('user', {
     path: '/users/:id',
     data: function() {
-      return Meteor.users.findOne({_id: this.params.id});
+      if (Meteor.user()) {
+        return Meteor.users.findOne({_id: this.params.id});
+      }
     }
   });
+  
   // *** display team by name ******************* //
   this.route('team', {
     path: '/teams/:name/:id',
