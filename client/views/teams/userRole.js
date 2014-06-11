@@ -3,7 +3,6 @@ Deps.autorun(function() {
   currentTeam = Session.get('currentTeam');
 });
 
-Template.userRole.rendered = setSelectedUser;
 
 Template.userRole.helpers({
   users: function() {
@@ -12,6 +11,12 @@ Template.userRole.helpers({
     return ("owner" === this.role) 
       ? Roles.getUsersInRole("organizer")
         : Meteor.users.find();
+  },
+  selectedUserId: function(user) {
+     if (currentTeam) {
+      var user = Meteor.users.findOne({_id: currentTeam[this.role]});
+      return (!!user) ? user._id : "none";
+    }
   },
   
   selectedUserName: function(user) {
@@ -22,8 +27,18 @@ Template.userRole.helpers({
   }
 });
 
+
 Template.userRole.events({
-  'change select.user-role': function(evt, tmpl) {
+  'change .user-role-input': function(evt, tmpl) {
     currentTeam[this.role] = evt.target.value || null;
   }
 });
+
+//Dropdown initializer with a throttle to prevent it being called after each dropdown element is added
+Template.userRole.dropdownCaller = _.throttle(function (){
+  $('.ui.dropdown.user-role-dropdown').dropdown();
+}, 600);
+
+Template.userRole.rendered = function(){
+  setSelectedUser();
+};

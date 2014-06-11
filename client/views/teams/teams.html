@@ -1,53 +1,74 @@
 <template name="team">
-  <div class="container team">
-    <ol class="breadcrumb h3">
-      {{#if parentId}} 
-      {{#with getParent parentId}}<li><a href="{{pathFor 'team' name=name id=_id}}">{{name}}</a></li>{{/with}}
-      {{/if}}
-      <li class="active">{{name}}</li>
-    </ol> 
-
-    <div class="ui selection list blue labels">
-      <a class="item">
-        <div class="ui horizontal label">Email</div>
-        {{>emailWidget}}        
-      </a>
-    
-      {{#each roles}}
-      <a class="item">
-        <div class="ui horizontal label">{{label}}</div>
-        {{>userRole role=name}}      
-      </a>
-      {{/each}} 
+  <div class="main container team">
+    <div class="ui large blue header">
+      <div class="ui breadcrumb">
+        {{> recursiveParentBreadcrumb}}
+        <div class="active section">{{name}}</div>
+      </div>
     </div>
-    
-    <div>
-      {{#if canEdit}}
-      <button class="btn btn-danger team-reset">Cancel</button>
-      <button class="btn btn-success team-save">Save</button>
-      {{/if}}
-    </div>
-    
+    <div class="ui divider"></div>
 
-    <h4>Members:</h4>
-    <div>
-      {{#if canEdit}}
-      <button class="btn btn-success add-member" data-toggle="modal" href="#addmember">
-        <span class="glyphicon glyphicon-plus"></span> 
-        Add Member
-      </button>
-      {{/if}}
+    <div class="ui two column stackable grid">
+
+      <div class="column">
+        <div class="ui blue segment">
+          <div class="ui list blue labels">
+            <div class="item">
+              {{>emailWidget}}        
+            </div>
+            {{#each roles}}
+            <div class="item">
+              {{>userRole role=name}}      
+            </div>
+            {{/each}} 
+          </div>
+          
+          <div style="text-align: center;">
+            {{#if canEdit}}
+            <div class="ui buttons">
+              <div class="ui negative button" id="team-reset">Cancel</div>
+              <div class="or"></div>
+              <div class="ui positive button" id="team-save">Save</div>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="ui teal segment">
+          <div class="ui teal header">Members:</div>
+          <div class="ui horizontal divided list">
+            {{#each members}}
+            <a class="item">
+              {{#if canEdit}}<i class="remove-member remove icon"></i>{{/if}}
+              {{displayName this}}
+            </a>
+            {{/each}}
+          </div>
+          {{#if canEdit}}
+          <div class="clear ui divider"></div>
+          <button class="ui teal action button add-member" data-target="#addmember">
+            <i class="plus icon"></i> 
+            Add Member
+          </button>
+          {{/if}}
+        </div>
+      </div>
+
     </div>
 
-    <ul>
-      {{#each members}}
-      <li>
-        {{displayName this}}
-        {{#if canEdit}}<span class="remove-member glyphicon glyphicon-trash clickable"></span>{{/if}}
-      </li>
-      {{/each}}
-    </ul>
+    {{>confirmationModal}}
+    {{>addMemberModal}}
   </div>
+</template>
 
-  {{>addMemberModal}}
+<template name="recursiveParentBreadcrumb">
+  {{#if parentId}} 
+  {{#with getParent parentId}}
+  {{> recursiveParentBreadcrumb}}
+  <a class="section" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>
+  <i class="right arrow icon divider"></i>
+  {{/with}}
+  {{/if}}
 </template>

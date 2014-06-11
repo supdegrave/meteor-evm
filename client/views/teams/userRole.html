@@ -1,12 +1,21 @@
 <template name="userRole">
   {{#if canEdit}}
-  <select class="user-role" data-role="{{role}}">
-    <option value="">Select</option>
+  <div class="ui fluid selection dropdown user-role-dropdown">
+    <input type="hidden" class="user-role-input" data-role="{{role}}" value="{{selectedUserId}}">
+    <div class="ui ribbon label">
+      {{role}}
+    </div>
+    <div class="default text">{{selectedUserName}}</div>
+    <i class="dropdown icon"></i>
+    <div class="menu">
     {{#each users}}
-      <option value="{{_id}}">{{displayName}}</option>
+      <div class="item" data-value="{{_id}}">{{displayName}}</div>
+    {{dropdownCaller}}
     {{/each}}
-  </select>
+    </div>
+  </div>
   {{else}}
+  <div class="ui horizontal label">{{label}}</div>
   <span>{{selectedUserName}}</span>
   {{/if}}
 </template>

@@ -1,7 +1,6 @@
 /*--------------------------
 ---------CHECKBOXES---------
 --------------------------*/
-
 .ui.divided.horizontal.list > .ui.checkbox.item{
   line-height: 1em;
 }
@@ -18,6 +17,12 @@
   left: 1.2em;
 }
 
+/*--------------------------
+---------DROPDOWNS----------
+--------------------------*/
+.ui.dropdown .ui.ribbon.label{
+  top: -0.3rem;
+}
 
 /*--------------------------
 ----------BUTTONS-----------
@@ -39,4 +44,11 @@
 .ui.orange.buttons .link.button:hover,
 .ui.orange.link.button:hover{
    color: #FFFFFF; 
+}
+
+/*--------------------------
+-----------GRIDS------------
+--------------------------*/
+.ui.grid .last.column {
+  width: auto;
 }

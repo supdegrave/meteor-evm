@@ -1,7 +1,7 @@
 currentTeam = null;
 
 setSelectedUser = function() {
-  $('select.user-role').each(function(idx, elem) {
+  $('input.user-role-input').each(function(idx, elem) {
     var role  = elem.dataset.role,
         $elem = $(elem);
 
@@ -17,30 +17,26 @@ Deps.autorun(function() {
 });
 
 Template.team.helpers({
-  getParent: function(parentId) {
-    return Teams.findOne({_id: parentId},{name:1});
-  },
   roles: function() {
     return TEAM_ROLES;
   }
 });
 
+Template.recursiveParentBreadcrumb.helpers({
+  getParent: function(parentId) {
+    return Teams.findOne({_id: parentId},{name:1});
+  }
+});
+
+
 Template.team.events({
   'DOMNodeInserted select': setSelectedUser,
   
-  'click button.team-reset': function(evt, tmpl) {
-    alert('TODO: add confirmation before reset');
-    // reset currentTeam to router-set team data
-    currentTeam = this;
-    
-    // reset select elements
-    $('select.user-role').each(function() {
-      var elem = $(this);
-      elem.val(currentTeam[elem.data('role')]);
-    });
+  'click #team-reset': function(evt, tmpl) {
+    $("#confirmationmodal").modal("show");
   },
 
-  'click button.team-save': function(evt, tmpl) {
+  'click #team-save': function(evt, tmpl) {
     if (canEdit() && !_.isEqual(this, currentTeam)) {
       _.each(TEAM_ROLES, function(role) {
         if (this[role.name] !== currentTeam[role.name]) {
@@ -73,5 +69,17 @@ Template.team.events({
     if (currentTeam) {
       Teams.update({_id: currentTeam._id}, {$pull: {members: this.toString()}});
     }
-  }
+  },
+
 });
+
+Template.team.rendered=function(){
+  // Since the #confirmationmodal item is not directly in the template, I suppose,
+  // we are forced to define our click events here rather than in Template.team.events
+  $("#confirmationmodal .positive").click(function(){
+    $('.ui.dropdown.user-role-dropdown').each(function() {
+      var elem = $(this);
+      elem.dropdown("restore defaults");
+    });
+  })
+}
