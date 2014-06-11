@@ -18,7 +18,7 @@ Router.map(function() {
     onBeforeAction: function() {
       if (Meteor.loggingIn()) {
         this.render(this.loadingTemplate);
-      } else if(!Roles.userIsInRole(Meteor.user(), ['admin'])) {
+      } else if(!Roles.userIsInRole(Meteor.user(), ['admin', 'organizer'])) {
         console.log('redirecting');
         this.redirect('home');
       }
