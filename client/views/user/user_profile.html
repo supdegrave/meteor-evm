@@ -7,11 +7,6 @@
         </a>
         <h3 class="media-heading">{{displayName}}{{#if 'profile.playaName'}} : {{profile.playaName}}{{/if}}</h3>
 
-        <!-- 
-          Gender (necessary for some shift scheduling: male, female, other - other-select) 
-          - discuss legal requirements around gender with Aqua before implementing
-        -->
-
         {{#if roleIn 'lead'}}
         <div class="roleInTeam form-group">
           <label class="label label-primary">Lead of{{#each roleIn 'lead'}}<span class="teamName">{{name}}</span>{{/each}}</label>
@@ -30,7 +25,6 @@
         {{#if memberOf}}
         <div class="roleInTeam form-group">
           <label class="label label-success">Member of{{#each memberOf}}<span class="teamName">{{name}}</span>{{/each}}</label>
-
         </div>
         {{/if}}
 
@@ -38,139 +32,130 @@
       </div>
 
       <div class="media-body">
-        {{#if gender}}
+        <!-- just display first email -->
+        {{#each emails}}
+        <div class="form-group col-md-12">
+          <label class="col-xs-1">
+            <abbr title="E-mail address" class="fa fa-envelope-o"></abbr>
+          </label>
+          <div class="col-sm-11">
+            <a href="mailto:{{address}}">{{address}}</a>
+          </div>
+        </div>
+        {{/each}}
+        
+        {{#with profile}}
+          {{#with gender}}          
           <div class="form-group col-md-12 ">
             <label class="col-xs-1">
               <abbr title="Gender" class="fa fa-leaf"></abbr>
             </label>
             <div class="col-sm-11">
-              {{gender}}
+              {{.}}
             </div>
           </div>
-        {{/if}}
-        
-        <address>
-          <!-- just display first email -->
-            {{#each emails}}
-            <div class="form-group col-md-12">
-              <label class="col-xs-1">
-                <abbr title="E-mail address" class="fa fa-envelope-o"></abbr>
-              </label>
-              <div class="col-sm-11">
-                <a href="mailto:{{address}}">{{address}}</a>
-              </div>
-            </div>
-            {{/each}}
+          {{/with}}
 
-            <div class="form-group col-md-12 ">
-              <label class="col-xs-1">
-                <abbr title="Skype I.D." class="fa fa-skype"></abbr>
-              </label>
-              <div class="col-sm-11">
-                {{skype}}
-              </div>
+          {{#with skype}}
+          <div class="form-group col-md-12 ">
+            <label class="col-xs-1">
+              <abbr title="Skype I.D." class="fa fa-skype"></abbr>
+            </label>
+            <div class="col-sm-11">
+              {{.}}
             </div>
+          </div>
+          {{/with}}
 
-            <!-- only one phone number for now -->
-            {{#each phones}}
-            <div class="form-group col-md-12 ">
-              <label class="col-xs-1">
-                <abbr title="Phone number" class="fa fa-phone"></abbr>
-              </label>
-              <div class="col-sm-11">
-                {{#if countryCode}}(+{{countryCode}}) {{/if}}{{number}}
-              </div>
+          {{#each phones}}
+          <div class="form-group col-md-12">
+            <label class="col-xs-1">
+              <abbr title="Phone number" class="fa fa-phone"></abbr>
+            </label>
+            <div class="col-sm-11">
+              {{#if countryCode}}(+{{countryCode}}) {{/if}}{{number}}
             </div>
+          </div>
+          {{/each}}
+          
+          {{#with diet}}
+            <p><b>DIET</b></p>
+            Preferences: 
+            {{#each preferences}}
+              {{.}}<br>
             {{/each}}
+          
+            Allergies:
+            {{#each allergies}}
+              {{.}}<br>
+            {{/each}}
+          {{/with}}
 
-            <!-- only one address for now -->
-            {{#each address}}
-            <div class="form-group col-md-12 address">
-              <label class="col-xs-1">
-                <abbr title="Address" class="fa fa-home"></abbr>
-              </label>
-              <div class="col-sm-11">
-                <p>{{streetNumber}}, {{address1}}</p>
-                <p>{{address2}}</p>
-                <p>{{postalCode}} {{city}}, {{country}}</p>
-              </div>
-            </div>
+          {{#with medical}}
+            <p><b>MEDICAL</b></p>
+            Medications: 
+            {{#each medications}}
+              {{.}}<br>
             {{/each}}
-        </address>
-        <div class="horizontalDivider col-sm-12"></div>
+          
+            Allergies:
+            {{#each allergies}}
+              {{.}}<br>
+            {{/each}}
+            
+            <p>{{notes}}</p>
+          {{/with}}
+
+          {{#with emergencyContact}}
+            <p><b>EMERGENCY CONTACT</b></p>
+            <p>Name: {{name}}</p>
+            <p>Relation: {{relation}}</p>
+            <p>Email: {{email}}</p>
+            <p>Phone: {{phone.countryCode}} {{phone.number}}</p>
+            <p>Time Zone: {{timezone}}</p>
+          {{/with}}
+        {{/with}}
+
+        <!-- only one address for now -->
+        <!-- {{#each address}}
+        <div class="form-group col-md-12 address">
+          <label class="col-xs-1">
+            <abbr title="Address" class="fa fa-home"></abbr>
+          </label>
+          <div class="col-sm-11">
+            <p>{{streetNumber}}, {{address1}}</p>
+            <p>{{address2}}</p>
+            <p>{{postalCode}} {{city}}, {{country}}</p>
+          </div>
+        </div>
+        {{/each}}
+        <div class="horizontalDivider col-sm-12"></div> -->
       </div>
 
       <div class="media-body">
+        <!-- Skills 
+        (Aqua: editable table. Skills should have a description/explanation, 
+        including skill levels. Gender should go under skills for shift 
+        scheduling. Skill levels should include descriptions, so that 
+        people can indicate what their skill level is based on 
+        definitions we give them. This can also be handy for the gender 
+        ‘skill’, because what we really want to know is, for example: 
+        is someone masculine enough to impress drunken locals, feminine 
+        enough to make them go away quietly, etc.) 
+
+        ¿list / descriptions populated in admin UI?
+        -->
         <div class="form-group col-md-12 skillSet">
           <label class="col-xs-1">
             <abbr title="Skills" class="fa fa-wrench"></abbr>
           </label>
           <div class="col-sm-11">
-          {{#each skills}}<span class="skill">{{this}}</span>{{/each}}
-          {{#if myself}} <button class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>I can do more stuff!</button>{{/if}}
+            {{#each skills}}<span class="skill">{{this}}</span>{{/each}}
+            {{#if myself}} <button class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>I can do more stuff!</button>{{/if}}
           </div>
         </div>
         <div class="horizontalDivider col-sm-12"></div>
       </div>
-      <!-- Skills 
-      (Aqua: editable table. Skills should have a description/explanation, 
-            including skill levels. Gender should go under skills for shift 
-            scheduling. Skill levels should include descriptions, so that 
-            people can indicate what their skill level is based on 
-            definitions we give them. This can also be handy for the gender 
-            ‘skill’, because what we really want to know is, for example: 
-            is someone masculine enough to impress drunken locals, feminine 
-            enough to make them go away quietly, etc.) 
-            
-            ¿list / descriptions populated in admin UI?
-      -->
-
-
-
-      <!-- 
-        Visibility of sections below should be restricted 
-        only visible to admin, organizers, ¿team leads?, malfare (but what scope?)
-        
-        future: 
-        - either authorization pkg aka devise
-        - or admin controlled 
-          - list of 'sensitive data' 
-          - list of users who can see sensitive data 
-          - is current user in list of ^^^
-          - in router.js, return {fieldname: [0|1] [, ...]} depending on whether user can view 
-      -->
-      {{#if emergency contact}}
-      <div class="media-body">
-        <adress>
-            <h5>Emergency contact:</h5>
-            <div class="form-group col-md-12 emergencyContact">
-              <label class="col-xs-1">
-                <abbr title="Emergency contact" class="fa fa-ambulance"></abbr>
-              </label>
-              <div class="col-sm-11">
-                <p>{{name}} – {{relation}}</p>
-                <p>{{phone}}</p>
-                <p>{{email}}</p>
-              </div>
-            </div>
-        </adress>
-        <div class="horizontalDivider col-sm-12"></div>
-      </div>
-      {{/if}}
-
-        <!-- Dietary restrictions 
-        (Aqua: "editable table; I would like to limit the available options, 
-              with some way for people to send email to the volunteer feeders 
-              to indicate the more esoteric restrictions") 
-              
-              multi-select list: omnivore, vegetarian, vegan (aka annoying), glutard, lactose-annoying, other
-              other shows a text field 
-              
-              in the future, these options should be manageable from admin UI
-              something like this: {{>selectWithOther type='multi' src=datasrc}}
-        -->
-
-        <!-- Medical notes: open text area -->
     </div>
   </div>
 </template>
