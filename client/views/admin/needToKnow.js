@@ -1,29 +1,23 @@
-var restriction, restrictionDep, getRestriction, setRestriction;
-
-restriction    = null;
-restrictionDep = new Deps.Dependency;
-
-getRestriction = function() {
-  restrictionDep.depend();
-  return restriction;
-};
-
-setRestriction = function (evt, tmpl) {
-  var prop = (this === window) ? {} : {property: this.property};
-  restriction = UserDataRestrictions.findOne(prop);
-  restrictionDep.changed();
-};
+var restriction    = null, 
+    restrictionDep = new Deps.Dependency, 
+    
+    getRestriction = function() {
+      restrictionDep.depend();
+      return restriction;
+    },
+    
+    setRestriction = function(doc) {
+      restriction = doc || UserDataRestrictions.findOne({});
+      restrictionDep.changed();
+    };
 
 Template.needToKnow.rendered = function() {
   // set initial restriction value when page renders
   // modal edit dialog won't initialize without this data
   UserDataRestrictions.find().observe({
-    added: function(doc) {
-      setRestriction();
-    }
+    added: setRestriction
   });
 
-  $('.modal').modal('setting', 'transition', 'vertical flip');
   $('.ui.checkbox').checkbox();
 };
 
@@ -34,10 +28,23 @@ Template.needToKnow.helpers({
 });
 
 Template.needToKnow.events({
-  // 'click span.clickable': setRestriction
   'click .modalCallButton': function(event, template) {
-    setRestriction
-    $($(event.currentTarget).data("target")).modal('show');
+    setRestriction(this);
+    
+    $($(event.currentTarget).data("target"))
+      .modal('setting', {
+        transition: 'vertical flip',
+        onApprove : function() {
+          var roles = [];
+          
+          $('div#needtoknow div.ui.checkbox > input:checked').each(function(idx, elem) {
+            roles.push(elem.value);      
+          });
+          
+          UserDataRestrictions.update({_id: getRestriction()._id}, {$set: {visibleTo: roles}});        
+        }
+      })
+      .modal('show');
   },
 });
 
@@ -45,27 +52,11 @@ Template.needToKnowModal.restriction = getRestriction;
 
 Template.needToKnowModal.helpers({  
   visibleToRoles: function() {
-    var roles = Roles.getAllRoles().map(function(role) {
+    return Roles.getAllRoles().map(function(role) {
       if (_.contains(getRestriction().visibleTo, role.name)) {
         role.checked = true;
       };
       return role;
     });
-
-    return roles; 
   }
-});
-
-Template.needToKnowModal.events({
-  'click button.btn-primary': function(evt, tmpl) {
-    var restriction = getRestriction(),
-        roles       = [];
-
-    $('div.modal-body>div>input:checked').each(function(idx, elem) {
-      roles.push(elem.value);      
-    });
-    
-    UserDataRestrictions.update({_id: restriction._id}, {$set: {visibleTo: roles}});
-    $('#needtoknow').modal('hide');
-  },
 });
