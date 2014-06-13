@@ -3,11 +3,11 @@ Router.configure({
 });
 
 Router.onBeforeAction(function() {
-  if (this.path !== '/' && !Meteor.user() && !Meteor.loggingIn()) {
+  if (!Meteor.user() && !Meteor.loggingIn()) {
     console.log('Redirecting');
     this.redirect('home');
   }
-});
+}, {except: ['org', 'home']});
 
 Router.map(function() {
   // *** home, '/' path ************************* //
