@@ -172,15 +172,25 @@ function initializeUserDataRestrictions() {
   var schema = Meteor.users.simpleSchema().schema();
   
   for (prop in schema) { 
-    if (schema[prop].hasOwnProperty('restricted') && schema[prop]['restricted']) { 
-      if (0 === UserDataRestrictions.find({property: prop}).count()) {
+    // if schema item has 'restricted' property
+    // insert a restriction if there isn't already one
+    if (schema[prop]['restricted']) { 
+      if (!UserDataRestrictions.findOne({property: prop})) {
+        console.log("adding UserDataRestriction:", prop);        
         UserDataRestrictions.insert(new Restriction(prop, schema[prop].label), function(err, res) {
           if (err && !res) {
             console.log('TODO: handle UserDataRestrictions insert error');
           }
         });
       }
-    } 
+    }
+    // otherwise remove restriction if one exists
+    else {
+      if (UserDataRestrictions.findOne({property: prop})) {
+        console.log("removing UserDataRestriction:", prop);
+        UserDataRestrictions.remove({property: prop});
+      }
+    }
   }
 }
 
