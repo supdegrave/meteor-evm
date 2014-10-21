@@ -1,0 +1,27 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "iron:router": {},
+      "alanning:roles": {},
+      "mrt:moment": {},
+      "aldeed:collection2": {},
+      "nooitaf:semantic-ui": {},
+      "normalize.css": {
+        "git": "https://github.com/rithis-archive/meteor-normalize.css.git"
+      },
+      "mrt:meteor-editable": {}
+    },
+    "packages": {
+      "iron:router": {},
+      "alanning:roles": {},
+      "mrt:moment": {},
+      "aldeed:collection2": {},
+      "nooitaf:semantic-ui": {},
+      "normalize.css": {
+        "git": "https://github.com/rithis-archive/meteor-normalize.css.git"
+      },
+      "mrt:meteor-editable": {}
+    }
+  }
+}

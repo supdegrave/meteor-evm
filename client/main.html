@@ -1,0 +1,43 @@
+<head> 
+  <title>Event Volunteer Manager</title>
+</head> 
+
+<body>
+  <nav class="ui orange inverted menu">
+    <a class="header item">
+      Let's build Nowhere !
+    </a>
+    {{#if currentUser}}
+      <a class="item" href="/users">
+        <i class="users icon"></i> Users
+      </a>
+    {{/if}}
+    <a class="item" href="/org">
+      <i class="sitemap icon"></i> Org chart
+    </a>
+    <div class="right menu">
+      {{#if isInRole 'admin'}}
+       <a class="item" href="/admin">
+        <i class="settings icon"></i> Admin
+      </a>
+      {{/if}}
+<!--       {{>loginDropdown}} -->
+      {{> accountButtons}}
+    </div>
+  </nav>
+</body>
+
+<template name="loginDropdown">
+  {{#with currentUser}}
+  <div class="ui simple dropdown item">
+    Howdy, <strong>{{displayName}}</strong> !
+    <i class="dropdown icon"></i>
+    <div class="orange menu">
+      <a class="item" href="{{pathFor 'user' id=this._id}}"><i class="teal user icon"></i> My profile</a>
+      <a class="item" id="login-buttons-logout"><i class="red off icon"></i> Logout</a>
+    </div>
+  </div>
+  {{/with}}
+</template>
+
+

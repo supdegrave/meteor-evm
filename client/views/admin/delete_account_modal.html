@@ -1,0 +1,30 @@
+<template name="deleteAccountModal">
+  <div id="deleteaccount" class="ui small basic modal" >
+    <div class="header">
+      How sure are you?
+    </div>
+    {{#with userInScope}}
+    <div class="content">
+      <div class="left">
+        <i class="trash icon"></i>
+      </div>
+      <div class="right">
+        <p>Are you sure you want to delete {{email}}?</p>
+        <p>I don't want to hear you cry when you don't find it tomorrow, eh?</p>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="two fluid ui buttons">
+        <div class="ui negative labeled icon button">
+          <i class="remove icon"></i>
+          No, I changed my mind
+        </div>
+        <div class="ui positive right labeled icon button">
+          Yes, off with their heads !
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
+    </div>
+  {{/with}}
+  </div>
+</template>

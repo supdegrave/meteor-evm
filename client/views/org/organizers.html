@@ -1,0 +1,52 @@
+<template name="org">
+  <div class="main container">
+    <div class="ui three column doubling grid">
+      {{#each this}}
+        <div class="raised segment column">
+          <div class="ui two column stackable grid">
+            <div class="five wide column">
+              <div class="ui header"><a href="{{pathFor 'users' id=_id}}">{{displayName}}</a></div>
+            </div>        
+          </div>        
+          <div class="orgChartTeamContainer ui basic accordion">
+            {{#each teams}}
+              {{>orgTreeItem}}
+            {{/each}}
+          </div>        
+          <div class="ui divider"></div>
+          <div class="column">
+            {{#if canAddTeam}}
+              {{>addTeam _id}}
+            {{/if}}
+          </div>        
+          <div class="ui divider"></div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="orgTreeItem">
+  <div class="orgTreeListItem">
+    <div class="active title">
+      <i class="dropdown icon"></i>
+      <a href="{{pathFor 'team' name=name}}">{{name}}</a>
+    </div>
+    <div class="active content">
+      <ul class="roles">
+        <li class="role">Lead: <a href="{{pathFor 'users' id=lead}}">{{displayName lead}}</a></li>
+        <li class="role">Co-Lead: <a href="{{pathFor 'users' id=colead}}">{{displayName colead}}</a></li>
+        <li class="role">
+          Mentor:
+          {{#if mentor}}
+          <a href="{{pathFor 'users' id=mentor}}">{{displayName mentor}}</a>
+          {{else}}
+          <a href="" class="ui link orange button"><i class="add icon"></i>Fill this role</a>
+          {{/if}}
+        </li>
+      </ul>
+      {{#each teamChildren}}<div class="orgChartTeamContainer"> {{>orgTreeItem}} </div>{{/each}}
+    </div>
+  </div>
+
+</template>

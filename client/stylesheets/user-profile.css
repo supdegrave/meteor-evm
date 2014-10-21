@@ -1,0 +1,32 @@
+.userProfile .profilePic{
+  width: 140px;
+  height: 140px;
+  border:10px solid #eee;
+  transition: all 0.2s ease-in-out;
+}
+.userProfile .profilePic:hover{
+  border:2px solid #eee;
+}
+
+.userProfile .label {
+  padding: 0.5em .6em .5em;
+}
+
+.userProfile .emergencyContact p,
+.userProfile .address p{
+  margin:0;
+}
+
+.userProfile .roleInTeam {
+ display: inline-block;
+ padding: 5px 0;
+}
+.userProfile .roleInTeam .teamName,
+.userProfile .skillSet .skill{
+  padding: 0 6px;
+}
+
+.userProfile .roleInTeam .teamName:not(:last-child),
+.userProfile .skillSet .skill:not(:last-child){
+  border-right: 1px solid #CCC;
+}

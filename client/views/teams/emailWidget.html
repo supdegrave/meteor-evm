@@ -1,0 +1,11 @@
+<template name="emailWidget">
+  <div class="ui horizontal label">Email</div>
+  {{#if canEdit}}
+  <div class="ui input">
+    <input type="text" class="email" value="{{email}}">
+  </div>
+  {{else}}
+  <span>{{email}}</span>
+  {{/if}}
+  <!-- {{>m_editable type="text" value=email position="right" emptyText="fnord"}} -->
+</template>

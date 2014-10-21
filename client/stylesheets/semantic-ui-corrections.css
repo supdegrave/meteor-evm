@@ -1,0 +1,54 @@
+/*--------------------------
+---------CHECKBOXES---------
+--------------------------*/
+.ui.divided.horizontal.list > .ui.checkbox.item{
+  line-height: 1em;
+}
+.ui.divided.horizontal.list > .ui.checkbox.item label:before{
+  top: auto;
+}
+.ui.divided.horizontal.list > .ui.checkbox.item label:after{
+  top: 0.5em;
+}
+.ui.divided.horizontal.list > .ui.checkbox.item:not(:first-child) label:before{
+  left: 1em;
+}
+.ui.divided.horizontal.list > .ui.checkbox.item:not(:first-child) label:after {
+  left: 1.2em;
+}
+
+/*--------------------------
+---------DROPDOWNS----------
+--------------------------*/
+.ui.dropdown .ui.ribbon.label{
+  top: -0.3rem;
+}
+
+/*--------------------------
+----------BUTTONS-----------
+--------------------------*/
+.ui.link.button {
+  padding: 0.4em;
+  font-weight: normal;
+  text-transform: none;
+  background-color: transparent;
+  font-size: 0.8rem;
+}
+.ui.link.button > .icon{
+  margin-right: 0.4em
+}
+.ui.orange.buttons .link.button,
+.ui.orange.link.button{
+   color: #E96633; 
+}
+.ui.orange.buttons .link.button:hover,
+.ui.orange.link.button:hover{
+   color: #FFFFFF; 
+}
+
+/*--------------------------
+-----------GRIDS------------
+--------------------------*/
+.ui.grid .last.column {
+  width: auto;
+}

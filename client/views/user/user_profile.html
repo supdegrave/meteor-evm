@@ -1,0 +1,161 @@
+<template name="userProfile">
+  <div class="userProfile">
+    <div class="media">
+      <div class="media-body">
+        <a class="pull-left" href="#">
+          <img class="media-object profilePic img-circle" src="http://www.empireonline.com/images/features/100greatestcharacters/photos/88.jpg">
+        </a>
+        <h3 class="media-heading">{{displayName}}{{#if 'profile.playaName'}} : {{profile.playaName}}{{/if}}</h3>
+
+        {{#if roleIn 'lead'}}
+        <div class="roleInTeam form-group">
+          <label class="label label-primary">Lead of{{#each roleIn 'lead'}}<span class="teamName">{{name}}</span>{{/each}}</label>
+        </div>
+        {{/if}}
+        {{#if roleIn 'colead'}}
+        <div class="roleInTeam form-group">
+          <label class="label label-warning">Co-lead of{{#each roleIn 'colead'}}<span class="teamName">{{name}}</span>{{/each}}</label>
+        </div>
+        {{/if}}
+        {{#if roleIn 'mentor'}}
+        <div class="roleInTeam form-group">
+          <label class="label label-info">Mentor of{{#each roleIn 'mentor'}}<span class="teamName">{{name}}</span>{{/each}}</label>
+        </div>
+        {{/if}}
+        {{#if memberOf}}
+        <div class="roleInTeam form-group">
+          <label class="label label-success">Member of{{#each memberOf}}<span class="teamName">{{name}}</span>{{/each}}</label>
+        </div>
+        {{/if}}
+
+        <div class="horizontalDivider col-sm-12"></div>
+      </div>
+
+      <div class="media-body">
+        <!-- just display first email -->
+        {{#each emails}}
+        <div class="form-group col-md-12">
+          <label class="col-xs-1">
+            <abbr title="E-mail address" class="fa fa-envelope-o"></abbr>
+          </label>
+          <div class="col-sm-11">
+            <a href="mailto:{{address}}">{{address}}</a>
+          </div>
+        </div>
+        {{/each}}
+        
+        {{#with profile}}
+          {{#with gender}}          
+          <div class="form-group col-md-12 ">
+            <label class="col-xs-1">
+              <abbr title="Gender" class="fa fa-leaf"></abbr>
+            </label>
+            <div class="col-sm-11">
+              {{.}}
+            </div>
+          </div>
+          {{/with}}
+
+          {{#with skype}}
+          <div class="form-group col-md-12 ">
+            <label class="col-xs-1">
+              <abbr title="Skype I.D." class="fa fa-skype"></abbr>
+            </label>
+            <div class="col-sm-11">
+              {{.}}
+            </div>
+          </div>
+          {{/with}}
+
+          {{#each phones}}
+          <div class="form-group col-md-12">
+            <label class="col-xs-1">
+              <abbr title="Phone number" class="fa fa-phone"></abbr>
+            </label>
+            <div class="col-sm-11">
+              {{#if countryCode}}(+{{countryCode}}) {{/if}}{{number}}
+            </div>
+          </div>
+          {{/each}}
+          
+          {{#with diet}}
+            <p><b>DIET</b></p>
+            Preferences: 
+            {{#each preferences}}
+              {{.}}<br>
+            {{/each}}
+          
+            Allergies:
+            {{#each allergies}}
+              {{.}}<br>
+            {{/each}}
+          {{/with}}
+
+          {{#with medical}}
+            <p><b>MEDICAL</b></p>
+            Medications: 
+            {{#each medications}}
+              {{.}}<br>
+            {{/each}}
+          
+            Allergies:
+            {{#each allergies}}
+              {{.}}<br>
+            {{/each}}
+            
+            <p>{{notes}}</p>
+          {{/with}}
+
+          {{#with emergencyContact}}
+            <p><b>EMERGENCY CONTACT</b></p>
+            <p>Name: {{name}}</p>
+            <p>Relation: {{relation}}</p>
+            <p>Email: {{email}}</p>
+            <p>Phone: {{phone.countryCode}} {{phone.number}}</p>
+            <p>Time Zone: {{timezone}}</p>
+          {{/with}}
+        {{/with}}
+
+        <!-- only one address for now -->
+        <!-- {{#each address}}
+        <div class="form-group col-md-12 address">
+          <label class="col-xs-1">
+            <abbr title="Address" class="fa fa-home"></abbr>
+          </label>
+          <div class="col-sm-11">
+            <p>{{streetNumber}}, {{address1}}</p>
+            <p>{{address2}}</p>
+            <p>{{postalCode}} {{city}}, {{country}}</p>
+          </div>
+        </div>
+        {{/each}}
+        <div class="horizontalDivider col-sm-12"></div> -->
+      </div>
+
+      <div class="media-body">
+        <!-- Skills 
+        (Aqua: editable table. Skills should have a description/explanation, 
+        including skill levels. Gender should go under skills for shift 
+        scheduling. Skill levels should include descriptions, so that 
+        people can indicate what their skill level is based on 
+        definitions we give them. This can also be handy for the gender 
+        ‘skill’, because what we really want to know is, for example: 
+        is someone masculine enough to impress drunken locals, feminine 
+        enough to make them go away quietly, etc.) 
+
+        ¿list / descriptions populated in admin UI?
+        -->
+        <div class="form-group col-md-12 skillSet">
+          <label class="col-xs-1">
+            <abbr title="Skills" class="fa fa-wrench"></abbr>
+          </label>
+          <div class="col-sm-11">
+            {{#each skills}}<span class="skill">{{this}}</span>{{/each}}
+            {{#if myself}} <button class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>I can do more stuff!</button>{{/if}}
+          </div>
+        </div>
+        <div class="horizontalDivider col-sm-12"></div>
+      </div>
+    </div>
+  </div>
+</template>

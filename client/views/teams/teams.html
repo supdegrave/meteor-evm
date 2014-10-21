@@ -1,0 +1,74 @@
+<template name="team">
+  <div class="main container team">
+    <div class="ui large blue header">
+      <div class="ui breadcrumb">
+        {{> recursiveParentBreadcrumb}}
+        <div class="active section">{{name}}</div>
+      </div>
+    </div>
+    <div class="ui divider"></div>
+
+    <div class="ui two column stackable grid">
+
+      <div class="column">
+        <div class="ui blue segment">
+          <div class="ui list blue labels">
+            <div class="item">
+              {{>emailWidget}}        
+            </div>
+            {{#each roles}}
+            <div class="item">
+              {{>userRole role=name}}      
+            </div>
+            {{/each}} 
+          </div>
+          
+          <div style="text-align: center;">
+            {{#if canEdit}}
+            <div class="ui buttons">
+              <div class="ui negative button" id="team-reset">Cancel</div>
+              <div class="or"></div>
+              <div class="ui positive button" id="team-save">Save</div>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="ui teal segment">
+          <div class="ui teal header">Members:</div>
+          <div class="ui horizontal divided list">
+            {{#each members}}
+            <a class="item">
+              {{#if canEdit}}<i class="remove-member remove icon"></i>{{/if}}
+              {{displayName this}}
+            </a>
+            {{/each}}
+          </div>
+          {{#if canEdit}}
+          <div class="clear ui divider"></div>
+          <button class="ui teal action button add-member" data-target="#addmember">
+            <i class="plus icon"></i> 
+            Add Member
+          </button>
+          {{/if}}
+        </div>
+      </div>
+
+    </div>
+
+    {{>confirmationModal}}
+    {{>addMemberModal}}
+  </div>
+</template>
+
+<template name="recursiveParentBreadcrumb">
+  {{#if parentId}} 
+  {{#with getParent parentId}}
+  {{> recursiveParentBreadcrumb}}
+  <a class="section" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>
+  <i class="right arrow icon divider"></i>
+  {{/with}}
+  {{/if}}
+</template>

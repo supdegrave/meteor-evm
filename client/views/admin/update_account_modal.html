@@ -1,0 +1,61 @@
+<template name="updateAccountModal">
+  <div id="updateaccount" class="ui small modal">
+    <i class="close icon"></i>
+    {{#with userInScope}}
+    <div class="header">
+      Update {{email}}
+    </div>
+    <div class="content">
+      <div class="ui vertically divided grid">
+        <div class="row">
+          <div class="ui column form">
+            <div class="inline field">
+              <label>Name</label>
+              <input type="text" data-user-id="{{_id}}" class="admin-user-info" name="profile.name" value="{{profile.name}}" placeholder="{{email}}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          {{#if roles}}
+          {{#each roles}}
+          <div class="column">
+            <div class="ui tiny red labeled icon button remove-role" data-user-id="{{../_id}}">
+              {{this}}
+              <i class="remove icon"></i>
+            </div>
+          </div>
+          {{/each}}
+          {{else}}
+          <div class="column">
+            <p>This account has no roles.</p>
+          </div>
+          {{/if}}
+        </div>
+        <div class="row">
+          <div class="column">
+          {{#if unsetRoles}}
+            <div class="ui tiny teal labeled icon dropdown button">
+              <i class="add icon"></i>
+              <span class="text">Add Role</span>
+              <div class="menu">
+                {{#each unsetRoles}}
+                  <div class="item add-role" data-user-id="{{../_id}}">{{this}}</div>
+                {{/each}}
+              </div>
+            </div>
+          {{else}}
+          <em>All roles already set.</em>
+          {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/with}}
+    <div class="actions">
+      <div class="ui positive right labeled icon button">
+        Done
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+  </div>
+</template>

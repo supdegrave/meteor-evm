@@ -1,0 +1,11 @@
+<template name="userProfileModal">
+	<div id="userprofile" class="modal" >
+		<div class="content">
+			{{#with userInScope}}
+				<!-- {{> userProfileModalInner}} -->
+				{{>userProfile}}
+			{{/with}}
+		</div>
+	</div>
+</template>
+

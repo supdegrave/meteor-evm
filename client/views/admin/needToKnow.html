@@ -1,0 +1,63 @@
+<template name="needToKnow">
+  <div class="ui divider"></div>
+
+  <div class="sixteen wide column">
+  <table class='ui compact table'>
+    <thead>
+      <th>Restricted User Information</th>
+      <th>Visible To</th>
+      <th></th>
+    </thead>
+
+    {{#each restrictedFields}}
+    <tr style="vertical-align:top; border-bottom: 1px solid #ccc;">
+      <td>{{label}}</td>
+      <td>
+      {{#each visibleTo}}
+        {{this}}<br>
+      {{/each}}
+      </td>
+      <td>
+        <span data-target="#needtoknow" class="modalCallButton"><i class="pencil icon"></i></span>
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+  </div>
+  
+  {{>needToKnowModal}}
+</template>
+
+<template name="needToKnowModal">
+  {{#with restriction}}
+  <div id="needtoknow" class="ui small modal">
+    <i class="close icon"></i>
+    <div class="header">
+      {{label}}
+    </div>
+    <div class="content">
+      <p>Visible to:</p>
+      {{#each visibleToRoles}}
+      <div class="ui divided horizontal list">
+        <div class="ui checkbox item">
+          <input id={{_id}} type="checkbox" checked={{checked}} value={{name}}> 
+          <label for={{_id}}>{{name}}</label>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="actions">
+      <div class="two fluid ui buttons">
+        <div class="ui negative labeled icon button">
+          <i class="remove icon"></i>
+          Close
+        </div>
+        <div class="ui positive right labeled icon button">
+          Save
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/with}}
+</template>

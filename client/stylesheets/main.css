@@ -1,0 +1,28 @@
+.horizontalDivider{
+  border-top: 1px solid #ebebeb;
+  margin:12px 0;
+  /*clear: both;*/
+}
+button .fa{
+  margin-right: 1em;
+}
+
+.alert .bigAlertIcon {
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+
+/*User FILTER*/
+.input-daterange{
+  z-index: 1;
+}
+@media (max-width: 768px){
+  .filterInput{
+    padding-top: 15px;
+  }
+}
+
+.ui.header > .ui.breadcrumb > i{
+  display: inline-block;
+  padding-right: 0;
+}
