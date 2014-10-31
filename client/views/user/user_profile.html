@@ -1,37 +1,39 @@
 <template name="userProfile">
   <div class="userProfile">
-    <div class="media">
-      <div class="media-body">
-        <a class="pull-left" href="#">
-          <img class="media-object profilePic img-circle" src="http://www.empireonline.com/images/features/100greatestcharacters/photos/88.jpg">
-        </a>
-        <h3 class="media-heading">{{displayName}}{{#if 'profile.playaName'}} : {{profile.playaName}}{{/if}}</h3>
-
-        {{#if roleIn 'lead'}}
-        <div class="roleInTeam form-group">
-          <label class="label label-primary">Lead of{{#each roleIn 'lead'}}<span class="teamName">{{name}}</span>{{/each}}</label>
+      <div class="ui grid">
+        <h3 class="ui header">{{displayName}}{{#if 'profile.playaName'}} : {{profile.playaName}}{{/if}}</h3>
+        <div class="four wide column" href="#">
+          <img class="circular ui image profilePic" src="http://www.empireonline.com/images/features/100greatestcharacters/photos/88.jpg">
+          
+          <div class="ui divided list">
+            {{#if roleIn 'lead'}}
+            <div class="item roleInTeam">
+              <div class="ui small purple horizontal label">Lead of</div>
+              {{#each roleIn 'lead'}}<a class="teamName" href="{{pathFor 'team' name=name}}">{{name}}</a>{{/each}}
+            </div>
+            {{/if}}
+            {{#if roleIn 'colead'}}
+            <div class="item roleInTeam">
+              <div class="ui small teal horizontal label">Co-lead of</div>
+              {{#each roleIn 'colead'}}<a class="teamName" href="{{pathFor 'team' name=name}}">{{name}}</a>{{/each}}
+            </div>
+            {{/if}}
+            {{#if roleIn 'mentor'}}
+            <div class="item roleInTeam">
+              <div class="ui small blue horizontal label">Mentor of</div>
+              {{#each roleIn 'mentor'}}<a class="teamName" href="{{pathFor 'team' name=name}}">{{name}}</a>{{/each}}
+            </div>
+            {{/if}}
+            {{#if memberOf}}
+            <div class="item roleInTeam">
+              <div class="ui small orange horizontal label">Member of</div>
+              {{#each memberOf}}<a class="teamName" href="{{pathFor 'team' name=name}}">{{name}}</a>{{/each}}
+            </div>
+            {{/if}}
+          </div>         
         </div>
-        {{/if}}
-        {{#if roleIn 'colead'}}
-        <div class="roleInTeam form-group">
-          <label class="label label-warning">Co-lead of{{#each roleIn 'colead'}}<span class="teamName">{{name}}</span>{{/each}}</label>
-        </div>
-        {{/if}}
-        {{#if roleIn 'mentor'}}
-        <div class="roleInTeam form-group">
-          <label class="label label-info">Mentor of{{#each roleIn 'mentor'}}<span class="teamName">{{name}}</span>{{/each}}</label>
-        </div>
-        {{/if}}
-        {{#if memberOf}}
-        <div class="roleInTeam form-group">
-          <label class="label label-success">Member of{{#each memberOf}}<span class="teamName">{{name}}</span>{{/each}}</label>
-        </div>
-        {{/if}}
-
-        <div class="horizontalDivider col-sm-12"></div>
-      </div>
-
-      <div class="media-body">
+        
+        <div class="ui six wide column">
         <!-- just display first email -->
         {{#each emails}}
         <div class="form-group col-md-12">
@@ -132,7 +134,10 @@
         <div class="horizontalDivider col-sm-12"></div> -->
       </div>
 
-      <div class="media-body">
+
+      
+
+      <div class="ui six wide column">
         <!-- Skills 
         (Aqua: editable table. Skills should have a description/explanation, 
         including skill levels. Gender should go under skills for shift 
@@ -145,16 +150,22 @@
 
         ¿list / descriptions populated in admin UI?
         -->
-        <div class="form-group col-md-12 skillSet">
-          <label class="col-xs-1">
-            <abbr title="Skills" class="fa fa-wrench"></abbr>
+        <div class="ui segment">
+          <label class="ui ribbon label">
+            <i class="wrench icon"></i>
+            Skills
           </label>
-          <div class="col-sm-11">
-            {{#each skills}}<span class="skill">{{this}}</span>{{/each}}
-            {{#if myself}} <button class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>I can do more stuff!</button>{{/if}}
+         
+          <div class="ui divided list">
+            {{#each skills}}<span class="skill item">{{this}}</span>{{/each}}
+            {{#if myself}}
+              <div class="ui small fluid basic labeled icon button">
+                <i class="plus icon"></i>
+                I can do more stuff!
+              </div>
+            {{/if}}
           </div>
         </div>
-        <div class="horizontalDivider col-sm-12"></div>
       </div>
     </div>
   </div>
