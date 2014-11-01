@@ -1,5 +1,6 @@
 {
   "packages": {
+<<<<<<< HEAD
     "iron-router": {},
     "roles": {},
     "typeahead": {},
@@ -10,5 +11,17 @@
       "git": "https://github.com/rithis-archive/meteor-normalize.css.git"
     },
     "meteor-editable": {}
+=======
+    "iron:router": {},
+    "alanning:roles": {},
+    //"typeahead": {},
+    "mrt:moment": {},
+    "aldeed:collection2": {},
+    "nooitaf:semantic-ui": {},
+    "normalize.css": {
+      "git": "https://github.com/rithis-archive/meteor-normalize.css.git"
+    },
+    "mrt:meteor-editable": {}
+>>>>>>> Meteor-1.0
   }
 }

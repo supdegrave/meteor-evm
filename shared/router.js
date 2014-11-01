@@ -11,8 +11,17 @@ Router.onBeforeAction(function() {
 
 Router.map(function() {
   // *** home, '/' path ************************* //
+<<<<<<< HEAD
   this.route('home', { path: '/' });
 
+=======
+  this.route('home', {
+    path: '/',
+//     onBeforeAction: function () {
+//       AccountsEntry.signInRequired(this);
+//     }
+  });
+>>>>>>> Meteor-1.0
   // *** admin ui ******************************* //
   this.route('admin', {
     onBeforeAction: function() {

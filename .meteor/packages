@@ -4,11 +4,20 @@
 # but you can also edit it by hand.
 
 standard-app-packages
+<<<<<<< HEAD
 # https://github.com/hharnisc/meteor-accounts-admin-ui-bootstrap-3
+=======
+insecure
+iron:router
+alanning:roles
+nooitaf:semantic-ui
+aldeed:collection2
+>>>>>>> Meteor-1.0
 accounts-password
 accounts-facebook
 accounts-google
 accounts-twitter
+<<<<<<< HEAD
 # https://github.com/alanning/meteor-roles
 # https://github.com/EventedMind/iron-router
 iron-router
@@ -23,3 +32,8 @@ bootstrap3-datepicker
 collection2
 semantic-ui
 meteor-editable
+=======
+mrt:accounts-ui-bootstrap-3
+fantasyhub:accounts-entry
+
+>>>>>>> Meteor-1.0
