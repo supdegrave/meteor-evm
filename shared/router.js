@@ -3,20 +3,22 @@ Router.configure({
 });
 
 Router.onBeforeAction(function() {
-  if (!Meteor.user() && !Meteor.loggingIn()) {
+  /*if (!Meteor.user() && !Meteor.loggingIn()) {
     console.log('Redirecting');
     this.redirect('home');
-  }
-}, {except: ['org', 'home']});
+  }*/
+  AccountsEntry.signInRequired(this);
+}, {except: ['org', 'home', 'entrySignIn']});
 
 Router.map(function() {
   // *** home, '/' path ************************* //
   this.route('home', {
     path: '/',
-//     onBeforeAction: function () {
-//       AccountsEntry.signInRequired(this);
-//     }
   });
+  // *** dashboard ************************* //
+  this.route('dashboard', {
+  });
+
   // *** admin ui ******************************* //
   this.route('admin', {
     onBeforeAction: function() {
@@ -24,7 +26,7 @@ Router.map(function() {
         this.render(this.loadingTemplate);
       } else if(!Roles.userIsInRole(Meteor.user(), ['admin', 'organizer'])) {
         console.log('redirecting');
-        this.redirect('home');
+        this.redirect('dashboard');
       }
     },
     waitOn: function() {

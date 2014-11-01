@@ -56,6 +56,8 @@ mongo-livedata@1.0.6
 mongo@1.0.8
 mrt:accounts-t9n@0.0.13
 mrt:accounts-ui-bootstrap-3@0.3.3
+mrt:jquery-ui@1.9.2
+mrt:moment@2.8.1
 mrt:underscore-string-latest@2.3.3
 nooitaf:semantic-ui@0.19.3
 npm-bcrypt@0.7.7
@@ -70,6 +72,7 @@ reactive-var@1.0.3
 reload@1.1.1
 retry@1.0.1
 routepolicy@1.0.2
+rzymek:fullcalendar@2.1.1
 service-configuration@1.0.2
 session@1.0.4
 sha@1.0.1

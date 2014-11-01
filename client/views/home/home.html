@@ -1,8 +1,15 @@
 <template name="home">
-  <div class="container"> 
-    <p>Home content here !</p> 
-    <p>/client/views/home/home.html</p>
-    {{>entrySignIn }}
+    <div class="ui two column page grid">
+
+    <div class="column">
+      <div class="ui piled orange segment">
+        <h2>Welcome to the Nowhere Volunteer Management thingy!</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis turpis ac tellus imperdiet consequat. Nunc id elementum mi. Sed at cursus arcu. Etiam pellentesque, urna id convallis ullamcorper, nisi massa commodo massa, at laoreet est tellus non est. Nulla bibendum ipsum in nisl porta semper. Nunc tempor, eros a ultricies iaculis, ex nunc tempor ipsum, at aliquet quam orci in urna. Vivamus consectetur ipsum at velit hendrerit, non ullamcorper felis elementum. Sed aliquam cursus enim.</p>
+       </div>
+      </div>
+    <div class="column">
+      {{>entrySignIn }}
+    </div>
     <!-- write a function to output file path to templates in development mode -->
-  </div>
+    </div>
 </template>
