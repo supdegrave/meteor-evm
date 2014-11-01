@@ -1,39 +1,5 @@
 <template name="userProfile">
   <div class="userProfile">
-<<<<<<< HEAD
-    <div class="media">
-      <div class="media-body">
-        <a class="pull-left" href="#">
-          <img class="media-object profilePic img-circle" src="http://www.empireonline.com/images/features/100greatestcharacters/photos/88.jpg">
-        </a>
-        <h3 class="media-heading">{{displayName}}{{#if 'profile.playaName'}} : {{profile.playaName}}{{/if}}</h3>
-
-        {{#if roleIn 'lead'}}
-        <div class="roleInTeam form-group">
-          <label class="label label-primary">Lead of{{#each roleIn 'lead'}}<span class="teamName">{{name}}</span>{{/each}}</label>
-        </div>
-        {{/if}}
-        {{#if roleIn 'colead'}}
-        <div class="roleInTeam form-group">
-          <label class="label label-warning">Co-lead of{{#each roleIn 'colead'}}<span class="teamName">{{name}}</span>{{/each}}</label>
-        </div>
-        {{/if}}
-        {{#if roleIn 'mentor'}}
-        <div class="roleInTeam form-group">
-          <label class="label label-info">Mentor of{{#each roleIn 'mentor'}}<span class="teamName">{{name}}</span>{{/each}}</label>
-        </div>
-        {{/if}}
-        {{#if memberOf}}
-        <div class="roleInTeam form-group">
-          <label class="label label-success">Member of{{#each memberOf}}<span class="teamName">{{name}}</span>{{/each}}</label>
-        </div>
-        {{/if}}
-
-        <div class="horizontalDivider col-sm-12"></div>
-      </div>
-
-      <div class="media-body">
-=======
       <div class="ui grid">
         <h3 class="ui header">{{displayName}}{{#if 'profile.playaName'}} : {{profile.playaName}}{{/if}}</h3>
         <div class="four wide column" href="#">
@@ -68,7 +34,7 @@
         </div>
         
         <div class="ui six wide column">
->>>>>>> Meteor-1.0
+
         <!-- just display first email -->
         {{#each emails}}
         <div class="form-group col-md-12">
@@ -169,14 +135,8 @@
         <div class="horizontalDivider col-sm-12"></div> -->
       </div>
 
-<<<<<<< HEAD
-      <div class="media-body">
-=======
-
-      
 
       <div class="ui six wide column">
->>>>>>> Meteor-1.0
         <!-- Skills 
         (Aqua: editable table. Skills should have a description/explanation, 
         including skill levels. Gender should go under skills for shift 
@@ -189,18 +149,6 @@
 
         ¿list / descriptions populated in admin UI?
         -->
-<<<<<<< HEAD
-        <div class="form-group col-md-12 skillSet">
-          <label class="col-xs-1">
-            <abbr title="Skills" class="fa fa-wrench"></abbr>
-          </label>
-          <div class="col-sm-11">
-            {{#each skills}}<span class="skill">{{this}}</span>{{/each}}
-            {{#if myself}} <button class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>I can do more stuff!</button>{{/if}}
-          </div>
-        </div>
-        <div class="horizontalDivider col-sm-12"></div>
-=======
         <div class="ui segment">
           <label class="ui ribbon label">
             <i class="wrench icon"></i>
@@ -217,7 +165,6 @@
             {{/if}}
           </div>
         </div>
->>>>>>> Meteor-1.0
       </div>
     </div>
   </div>
