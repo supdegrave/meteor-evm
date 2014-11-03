@@ -57,7 +57,121 @@
       </div>
 
     </div>
+                                                  
+    <div class="ui divider"></div>
+    
+    <!-- create / show rotas -->
+    <div class="ui two column stackable grid">
+      <div class="column">
+        <div class="ui blue segment">
+          <div class="ui blue header">
+            <div class="active section">Create New Rota</div>
 
+            <div class="ui list blue labels">
+              <div class="item">
+                <div class="ui ribbon label">
+                  Shift Name
+                </div>
+                <div class="ui input">
+                  <input type="text" id="shiftName" class="" value="title">
+                </div>
+              </div>
+              <div class="item">
+                <div class="ui ribbon label">
+                  Length (hours)
+                </div>
+                <div class="ui input">
+                  <select id="shiftLength" class="">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option selected>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                  </select>
+                </div>
+              </div>
+              <div class="item">
+                <div class="ui ribbon label">
+                  # Volunteers Needed
+                </div>
+                <div class="ui input">
+                  <select id="shiftSize" class="" value="{{spacesAvailable}}">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option selected>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                  </select>
+                </div>
+              </div>
+              <div class="item">
+                <div class="ui ribbon label">
+                  Requires Approval? 
+                </div>
+                <div class="ui input">
+                  <label>
+                    <input type="radio" id="requiresApprovalYes" name="requiresApproval" class="">
+                    YES
+                  </label>
+                  <label>
+                    <input type="radio" id="requiresApprovalNo" name="requiresApproval" class="">
+                    NO
+                  </label>
+                </div>
+              </div>
+              <div class="item">
+                <div class="ui ribbon label">
+                  Start Date/Time of First Shift
+                </div>
+                <div class="ui input">
+                  <input type="text" id="shiftFirstStart" class="" value="2015-07-04T06:00:00">
+                  <br/>Interim Example: 2015-07-04T06:00:00
+                  <br/>(Insert calendar control here)
+                </div>
+              </div>
+              <div class="item">
+                <div class="ui ribbon label">
+                  End Date/Time of Last Shift
+                </div>
+                <div class="ui input">
+                  <input type="text" id="shiftLastEnd" class="" value="2015-07-14T06:00:00">
+                  <br/>Interim Example: 2015-07-13T12:00:00
+                  <br/>(Insert calendar control here)
+                </div>
+              </div>
+              <div class="item">
+                <div class="ui input">
+                  <input type="submit" id="rotaSubmit" class="" value="Create">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>        
+      </div>
+      
+      <div class="column">
+        <div class="ui teal segment">
+          <div class="ui blue header">
+            <div class="active section">Shift Rotas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     {{>confirmationModal}}
     {{>addMemberModal}}
   </div>

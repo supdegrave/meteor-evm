@@ -19,7 +19,7 @@ Deps.autorun(function() {
 Template.team.helpers({
   roles: function() {
     return TEAM_ROLES;
-  }
+  },
 });
 
 Template.recursiveParentBreadcrumb.helpers({
@@ -70,6 +70,48 @@ Template.team.events({
       Teams.update({_id: currentTeam._id}, {$pull: {members: this.toString()}});
     }
   },
+  
+  'click input#rotaSubmit': function(evt, tmpl) {
+    var id                = currentTeam._id + "_" + $('#shiftName').val(), 
+        title             = $('#shiftName').val(), 
+        length            = $('#shiftLength').val(),
+        rotaStartDateTime = new Date($('#shiftFirstStart').val()),
+        rotaEndDateTime   = new Date($('#shiftLastEnd').val()),
+        requiresApproval  = !!$('#requiresApprovalYes:checked'),
+        spacesAvailable   = $('#shiftSize').val(),
+        getEndDateTime    = function(dtStart, hours) {
+          var dtEnd = new Date(dtStart);
+          dtEnd.setTime(dtEnd.getTime() + (hours*60*60*1000)); 
+          return dtEnd;
+        }, 
+        dtEnd,
+        newEvent;
+
+    for (dtStart = rotaStartDateTime; dtStart < rotaEndDateTime;) {
+      dtEnd = getEndDateTime(dtStart, length);
+  
+      newEvent = {
+        // required / allowed properties for FullCalendar events
+        id:     id,
+        title:  title,
+        length: length, 
+        start:  dtStart, 
+        end:    dtEnd, 
+
+        // custom properties for Nowhere EVM
+        teamId:           currentTeam._id, // allows searching for team-specific rotas
+        requiresApproval: requiresApproval,
+        spacesAvailable:  spacesAvailable,
+        volunteers:       [], // array of simple user objects, to simplify display: {_id: int, name: string }
+        requests:         [], // array of userId integers
+      };
+    
+      dtStart = dtEnd;
+      
+      // TODO: insert event into collection
+      console.log(newEvent);
+    }
+  }
 
 });
 
