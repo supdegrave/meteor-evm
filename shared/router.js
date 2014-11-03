@@ -1,5 +1,6 @@
 Router.configure({
-  loadingTemplate: 'loading'
+  loadingTemplate: 'loading',
+  fastRender: true,
 });
 
 Router.onBeforeAction(function() {
@@ -14,6 +15,10 @@ Router.map(function() {
   // *** home, '/' path ************************* //
   this.route('home', {
     path: '/',
+    onBeforeAction: function() {
+      if (Meteor.userId())
+        this.redirect('dashboard')
+    }
   });
   // *** dashboard ************************* //
   this.route('dashboard', {

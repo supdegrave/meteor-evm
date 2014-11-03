@@ -1,5 +1,10 @@
 <template name="dashboard">
   <div class="main container">
-    Welcome to the dasboard
-  </div>
+    <h2> Welcome to the dasboard</h2>
+   {{#if firstlogin}}
+      {{> firstLogin}}
+    {{else}}
+      <div id="calendar"></div>
+    {{/if}}
+ </div>
 </template>

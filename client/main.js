@@ -10,13 +10,6 @@ Deps.autorun(function(){
   Meteor.subscribe("allUserData");
 })
 
-Template.loginDropdown.events({
-  'click #login-buttons-logout': function() {
-    Meteor.logout(function() {
-      $("#login-buttons").dropdown("close");
-    });
-  }
-});
 
 Template.loginDropdown.helpers({
   myID:function(){
