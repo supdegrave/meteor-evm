@@ -12,7 +12,7 @@ setSelectedUser = function() {
 }
 
 
-Deps.autorun(function() {
+Tracker.autorun(function() {
   currentTeam = Session.get('currentTeam');
 });
 
