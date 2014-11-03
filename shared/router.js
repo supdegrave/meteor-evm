@@ -22,6 +22,9 @@ Router.map(function() {
   });
   // *** dashboard ************************* //
   this.route('dashboard', {
+    waitOn: function(){
+      Events.find();
+    }
   });
 
   // *** admin ui ******************************* //

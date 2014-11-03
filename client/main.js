@@ -4,8 +4,9 @@ Accounts.ui.config({
   passwordSignupFields: 'USERNAME_AND_EMAIL'
 });
 
-Deps.autorun(function(){
+Tracker.autorun(function(){
   Meteor.subscribe("teams");
+  Meteor.subscribe("events");
   Meteor.subscribe("userData");
   Meteor.subscribe("allUserData");
 })

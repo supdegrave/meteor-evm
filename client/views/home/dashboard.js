@@ -1,11 +1,10 @@
 Template.dashboard.rendered = function(){
   $('#calendar').fullCalendar({
-        // put your options and callbacks here
-    events: Events.findOne(),
-    color: 'yellow',   // an option!
-
+    events: Events.find().fetch(),
     })
+//  .fullCalendar( 'addEventSource', Events.find().fetch())
 };
+
 Template.dashboard.helpers({
   firstlogin: function(){
     var user = Meteor.users.findOne({_id: Meteor.userId()});

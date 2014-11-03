@@ -40,6 +40,9 @@ Meteor.publish('teams', function() {
 Meteor.publish('userdatarestrictions', function() {
   return UserDataRestrictions.find({}, {sort: {label: 1}});
 })
+Meteor.publish('events', function() {
+  return Events.find();
+});
 
 Meteor.startup(function() {
   initializeUsers();
@@ -115,14 +118,24 @@ function initializeUsers() {
                 notes: "Doesn't like the sight of blood."
               }
             }
-          }); 
-          
-      Teams.insert({ 
-        name: "Test Team", 
-        owner: orgId,
-        lead: leadId,
-        email: 'test_team@goingnowhere.org',
-        members: [testUser] 
+          }), 
+          testTeam = Teams.insert({ 
+            name: "Test Team", 
+            owner: orgId,
+            lead: leadId,
+            email: 'test_team@goingnowhere.org',
+            members: [testUser] 
+          });
+      Events.insert({ 
+          id: "test",
+          title: "Test Events shift", 
+          start: "2014-10-31", 
+          end: "2014-12-31", 
+          users: [testUser],
+          teamId: [testTeam],
+          requiresApproval: false,
+          requests: null,
+          spacesAvailable: 10,
       });
     }
   }
