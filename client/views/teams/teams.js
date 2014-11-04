@@ -89,27 +89,20 @@ Template.team.events({
 
     for (dtStart = rotaStartDateTime; dtStart < rotaEndDateTime;) {
       dtEnd = getEndDateTime(dtStart, length);
-  
-      newEvent = {
-        // required / allowed properties for FullCalendar events
-        id:     id,
-        title:  title,
-        length: length, 
-        start:  dtStart, 
-        end:    dtEnd, 
 
-        // custom properties for Nowhere EVM
-        teamId:           currentTeam._id, // allows searching for team-specific rotas
-        requiresApproval: requiresApproval,
-        spacesAvailable:  spacesAvailable,
-        volunteers:       [], // array of simple user objects, to simplify display: {_id: int, name: string }
-        requests:         [], // array of userId integers
-      };
-    
-      dtStart = dtEnd;
+      newEvent = new Event(title, id, dtStart, dtEnd);
       
-      // TODO: insert event into collection
-      console.log(newEvent);
+      // custom properties for Nowhere EVM
+      newEvent.teamId = currentTeam._id, // allows searching for team-specific rotas
+      newEvent.requiresApproval = requiresApproval,
+      newEvent.spacesAvailable = spacesAvailable,
+      newEvent.volunteers = [], // array of simple user objects, to simplify display = {_id = int, name = string }
+      newEvent.requests = [], // array of userId integers
+    
+      Events.insert(newEvent);
+
+      // increment loop position
+      dtStart = dtEnd;
     }
   }
 

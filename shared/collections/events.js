@@ -9,22 +9,24 @@ Events.allow({
     return _.contains(doc.user, user._id);
   },
 
-  insert: function(userId, doc) {
-    // console.log(userId, doc);
-    return doc ;
+  insert: function(doc) {
+    return doc;
   },
 
 });
 
-Event = function(name, ownerId){ 
+Event = function(title, id, start, end, ownerId){ 
   this.title = title.trim(); 
+  this.id = id.trim().replace(' ', '_');
+  this.start = start; 
+  this.end = end;
 }
 Event.prototype = { 
   id: null,
   title: null, 
   start: null, 
   end: null, 
-  users: null,
+  volunteers: null,
   teamId: null,
   requiresApproval: null,
   requests: null,
