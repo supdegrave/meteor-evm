@@ -50,7 +50,7 @@ Template.listUsers.helpers({
 Template.listUsers.events({
   'click .userLink': function(event, template) {
     Session.set('userInScope', this);
-    $('#userprofile.modal').modal('setting', 'transition', 'vertical flip').modal('show');
+    $('#userprofile.modal').modal('toggle');
   }   
 });
 
