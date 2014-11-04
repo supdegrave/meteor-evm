@@ -25,6 +25,10 @@ Template.team.helpers({
   roles: function() {
     return TEAM_ROLES;
   },
+  
+  rotas: function() {
+    return Rotas.find({teamId: currentTeam._id});
+  }
 });
 
 Template.recursiveParentBreadcrumb.helpers({
@@ -91,6 +95,8 @@ Template.team.events({
         }, 
         dtEnd,
         newEvent;
+        
+    Rotas.insert({name: title, teamId: currentTeam._id});
 
     for (dtStart = rotaStartDateTime; dtStart < rotaEndDateTime;) {
       dtEnd = getEndDateTime(dtStart, length);

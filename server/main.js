@@ -43,6 +43,10 @@ Meteor.publish('userdatarestrictions', function() {
 Meteor.publish('events', function() {
   return Events.find();
 });
+Meteor.publish('rotas', function() {
+  return Rotas.find();
+});
+
 
 Meteor.startup(function() {
   initializeUsers();
@@ -118,25 +122,32 @@ function initializeUsers() {
                 notes: "Doesn't like the sight of blood."
               }
             }
-          }), 
+          }),
+           
           testTeam = Teams.insert({ 
             name: "Test Team", 
             owner: orgId,
             lead: leadId,
             email: 'test_team@goingnowhere.org',
             members: [testUser] 
+          }),
+          
+          testEvent = Events.insert({ 
+            id: testTeam._id + '_Test_Events_shift',
+            title: "Test Events shift", 
+            start: "2014-10-31", 
+            end: "2014-12-31", 
+            users: [testUser],
+            teamId: testTeam._id,
+            requiresApproval: false,
+            requests: null,
+            spacesAvailable: 10,
+          }),
+          
+          testRota = Rotas.insert({
+            name: testEvent.id,
+            teamId: testTeam._id
           });
-      Events.insert({ 
-          id: "test",
-          title: "Test Events shift", 
-          start: "2014-10-31", 
-          end: "2014-12-31", 
-          users: [testUser],
-          teamId: [testTeam],
-          requiresApproval: false,
-          requests: null,
-          spacesAvailable: 10,
-      });
     }
   }
 }

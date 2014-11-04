@@ -7,6 +7,7 @@ Accounts.ui.config({
 Tracker.autorun(function(){
   Meteor.subscribe("teams");
   Meteor.subscribe("events");
+  Meteor.subscribe("rotas");
   Meteor.subscribe("userData");
   Meteor.subscribe("allUserData");
 })
