@@ -27,7 +27,9 @@ Template.team.helpers({
   },
   
   rotas: function() {
-    return Rotas.find({teamId: currentTeam._id});
+    if (currentTeam) {
+      return Rotas.find({teamId: currentTeam._id});
+    }
   }
 });
 
@@ -86,7 +88,7 @@ Template.team.events({
         length            = $('#shiftLength').val(),
         rotaStartDateTime = new Date(startDatePicker.get() + ' ' + startTimePicker.get()),
         rotaEndDateTime   = new Date(endDatePicker.get() + ' ' + endTimePicker.get()),
-        requiresApproval  = !!$('#requiresApprovalYes:checked'),
+        requiresApproval  = !!$('#requiresApprovalYes:checked').length,
         spacesAvailable   = $('#shiftSize').val(),
         getEndDateTime    = function(dtStart, hours) {
           var dtEnd = new Date(dtStart);
