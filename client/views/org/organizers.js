@@ -12,6 +12,51 @@ Template.orgTreeItem.helpers({
     return Teams.find({parentId: this._id});
   }
 });
+
 Template.orgTreeItem.rendered = function(){
   $('.ui.accordion').accordion("exclusive",false);
 };
+
+
+// ********************************************* //
+// *** addTeam Template events & helpers
+// ********************************************* //
+
+Template.addTeam.events({
+  // enable 'Add Team' button unless team name already exists 
+  'keyup .add-team-input': function(evt, tmpl) {
+		var btn  = tmpl.find('.add-team'), 
+		    team = evt.target.value.trim();
+
+		if (!team || Teams.find({name: team}).count()) {
+			btn.classList.add('disabled');
+		} 
+		else {
+			btn.classList.remove('disabled');
+		}
+
+		if (evt.keyCode === 13 && !!team) {
+		  btn.click();
+		}
+  },
+  
+  // add new team 
+  'click .add-team': function(evt, tmpl) {
+    var teamField = tmpl.find('.add-team-input');
+    
+    if (!!teamField.value) {
+      Teams.insert(new Team(teamField.value, teamField.dataset.ownerid), function(err, res) {
+        if (err && !res) {
+          alert('TODO: handle insert error')
+        }
+      });
+    }
+    
+    teamField.value = '';
+    evt.target.classList.add('disabled');
+  }
+});
+
+// Template.addTeam.teams = function() {
+//   return Teams.find();
+// }
