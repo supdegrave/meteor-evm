@@ -19,7 +19,8 @@ userProfileSchema = new SimpleSchema({
   playaName: {
     type: String,
     regEx: /^[a-zA-Z- ]{2,40}$/,
-    label: "Playa Name"
+    label: "Playa Name",
+    optional: true
     // custom: function() {/* verify uniqueness */}
   },
   skype: {
