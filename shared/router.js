@@ -16,8 +16,9 @@ Router.map(function() {
   this.route('home', {
     path: '/',
     onBeforeAction: function() {
-      if (Meteor.userId())
-        this.redirect('dashboard')
+      if (Meteor.userId()) {
+        this.redirect('dashboard');
+      }
     }
   });
   // *** dashboard ************************* //

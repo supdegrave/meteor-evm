@@ -1,5 +1,9 @@
 // main client-side code file 
 
+AccountsEntry.config({
+  homeRoute: '/'
+});
+
 Accounts.ui.config({
   passwordSignupFields: 'USERNAME_AND_EMAIL'
 });
