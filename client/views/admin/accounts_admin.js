@@ -49,7 +49,9 @@ var setUserFilter = _.throttle(function(template) {
 
     'click .modalCallButton': function(event, template) {
       Session.set('userInScope', this);
-      $($(event.currentTarget).data("target")).modal('show');
+      var modalTarget = $(event.currentTarget).data("target");
+      console.log("$(event.currentTarget).data('target') : "+ modalTarget);
+      $(modalTarget).modal('show');
     },
     
     'click .check-organizer': function(evt, tmpl) {
