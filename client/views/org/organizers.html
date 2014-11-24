@@ -34,14 +34,26 @@
     </div>
     <div class="active content">
       <ul class="roles">
-        <li class="role">Lead: <a href="{{pathFor 'users' id=lead}}">{{displayName lead}}</a></li>
-        <li class="role">Co-Lead: <a href="{{pathFor 'users' id=colead}}">{{displayName colead}}</a></li>
+        <li class="role">Lead:
+          {{#if lead}}
+          <a href="{{pathFor 'users' id=lead}}">{{displayName lead}}</a>
+          {{else}}
+          <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
+          {{/if}}
+        </li>
+        <li class="role">Co-Lead:
+          {{#if colead}}
+          <a href="{{pathFor 'users' id=lead}}">{{displayName colead}}</a>
+          {{else}}
+          <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
+          {{/if}}
+        </li>
         <li class="role">
           Mentor:
           {{#if mentor}}
           <a href="{{pathFor 'users' id=mentor}}">{{displayName mentor}}</a>
           {{else}}
-          <a href="" class="ui link orange button"><i class="add icon"></i>Fill this role</a>
+          <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
           {{/if}}
         </li>
       </ul>
