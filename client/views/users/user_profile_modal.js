@@ -6,5 +6,5 @@ Template.userProfileModal.helpers({
 });
 
 Template.userProfileModal.rendered = function() { 
-  $('#userprofile.modal').modal().modal('setting', 'transition', 'vertical flip');
+  $('#userprofile.modal').modal('setting', 'transition', 'vertical flip');
 };

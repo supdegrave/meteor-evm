@@ -47,8 +47,7 @@ Router.map(function() {
   this.route('users', {
     waitOn: function() {
       Session.set('userFilter', null);
-      Session.set('teamFilter', null);
-      Session.set('userInScope', Meteor.user());    
+      Session.set('teamFilter', null);   
     },
   });
 

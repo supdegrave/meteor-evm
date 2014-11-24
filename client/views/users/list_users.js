@@ -50,10 +50,7 @@ Template.listUsers.helpers({
 Template.listUsers.events({
   'click .userLink': function(event, template) {
     Session.set('userInScope', this);
-    // Modal's internal functions returns undefined when trying to cache size on first initialization.
-    // I suspect this is because it's trying to calculate height of an empty element
-    // This allows a delay for some content to be injected before calculation
-    setTimeout(function(){$('#userprofile.modal').modal("toggle").modal("refresh")},100);
+    $('#userprofile.modal').modal("show");
   }   
 });
 

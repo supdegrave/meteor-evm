@@ -1,11 +1,19 @@
 <template name="userProfileModal">
 	<div id="userprofile" class="large modal" >
+    <i class="close icon"></i>
 		<div class="content">
 			{{#with userInScope}}
 				<!-- {{> userProfileModalInner}} -->
 				{{>userProfile}}
 			{{/with}}
+      Test.
 		</div>
+    <div class="actions">
+    <div class="ui positive right labeled icon button">
+      Okay, I'm done here
+      <i class="checkmark icon"></i>
+    </div>
+  </div>
 	</div>
 </template>
 
