@@ -1,8 +1,13 @@
 Template.dashboard.rendered = function(){
   $('#calendar').fullCalendar({
-    events: Events.find().fetch(),
-    })
-//  .fullCalendar( 'addEventSource', Events.find().fetch())
+    events: function(start, end, timezone, callback) {
+      callback(Events.find().fetch()); 
+    },
+    
+    eventRender: function(event, element) {
+      // return Template.calendarEvent.renderFunction(event);
+    }
+  });
 };
 
 Template.dashboard.helpers({

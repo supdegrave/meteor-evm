@@ -25,6 +25,12 @@ Template.team.helpers({
   roles: function() {
     return TEAM_ROLES;
   },
+  
+  rotas: function() {
+    if (currentTeam) {
+      return Rotas.find({teamId: currentTeam._id});
+    }
+  }
 });
 
 Template.recursiveParentBreadcrumb.helpers({
@@ -82,7 +88,7 @@ Template.team.events({
         length            = $('#shiftLength').val(),
         rotaStartDateTime = new Date(startDatePicker.get() + ' ' + startTimePicker.get()),
         rotaEndDateTime   = new Date(endDatePicker.get() + ' ' + endTimePicker.get()),
-        requiresApproval  = !!$('#requiresApprovalYes:checked'),
+        requiresApproval  = !!$('#requiresApprovalYes:checked').length,
         spacesAvailable   = $('#shiftSize').val(),
         getEndDateTime    = function(dtStart, hours) {
           var dtEnd = new Date(dtStart);
@@ -91,6 +97,8 @@ Template.team.events({
         }, 
         dtEnd,
         newEvent;
+        
+    Rotas.insert({name: title, teamId: currentTeam._id});
 
     for (dtStart = rotaStartDateTime; dtStart < rotaEndDateTime;) {
       dtEnd = getEndDateTime(dtStart, length);

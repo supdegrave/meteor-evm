@@ -12,7 +12,6 @@ Events.allow({
   insert: function(doc) {
     return doc;
   },
-
 });
 
 Event = function(title, id, start, end, ownerId){ 
@@ -32,3 +31,20 @@ Event.prototype = {
   requests: null,
   spacesAvailable: null,
 }
+
+Rotas = new Meteor.Collection('rotas');
+
+Rotas.allow({
+  // update: function(userId, doc) {
+  //   var user = (Meteor.user())
+  //     ? Meteor.user()
+  //       : Meteor.users.findOne({_id: userId});
+  //   
+  //   return _.contains(doc.user, user._id);
+  // },
+
+  insert: function(doc) {
+    return doc;
+  },
+});
+

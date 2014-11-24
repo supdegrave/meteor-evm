@@ -1,5 +1,9 @@
 // main client-side code file 
 
+AccountsEntry.config({
+  homeRoute: '/'
+});
+
 Accounts.ui.config({
   passwordSignupFields: 'USERNAME_AND_EMAIL'
 });
@@ -7,6 +11,7 @@ Accounts.ui.config({
 Tracker.autorun(function(){
   Meteor.subscribe("teams");
   Meteor.subscribe("events");
+  Meteor.subscribe("rotas");
   Meteor.subscribe("userData");
   Meteor.subscribe("allUserData");
 })

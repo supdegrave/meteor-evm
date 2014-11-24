@@ -1,6 +1,9 @@
 <template name="addTeam">
-<div class="ui action fluid small input right">
-  <input type="text" placeholder="Enter team name (ex: Gate)" data-ownerid="{{this}}">
-  <div class="ui teal right labeled icon small button"><i class="plus icon"></i> Add team</div>
-</div>
+  <div class="ui action fluid small input right">
+    <input class="add-team-input" type="text" placeholder="Enter team name (ex: Gate)" data-ownerid="{{this}}">
+    <div class="add-team ui teal right labeled icon small button disabled">
+      <i class="plus icon"></i> 
+      Add team
+    </div>
+  </div>
 </template>
