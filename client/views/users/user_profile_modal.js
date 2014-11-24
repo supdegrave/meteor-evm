@@ -1,10 +1,10 @@
 Template.userProfileModal.helpers({
 	userInScope: function() {
-    $('.modal').modal('refresh');
+//     console.log("userProfileModal.helpers : " + "userInScope");
 		return Session.get('userInScope');
 	},
 });
 
 Template.userProfileModal.rendered = function() { 
-  $('.modal').modal('setting', 'transition', 'vertical flip');
+  $('#userprofile.modal').modal().modal('setting', 'transition', 'vertical flip');
 };
