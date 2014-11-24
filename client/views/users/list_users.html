@@ -1,5 +1,6 @@
 <template name="listUsers">
 {{> userProfileModal}}
+{{> addToTeamModal}}
   <table class='ui basic compact table'>
     <thead>
       <th>Name</th>
@@ -16,7 +17,7 @@
         {{else}}
         
         <!-- <a class="userLink" href="{{pathFor 'user' id=_id}}">{{displayName}}</a> -->
-        <a href="#userprofile" class="userLink">{{displayName}}</a>
+        <a href="#userprofile" class="modalCallButton" data-target="#userprofile">{{displayName}}</a>
         {{/if}}
       </td>
       <td>
@@ -26,7 +27,7 @@
       </td>
       {{#if canEdit}}
       <td>
-        <button type="button" class="ui tiny teal icon button">
+        <button type="button" class="ui tiny teal icon button modalCallButton" data-target="#addtoteam">
           <i class="plus icon"></i>
         </button>
       </td>

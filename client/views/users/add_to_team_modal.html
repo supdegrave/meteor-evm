@@ -1,0 +1,39 @@
+<template name="addToTeamModal">
+	<div id="addtoteam" class="ui small modal" >
+    <i class="close icon"></i>
+    {{#with userInScope}}
+    <div class="header">
+      Which team do you want to add user {{displayName}} to?
+    </div>
+    <div class="content">
+      <div class="ui multi selection simple dropdown">
+        <i class="checkmark box icon"></i>Select team(s) <i class="dropdown icon"></i>
+        <div class="ui vertical menu addToTeamSelect">
+        {{#each availableTeams}}
+          <div class="item">
+            <div class="ui checkbox">
+              <input type="checkbox" id="{{name}}" data-team="{{name}}">
+              <label for="{{name}}">{{name}}</label>
+            </div>
+            <div class="ui teal label">
+              {{teamMemberCount}}
+            </div>
+          </div>
+        {{/each}}
+        </div>
+      </div> 
+    </div>
+    <div class="actions">
+      <div class="ui negative left labeled icon button">
+        Cancel that
+        <i class="close icon"></i>
+      </div>
+      <div class="ui positive right labeled icon button">
+        Go for it !
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+  {{/with}}
+	</div>
+</template>
+

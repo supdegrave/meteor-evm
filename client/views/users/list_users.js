@@ -48,9 +48,10 @@ Template.listUsers.helpers({
 });
 
 Template.listUsers.events({
-  'click .userLink': function(event, template) {
-    Session.set('userInScope', this);
-    $('#userprofile.modal').modal("show");
-  }   
+  'click .modalCallButton': function(event, template) {
+      Session.set('userInScope', this);
+      var modalTarget = $(event.currentTarget).data("target");
+      $(modalTarget).modal('show');
+    },
 });
 

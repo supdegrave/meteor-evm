@@ -26,8 +26,8 @@ Template.filterUsers.events({
     setUserFilter(template);
     return false;
   }, 
-
-  'change .teamSelectMenu input[type="checkbox"]': function(evt, tmpl) {
+  
+  'change #filterByTeam .teamSelectMenu input[type="checkbox"]': function(evt, tmpl) {
     $(evt.currentTarget).prop("checked")
       ? teamFilterArray.push($(evt.currentTarget).attr("id"))
       : teamFilterArray.splice( $.inArray($(evt.currentTarget).attr("id"),teamFilterArray) ,1 );
@@ -41,7 +41,7 @@ Template.filterUsers.rendered = function(){
     autoclose: true
   });*/ /*Disabled for now*/
 
-  $('.ui.dropdown').dropdown();
+  $('#filterByTeam .ui.dropdown').dropdown();
 
   var searchElement = document.getElementsByClassName('search-input-filter');
   if(!searchElement)  return;
