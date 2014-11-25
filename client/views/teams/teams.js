@@ -25,12 +25,14 @@ Template.team.helpers({
   roles: function() {
     return TEAM_ROLES;
   },
-  
   rotas: function() {
     if (currentTeam) {
       return Rotas.find({teamId: currentTeam._id});
     }
-  }
+  },
+  userInScope: function() {
+    return Session.get('userInScope');
+  },
 });
 
 Template.recursiveParentBreadcrumb.helpers({
@@ -44,6 +46,7 @@ Template.team.events({
   'DOMNodeInserted select': setSelectedUser,
   
   'click #team-reset': function(evt, tmpl) {
+    $("#confirmationmodal .content .right").html("<p>Are you sure you want to reset this team?</p>");
     $("#confirmationmodal").modal("show");
   },
 
@@ -76,10 +79,26 @@ Template.team.events({
     }
   },
 
-  'click span.remove-member': function(evt) { 
-    if (currentTeam) {
-      Teams.update({_id: currentTeam._id}, {$pull: {members: this.toString()}});
-    }
+  'click .remove-member': function(evt, tmpl) { 
+    console.log("this: "+this.toString());
+    var targetMember = this.toString();
+    // console.log("this.toString(): "+this.toString());
+    $("#confirmationmodal .content .right").html("<p>Are you sure you want to remove user {{displayName this}} from this team?</p>");
+    $("#confirmationmodal").modal({
+      onApprove : function() {
+        if (currentTeam) {
+        Meteor.call('removeUserFromTeam', targetMember, currentTeam._id, function(err, res) {
+          if (res) {
+            console.log('add_to_team_modal.js // TODO: add verification after save');
+          }
+          else if (err) {
+            console.log(err);
+          }
+          });
+        }
+      }
+    })
+    .modal("show");
   },
   
   'click input#rotaSubmit': function(evt, tmpl) {
