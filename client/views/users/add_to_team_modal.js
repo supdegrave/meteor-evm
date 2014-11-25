@@ -6,6 +6,8 @@ Template.addToTeamModal.helpers({
   availableTeams: function() {
     //Returns only the teams the user is not already a member of
     var query = Teams.find({ members: { $nin: [this._id] } },{name:1, members:1});
+    // Hacky way of making sure the checkbox init is launched after a team is added to the list.
+    setTimeout(function(){$('#addtoteam .ui.checkbox').checkbox('behavior','uncheck')},500);
     return query;
   },
   teamMemberCount: function() {
@@ -16,26 +18,24 @@ Template.addToTeamModal.helpers({
 Template.addToTeamModal.rendered = function() { 
   $('#addtoteam.modal').modal({
     transition :'vertical flip',
-    onShow : function() {
-      $('#addtoteam .ui.checkbox').checkbox();
-      $('#addtoteam .ui.dropdown').dropdown({
-        /*onChange : function(value, text, $choice){
-          console.log("onChange text: " +text);
-          console.log("onChange value: " +value);
-          console.log("onChange $choice: " +$choice);
-        },*/
-      });
-    },
     onApprove : function() {
       var checkedTeams = [];
       $(".addToTeamSelect input[type='checkbox']").each(function(index){
         if($(this).prop("checked")) {
-          checkedTeams.push($(this).data("team"));
+          checkedTeams.push($(this).data("teamid"));
         }
       })
-      if (checkedTeams.length>0){
-        window.alert("Implement function to add user to team(s): "+ checkedTeams);
-      }
-    },
+      for (var i = checkedTeams.length - 1; i >= 0; i--) {
+        console.log(checkedTeams[i]);
+        Meteor.call('addUserToTeam', Session.get('userInScope')._id, checkedTeams[i], function(err, res) {
+          if (res) {
+            console.log('add_to_team_modal.js // TODO: add verification after save');
+          }
+          else if (err) {
+            console.log(err);
+          }
+        });
+      };
+    }
   })
 };

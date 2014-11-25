@@ -6,14 +6,12 @@
       Which team do you want to add user {{displayName}} to?
     </div>
     <div class="content">
-      <div class="ui multi selection simple dropdown">
-        <i class="checkmark box icon"></i>Select team(s) <i class="dropdown icon"></i>
-        <div class="ui vertical menu addToTeamSelect">
+        <div class="ui celled list addToTeamSelect">
         {{#each availableTeams}}
           <div class="item">
             <div class="ui checkbox">
-              <input type="checkbox" id="{{name}}" data-team="{{name}}">
-              <label for="{{name}}">{{name}}</label>
+              <input type="checkbox" data-teamid="{{_id}}" >
+              <label>{{name}}</label>
             </div>
             <div class="ui teal label">
               {{teamMemberCount}}
@@ -21,8 +19,8 @@
           </div>
         {{/each}}
         </div>
-      </div> 
     </div>
+  {{/with}}
     <div class="actions">
       <div class="ui negative left labeled icon button">
         Cancel that
@@ -33,7 +31,6 @@
         <i class="checkmark icon"></i>
       </div>
     </div>
-  {{/with}}
 	</div>
 </template>
 
