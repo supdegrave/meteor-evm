@@ -22,7 +22,6 @@
       </a>
       {{/if}}
       {{>loginDropdown}}
-<!--       {{> accountButtons}} -->
     </div>
   </nav>
 </body>
@@ -34,7 +33,8 @@
     <i class="dropdown icon"></i>
     <div class="orange menu">
       <a class="item" href="{{pathFor 'user' id=this._id}}"><i class="teal user icon"></i> My profile</a>
-      <a class="item" href="{{pathFor 'entrySignOut'}}"><i class="red off icon"></i> Logout</a>
+<!--       <a class="item" href="{{pathFor 'entrySignOut'}}"><i class="red power icon"></i> Logout</a> -->
+      {{> atNavButton}}
     </div>
   </div>
   {{/with}}

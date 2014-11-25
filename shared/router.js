@@ -3,33 +3,35 @@ Router.configure({
   fastRender: true,
 });
 
-Router.onBeforeAction(function() {
-  /*if (!Meteor.user() && !Meteor.loggingIn()) {
-    console.log('Redirecting');
-    this.redirect('home');
-  }*/
-  AccountsEntry.signInRequired(this);
-}, {except: ['org', 'home', 'entrySignIn']});
+Router.onBeforeAction(
+  AccountsTemplates.ensureSignedIn,
+  {except: ['org', 'home', 'atSignIn', 'atSignUp', 'atForgotPassword']}
+);
 
 Router.map(function() {
   // *** home, '/' path ************************* //
   this.route('home', {
     path: '/',
+    name: 'home',
     onBeforeAction: function() {
       if (Meteor.userId()) {
         this.redirect('dashboard');
-      }
+      }    
     }
   });
   // *** dashboard ************************* //
   this.route('dashboard', {
-    waitOn: function(){
-      Events.find();
+    name: 'dashboard',
+      waitOn: function(){
+        Events.find();
+        this.next();
+      }
     }
-  });
+  );
 
   // *** admin ui ******************************* //
   this.route('admin', {
+    name:'admin',
     onBeforeAction: function() {
       if (Meteor.loggingIn()) {
         this.render(this.loadingTemplate);
@@ -37,6 +39,7 @@ Router.map(function() {
         console.log('redirecting');
         this.redirect('dashboard');
       }
+      this.next();
     },
     waitOn: function() {
       UserDataRestrictions.findOne();
@@ -45,6 +48,7 @@ Router.map(function() {
   
   // *** all users ****************************** //
   this.route('users', {
+    name:'users',
     waitOn: function() {
       Session.set('userFilter', null);
       Session.set('teamFilter', null);   
@@ -53,6 +57,7 @@ Router.map(function() {
 
   // *** display user by id ********************* //
   this.route('user', {
+    name:'user',
     path: '/users/:id',
     data: function() {
       if (Meteor.user()) {
@@ -63,6 +68,7 @@ Router.map(function() {
   
   // *** display team by name ******************* //
   this.route('team', {
+    name:'team',
     path: '/teams/:name/:id',
     waitOn: function() {
       Session.set('currentTeam', Teams.findOne({_id: this.params.id}));

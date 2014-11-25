@@ -1,9 +1,22 @@
 // main client-side code file 
 
-AccountsEntry.config({
-  homeRoute: '/'
+AccountsTemplates.configure({
+    sendVerificationEmail: true,
+    homeRoutePath: '/',
+    // Texts
+    texts: {
+      button: {
+          signUp: "Join us"
+      },
+      socialSignIn: "Sign in",
+      socialIcons: {
+          "meteor-developer": "fa fa-rocket"
+      },
+      title: {
+          forgotPwd: "I forgot my bloody password. Again."
+      },
+    },
 });
-
 Accounts.ui.config({
   passwordSignupFields: 'USERNAME_AND_EMAIL'
 });

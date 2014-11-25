@@ -5,7 +5,6 @@
 
 standard-app-packages
 insecure
-iron:router
 alanning:roles
 nooitaf:semantic-ui
 aldeed:collection2
@@ -14,7 +13,8 @@ accounts-facebook
 accounts-google
 accounts-twitter
 mrt:accounts-ui-bootstrap-3
-fantasyhub:accounts-entry
 rzymek:fullcalendar
 sayawan:pickadate
+iron:router@1.0.0
+useraccounts:semantic-ui
 
