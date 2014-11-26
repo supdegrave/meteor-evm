@@ -1,0 +1,20 @@
+<template name="checkboxListWrapper">
+  <h2>{{this.header}}</h2>
+  <div class="ui celled list">
+    {{> UI.contentBlock}}
+  </div>
+</template>
+
+<template name="teamCheckboxListItem">
+  <div class="item">
+    <div class="ui checkbox {{isChecked}}" data-id="{{../_id}}">
+      <input type="checkbox">
+      <label>{{name}}</label>
+    </div>
+    {{# if label}}
+    <div class="ui teal label">
+      {{label}}
+    </div>
+    {{/if}}
+  </div>
+</template>

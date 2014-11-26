@@ -5,20 +5,12 @@
     <div class="header">
       Which team do you want to add user {{displayName}} to?
     </div>
-    <div class="content">
-        <div class="ui celled list addToTeamSelect">
-        {{#each availableTeams}}
-          <div class="item">
-            <div class="ui checkbox">
-              <input type="checkbox" data-teamid="{{_id}}" >
-              <label>{{name}}</label>
-            </div>
-            <div class="ui teal label">
-              {{teamMemberCount}}
-            </div>
-          </div>
-        {{/each}}
-        </div>
+    <div class="content addToTeamSelect">
+        {{#checkboxListWrapper header="Select team(s)"}}
+          {{#each availableTeams}}
+            {{> teamCheckboxListItem name=name label=teamMemberCount isChecked="" }}
+          {{/each}}
+        {{/checkboxListWrapper}}
     </div>
   {{/with}}
     <div class="actions">
@@ -33,4 +25,3 @@
     </div>
 	</div>
 </template>
-

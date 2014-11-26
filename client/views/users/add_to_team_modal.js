@@ -6,8 +6,6 @@ Template.addToTeamModal.helpers({
   availableTeams: function() {
     //Returns only the teams the user is not already a member of
     var query = Teams.find({ members: { $nin: [this._id] } },{name:1, members:1});
-    // Hacky way of making sure the checkbox init is launched after a team is added to the list.
-    setTimeout(function(){$('#addtoteam .ui.checkbox').checkbox('behavior','uncheck')},500);
     return query;
   },
   teamMemberCount: function() {
@@ -18,13 +16,9 @@ Template.addToTeamModal.helpers({
 Template.addToTeamModal.rendered = function() { 
   $('#addtoteam.modal').modal({
     transition :'vertical flip',
+    onHidden :function(){Session.set("flushDataCallback",true);},
     onApprove : function() {
-      var checkedTeams = [];
-      $(".addToTeamSelect input[type='checkbox']").each(function(index){
-        if($(this).prop("checked")) {
-          checkedTeams.push($(this).data("teamid"));
-        }
-      })
+      var checkedTeams = Session.get("checkedList");
       for (var i = checkedTeams.length - 1; i >= 0; i--) {
         console.log(checkedTeams[i]);
         Meteor.call('addUserToTeam', Session.get('userInScope')._id, checkedTeams[i], function(err, res) {
