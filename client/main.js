@@ -2,6 +2,7 @@
 
 AccountsTemplates.configure({
     sendVerificationEmail: true,
+    enablePasswordChange: true,
     showForgotPasswordLink: true,
     homeRoutePath: '/dashboard',
     continuousValidation: true,
@@ -33,9 +34,6 @@ AccountsTemplates.configure({
       },
     },
 });
-Accounts.ui.config({
-  passwordSignupFields: 'USERNAME_AND_EMAIL'
-});
 
 Tracker.autorun(function(){
   Meteor.subscribe("teams");
@@ -44,7 +42,6 @@ Tracker.autorun(function(){
   Meteor.subscribe("userData");
   Meteor.subscribe("allUserData");
 })
-
 
 Template.loginDropdown.helpers({
   myID:function(){

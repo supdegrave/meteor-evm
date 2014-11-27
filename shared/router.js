@@ -5,7 +5,7 @@ Router.configure({
 
 Router.onBeforeAction(
   AccountsTemplates.ensureSignedIn,
-  {except: ['org', 'home', 'atSignIn', 'atSignUp', 'atForgotPassword']}
+  {except: ['org', 'home', 'atSignIn', 'atSignUp', 'atForgotPwd', 'atResetPwd', 'atEnrollAccount', 'atVerifyEmail']}
 );
 
 Router.map(function() {
@@ -16,12 +16,7 @@ Router.map(function() {
     onBeforeAction: function() {
       if (Meteor.userId()) {
         this.redirect('dashboard');
-        this.next();
       }
-//       else{
-//         this.redirect('atSignIn');
-//         this.next();
-//       }
       this.next();
     }
   });

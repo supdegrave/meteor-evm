@@ -12,9 +12,9 @@ accounts-password
 accounts-facebook
 accounts-google
 accounts-twitter
-mrt:accounts-ui-bootstrap-3
 rzymek:fullcalendar
 sayawan:pickadate
 iron:router@1.0.0
 useraccounts:semantic-ui
+accounts-ui
 
