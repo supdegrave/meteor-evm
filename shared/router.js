@@ -16,11 +16,18 @@ Router.map(function() {
     onBeforeAction: function() {
       if (Meteor.userId()) {
         this.redirect('dashboard');
-      }    
+        this.next();
+      }
+//       else{
+//         this.redirect('atSignIn');
+//         this.next();
+//       }
+      this.next();
     }
   });
   // *** dashboard ************************* //
   this.route('dashboard', {
+    path: '/dashboard',
     name: 'dashboard',
       waitOn: function(){
         Events.find();
