@@ -12,13 +12,14 @@
             {{#each teams}}
               {{>orgTreeItem}}
             {{/each}}
+            {{initAccordion}}
           </div>        
           <div class="ui divider"></div>
-          <div class="column">
-            {{#if canAddTeam}}
+          {{#if canAddTeam}}
+            <div class="column">
               {{>addTeam _id}}
-            {{/if}}
-          </div>        
+            </div> 
+          {{/if}}
           <div class="ui divider"></div>
         </div>
       {{/each}}
@@ -38,14 +39,18 @@
           {{#if lead}}
           <a href="{{pathFor 'users' id=lead}}">{{displayName lead}}</a>
           {{else}}
-          <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
+            {{#if isUser}}
+            <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
+            {{/if}}
           {{/if}}
         </li>
         <li class="role">Co-Lead:
           {{#if colead}}
           <a href="{{pathFor 'users' id=lead}}">{{displayName colead}}</a>
           {{else}}
-          <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
+            {{#if isUser}}
+            <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
+            {{/if}}
           {{/if}}
         </li>
         <li class="role">
@@ -53,7 +58,9 @@
           {{#if mentor}}
           <a href="{{pathFor 'users' id=mentor}}">{{displayName mentor}}</a>
           {{else}}
-          <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
+            {{#if isUser}}
+            <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
+            {{/if}}
           {{/if}}
         </li>
       </ul>
