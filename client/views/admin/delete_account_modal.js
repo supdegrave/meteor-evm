@@ -17,9 +17,6 @@ Template.deleteAccountModal.helpers({
 		}
 		return "";
 	},
-	userInScope: function() {
-		return Session.get('userInScope');
-	}
 });
 
 Template.deleteAccountModal.events({

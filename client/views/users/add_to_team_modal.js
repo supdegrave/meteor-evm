@@ -1,8 +1,5 @@
 
 Template.addToTeamModal.helpers({
-  userInScope: function() {
-    return Session.get('userInScope');
-  },
   availableTeams: function() {
     //Returns only the teams the user is not already a member of
     var query = Teams.find({ members: { $nin: [this._id] } },{name:1, members:1});

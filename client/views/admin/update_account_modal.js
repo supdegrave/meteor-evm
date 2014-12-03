@@ -18,10 +18,6 @@ Template.updateAccountModal.helpers({
     return "";
   },
 
-  userInScope: function() {
-    return Session.get('userInScope');
-  },
-
   unsetRoles: function() {
     var allRoles = _.pluck(Roles.getAllRoles().fetch(), "name");
     if (!this.roles)

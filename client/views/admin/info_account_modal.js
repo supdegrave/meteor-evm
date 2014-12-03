@@ -18,10 +18,6 @@ Template.infoAccountModal.helpers({
 		return "";
 	},
 
-	userInScope: function() {
-		return Session.get('userInScope');
-	},
-
 	rolePairs: function() {
 		var pairs = [];
 		if (!this.roles)

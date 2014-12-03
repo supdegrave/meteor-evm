@@ -34,10 +34,6 @@ Template.listUsers.helpers({
     return Meteor.users.find(query);
   },
 
-  myself: function() {
-    return Meteor.userId() === this._id;
-  },
-
   isOrganizer: function() {
     return Roles.userIsInRole(this._id, "organizer");
   }, 

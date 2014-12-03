@@ -16,9 +16,6 @@ Template.orgTreeItem.helpers({
   teamChildren: function(){
     return Teams.find({parentId: this._id});
   },
-  isUser: function(){
-    return Meteor.user();
-  },
 });
 
 

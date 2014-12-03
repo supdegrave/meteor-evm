@@ -43,6 +43,16 @@ Tracker.autorun(function(){
   Meteor.subscribe("allUserData");
 })
 
+Template.registerHelper("userInScope", function(){
+  return Session.get('userInScope');
+})
+Template.registerHelper("myself", function(){
+  return this._id && this._id === Meteor.userId();
+})
+Template.registerHelper("isUser", function(){
+  return !!Meteor.user();
+})
+
 Template.loginDropdown.helpers({
   myID:function(){
     return Meteor.userId();

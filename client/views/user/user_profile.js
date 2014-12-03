@@ -10,8 +10,4 @@ Template.userProfile.helpers({
     var myQuery = Teams.find( query,{name:1});
     if (myQuery.fetch().length) return myQuery;
   },
-  
-  myself: function() {
-    return this._id === Meteor.userId();
-  },
 });
