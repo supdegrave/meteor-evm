@@ -6,9 +6,9 @@
       Which team do you want to add user {{displayName}} to?
     </div>
     <div class="content addToTeamSelect">
-        {{#checkboxListWrapper header="Select team(s)"}}
+        {{#checkboxListWrapper}}
           {{#each availableTeams}}
-            {{> teamCheckboxListItem name=name label=teamMemberCount isChecked="" }}
+            {{> teamCheckboxListItem name=name label=teamMemberCount id=_id}}
           {{/each}}
         {{/checkboxListWrapper}}
     </div>

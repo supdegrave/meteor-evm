@@ -1,13 +1,13 @@
 <template name="checkboxListWrapper">
-  <h2>{{this.header}}</h2>
-  <div class="ui celled list">
+  {{#if this.header}}<h3>{{this.header}}</h3>{{/if}}
+  <div class="ui relaxed divided selection list">
     {{> UI.contentBlock}}
   </div>
 </template>
 
 <template name="teamCheckboxListItem">
   <div class="item">
-    <div class="ui checkbox {{isChecked}}" data-id="{{../_id}}">
+    <div class="ui checkbox">
       <input type="checkbox">
       <label>{{name}}</label>
     </div>
