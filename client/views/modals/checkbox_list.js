@@ -1,4 +1,4 @@
-Template.checkboxListWrapper.created=function() {
+Template.checkboxListWrapper.rendered=function() {
   var self = this;
   this.autorun(function(){
     if (Session.get("checkedList")===null) {
