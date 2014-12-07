@@ -1,0 +1,25 @@
+<template name="addSkillModal">
+	<div id="addSkill" class="ui small modal" >
+    <i class="close icon"></i>
+    <div class="header">
+      Show us your skillz!
+    </div>
+    <div class="content addToTeamSelect">
+      {{#checkboxListWrapper}}
+      {{#each getSkills}}
+      {{> checkboxListItem}}
+      {{/each}}
+      {{/checkboxListWrapper}}
+    </div>
+    <div class="actions">
+      <div class="ui negative left labeled icon button">
+        Cancel that
+        <i class="close icon"></i>
+      </div>
+      <div class="ui positive right labeled icon button">
+        Go for it !
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+	</div>
+</template>

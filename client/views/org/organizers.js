@@ -4,12 +4,7 @@ Template.org.helpers({
       return Meteor.userId() === this._id 
               || _.contains(Meteor.user().roles, 'admin');
     }
-  },
-  initAccordion: function() {
-//     console.log(this);//returns organizer object
-    var template = Template.instance();
-    template.$('.ui.accordion').accordion({exclusive:false});
-  },
+  }
 });
 
 Template.orgTreeItem.helpers({
@@ -17,6 +12,9 @@ Template.orgTreeItem.helpers({
     return Teams.find({parentId: this._id});
   },
 });
+Template.orgTreeItem.rendered=function(){
+  this.$('.ui.accordion').accordion({exclusive:false});
+};
 
 
 // ********************************************* //

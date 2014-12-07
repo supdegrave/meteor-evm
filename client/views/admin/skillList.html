@@ -1,0 +1,74 @@
+<template name="skillList">
+  <div class="ui divider"></div>
+
+  <div class="sixteen wide column">
+  <table class='ui compact table'>
+    <thead>
+      <th>Skill</th>
+      <th>Description</th>
+      <th></th>
+    </thead>
+
+    {{#each getSkills}}
+      {{> skillListRow}}
+    {{/each}}
+    {{> addSkill}}
+  </table>
+  </div>
+</template>
+
+<template name="skillListRow">
+  <tr>
+      {{#if editSwitch}}
+      <td>
+        <div class="ui fluid input">
+          <input type="text" name="name" placeholder="{{name}}">
+        </div>
+      </td>
+      <td>
+        <div class="ui fluid input">
+          <input type="text" name="description" placeholder="{{description}}">
+        </div>
+      </td>
+      <td>
+        <span class="validateSkillEdit"><i class="bordered green checkmark icon"></i></span>
+        <span class="cancelSkillEdit"><i class="bordered red remove icon"></i></span>
+      </td>
+      {{else}}
+      <td>{{name}}</td>
+      <td>{{description}}</td>
+      <td>
+        <span class="editSkill"><i class="pencil icon"></i></span>
+      </td>
+      {{/if}}
+  </tr>
+</template>
+
+
+<template name="addSkill">
+  {{#if newSkillSwitch}}
+    <td>
+        <div class="ui fluid input">
+          <input type="text" name="name" placeholder="New skill's name">
+        </div>
+      </td>
+      <td>
+        <div class="ui fluid input">
+          <input type="text" name="description" placeholder="New skill's description">
+        </div>
+      </td>
+      <td>
+        <span class="validateSkillEdit"><i class="bordered green checkmark icon"></i></span>
+        <span class="cancelSkillEdit"><i class="bordered red remove icon"></i></span>
+      </td>
+  {{else}}
+  <tr>
+    <td colspan="3">
+      <div class="ui small fluid basic labeled icon button" id="addASkill">
+        <i class="plus icon"></i>
+        Add a skill
+      </div>
+    </td>
+  </tr>
+  {{/if}}
+</template>
