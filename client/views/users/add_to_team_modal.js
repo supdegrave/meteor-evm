@@ -2,7 +2,7 @@
 Template.addToTeamModal.helpers({
   availableTeams: function() {
     //Returns only the teams the user is not already a member of
-    var query = Teams.find({ members: { $nin: [this._id] } },{name:1, members:1});
+    var query = Teams.find({ members: { $nin: [this._id] } },{fields: {name: 1, members: 1}});
     return query;
   },
   teamMemberCount: function() {
@@ -18,8 +18,8 @@ Template.addToTeamModal.rendered = function() {
       var checkedTeams = Session.get("checkedList");
       if (!!checkedTeams){
         for (var i = checkedTeams.length - 1; i >= 0; i--) {
-          console.log(checkedTeams[i]);
-          Meteor.call('addUserToTeam', Session.get('userInScope')._id, checkedTeams[i], function(err, res) {
+          console.log(checkedTeams[i].id);
+          Meteor.call('addUserToTeam', Session.get('userInScope')._id, checkedTeams[i].id, function(err, res) {
             if (res) {
               console.log('add_to_team_modal.js // TODO: add verification after save');
             }

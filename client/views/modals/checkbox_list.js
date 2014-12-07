@@ -6,22 +6,20 @@ Template.checkboxListWrapper.rendered=function() {
   }});
 };
 
-Template.teamCheckboxListItem.rendered = function() { 
+Template.checkboxListItem.rendered = function() { 
   this.$('.ui.checkbox').checkbox();
 };
-Template.teamCheckboxListItem.events = {
+Template.checkboxListItem.events = {
   'click .checkbox': function(event,template) {
     var checkList = [];
     if(!!Session.get("checkedList")) checkList = _.clone(Session.get("checkedList"));
-    if(_.contains(checkList, this.id)) {
-      var withoutMe =_.without(checkList, this.id);
+    if(_.contains(checkList, this)) {
+      var withoutMe =_.without(checkList, this);
       Session.set("checkedList",withoutMe);
     }
     else {
-      checkList.push(this.id);
+      checkList.push(this);
       Session.set("checkedList",checkList);
     }
-      
-      
   },
 }

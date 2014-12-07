@@ -11,6 +11,7 @@ AccountsTemplates.configure({
     negativeValidation: true,
     positiveValidation: true,
     showValidating: true,
+    overrideLoginErrors:false,
     // Texts
     texts: {
       button: {
@@ -39,20 +40,23 @@ Tracker.autorun(function(){
   Meteor.subscribe("teams");
   Meteor.subscribe("events");
   Meteor.subscribe("rotas");
+  Meteor.subscribe("skills");
   Meteor.subscribe("userData");
   Meteor.subscribe("allUserData");
-})
+});
 
 Template.registerHelper("userInScope", function(){
   return Session.get('userInScope');
-})
+});
 Template.registerHelper("myself", function(){
   return this._id && this._id === Meteor.userId();
-})
+});
 Template.registerHelper("isUser", function(){
   return !!Meteor.user();
-})
-
+});
+Template.registerHelper("getSkills", function(){
+  return Skills.find().fetch();
+});
 Template.loginDropdown.helpers({
   myID:function(){
     return Meteor.userId();

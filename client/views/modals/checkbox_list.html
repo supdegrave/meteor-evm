@@ -5,12 +5,17 @@
   </div>
 </template>
 
-<template name="teamCheckboxListItem">
+<template name="checkboxListItem">
   <div class="item">
     <div class="ui checkbox">
       <input type="checkbox">
-      <label>{{name}}</label>
+      <label class="header">{{name}}</label>
     </div>
+    {{# if description}}
+    <div class="description">
+      {{description}}
+    </div>
+    {{/if}}
     {{# if label}}
     <div class="ui teal label">
       {{label}}

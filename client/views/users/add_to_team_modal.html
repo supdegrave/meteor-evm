@@ -8,7 +8,7 @@
     <div class="content addToTeamSelect">
         {{#checkboxListWrapper}}
           {{#each availableTeams}}
-            {{> teamCheckboxListItem name=name label=teamMemberCount id=_id}}
+            {{> checkboxListItem label=teamMemberCount name=this.name _id=this.data._id }}
           {{/each}}
         {{/checkboxListWrapper}}
     </div>

@@ -46,11 +46,12 @@ Meteor.publish('events', function() {
 Meteor.publish('rotas', function() {
   return Rotas.find();
 });
-
+Meteor.publish('skills', function() {
+  return Skills.find({}, {sort: {name: 1}});
+});
 
 Meteor.startup(function() {
   initializeUsers();
-  
   initializeUserDataRestrictions();
 });
 
@@ -217,7 +218,6 @@ function initializeUserDataRestrictions() {
     }
   }
 }
-
 
 // ****************************************************** //
 // object: testUser

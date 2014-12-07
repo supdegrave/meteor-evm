@@ -101,6 +101,11 @@ userProfileSchema = new SimpleSchema({
   "medical.notes": {
     type: String
   },
+//   skills: {
+//     type: [Object],
+// //     optional: true,
+//     label: "Skills"
+//   },
 });
 
 userSchema = new SimpleSchema({

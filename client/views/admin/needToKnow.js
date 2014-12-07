@@ -58,5 +58,8 @@ Template.needToKnowModal.helpers({
       };
       return role;
     });
+  },
+  restriction: function() {
+    return getRestriction();
   }
 });

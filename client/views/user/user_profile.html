@@ -9,25 +9,25 @@
             {{#if roleIn 'lead'}}
             <div class="item roleInTeam">
               <div class="ui small purple horizontal label">Lead of</div>
-              {{#each roleIn 'lead'}}<a class="teamName" href="{{pathFor 'team' name=name}}">{{name}}</a>{{/each}}
+              {{#each roleIn 'lead'}}<a class="teamName" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>{{/each}}
             </div>
             {{/if}}
             {{#if roleIn 'colead'}}
             <div class="item roleInTeam">
               <div class="ui small teal horizontal label">Co-lead of</div>
-              {{#each roleIn 'colead'}}<a class="teamName" href="{{pathFor 'team' name=name}}">{{name}}</a>{{/each}}
+              {{#each roleIn 'colead'}}<a class="teamName" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>{{/each}}
             </div>
             {{/if}}
             {{#if roleIn 'mentor'}}
             <div class="item roleInTeam">
               <div class="ui small blue horizontal label">Mentor of</div>
-              {{#each roleIn 'mentor'}}<a class="teamName" href="{{pathFor 'team' name=name}}">{{name}}</a>{{/each}}
+              {{#each roleIn 'mentor'}}<a class="teamName" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>{{/each}}
             </div>
             {{/if}}
             {{#if memberOf}}
             <div class="item roleInTeam">
               <div class="ui small orange horizontal label">Member of</div>
-              {{#each memberOf}}<a class="teamName" href="{{pathFor 'team' name=name}}">{{name}}</a>{{/each}}
+              {{#each memberOf}}<a class="teamName" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>{{/each}}
             </div>
             {{/if}}
           </div>         
@@ -156,9 +156,9 @@
           </label>
          
           <div class="ui divided list">
-            {{#each skills}}<span class="skill item">{{this}}</span>{{/each}}
+            {{#each skills}}<span class="skill item">{{name}}</span>{{/each}}
             {{#if myself}}
-              <div class="ui small fluid basic labeled icon button">
+              <div class="ui small fluid basic labeled icon button modalCallButton" data-target="#addSkill">
                 <i class="plus icon"></i>
                 I can do more stuff!
               </div>
