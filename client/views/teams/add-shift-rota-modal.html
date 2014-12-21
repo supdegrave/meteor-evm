@@ -1,0 +1,82 @@
+<template name="shiftRotaModal">
+  <div id="addShiftRotaModal" class="ui modal">    
+    <div class="content">
+      <div class="ui grid">
+
+        <div class="sixteen wide column">
+          <div class="ui header">
+            Add Shift or Rota
+          </div>        
+        </div>
+
+        <div class="sixteen wide column">
+          <ol class="rotaSteps">
+            <li id="rotaStep1" class="rotaStep visible">
+              I want to create a 
+              <input type="radio" name="createType" class="createType" value="Shift" id="createShift">&nbsp;<label for="createShift">Single Shift</label>
+              <input type="radio" name="createType" class="createType" value="Rota" id="createRota">&nbsp;<label for="createRota">Rota</label>
+            </li>
+
+            <li id="rotaStep2" class="rotaStep">
+              Called 
+              <input id="eventName" type="text">
+              with 
+              <input id="numVolunteers" type="text" placeholder="#" class="numeric" pattern='\d\d'>
+              volunteers
+            </li>
+
+            <li id="rotaStep3" class="rotaStep">
+              It will be 
+              <input type="text" id="numLength" class="numeric" pattern='\d\d'>
+              <select id="durationOption">
+                <option selected>hours</option>
+                <option>days</option>
+              </select>
+              long.
+              
+              <div class="ui grid">
+                <div class="eight wide column">
+                  From <br>
+                  <input type="text" id="shiftFirstStartDate" placeholder="Start date">
+                  <input type="text" id="shiftFirstStartTime" placeholder="Time" class="time">
+                </div>
+
+                <div class="eight wide column">
+                  To <br>
+                  <input type="text" id="shiftLastEndDate" placeholder="End date">
+                  <input type="text" id="shiftLastEndTime" placeholder="Time" class="time">
+                </div>
+              </div>
+              
+              Which 
+              <input type="radio" name="dailyDuration" class="dailyDuration" value="24h" id="duration24h">&nbsp;<label for="createShift">runs 24 hours</label>
+              <input type="radio" name="dailyDuration" class="dailyDuration" value="limited" id="durationLimited">&nbsp;<label for="createRota">is limited from</label>
+              <input type="text" id="dailyStart" placeholder="Time" class="time">
+              &nbsp;to&nbsp;
+              <input type="text" id="dailyEnd" placeholder="Time" class="time">
+            </li>
+
+            <li id="rotaStep4" class="rotaStep">
+              <input type="checkbox" id="requiresApproval"><label for="requiresApproval">&nbsp;And I will review applicants</label>
+            </li>
+          
+          </ol>
+        </div>
+
+        <div class="actions">
+          <div class="two fluid ui buttons">
+            <div class="ui negative labeled icon button">
+              <i class="remove icon"></i>
+              Cancel
+            </div>
+            <div class="ui positive right labeled icon button">
+              Create
+              <i class="checkmark icon"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>

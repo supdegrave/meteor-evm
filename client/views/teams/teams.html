@@ -65,8 +65,9 @@
       <div class="column">
         <div class="ui blue segment">
           <div class="ui blue header">
-            <div class="active section">Create New Rota</div>
+            <div class="active section">TODO: show agenda here</div>
 
+            <!--  
             <div class="ui list blue labels">
               <div class="item">
                 <div class="ui ribbon label">
@@ -157,6 +158,7 @@
                 </div>
               </div>
             </div>
+            -->
           </div>
         </div>        
       </div>
@@ -165,6 +167,7 @@
         <div class="ui teal segment">
           <div class="ui teal header">
             <div class="active section">Shift Rotas</div>
+          </div>
             
             <div class="ui list teal labels">
               {{#each rotas}}
@@ -173,13 +176,21 @@
               </div>
               {{/each}}
             </div>
-          </div>
+  
+            {{#if canEdit}}
+            <div class="clear ui divider"></div>
+            <button class="ui teal action button add-shift-rota" data-target="addShiftRotaModal">
+              <i class="plus icon"></i> 
+              Add Shift or Rota
+            </button>
+            {{/if}}
         </div>
       </div>
     </div>
     
     {{>confirmationModal}}
     {{>addMemberModal}}
+    {{>shiftRotaModal}}
   </div>
 </template>
 
