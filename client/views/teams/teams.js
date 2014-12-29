@@ -101,80 +101,8 @@ Template.team.events({
     .modal("show");
   },
   
-  /*
-  'click input#rotaSubmit': function(evt, tmpl) {
-    var id                = currentTeam._id + "_" + $('#shiftName').val(), 
-        title             = $('#shiftName').val(), 
-        length            = $('#shiftLength').val(),
-        rotaStartDateTime = new Date(startDatePicker.get() + ' ' + startTimePicker.get()),
-        rotaEndDateTime   = new Date(endDatePicker.get() + ' ' + endTimePicker.get()),
-        requiresApproval  = !!$('#requiresApprovalYes:checked').length,
-        spacesAvailable   = $('#shiftSize').val(),
-        getEndDateTime    = function(dtStart, hours) {
-          var dtEnd = new Date(dtStart);
-          dtEnd.setTime(dtEnd.getTime() + (hours*60*60*1000)); 
-          return dtEnd;
-        }, 
-        dtEnd,
-        newEvent;
-        
-    Rotas.insert({name: title, teamId: currentTeam._id});
-
-    for (dtStart = rotaStartDateTime; dtStart < rotaEndDateTime;) {
-      dtEnd = getEndDateTime(dtStart, length);
-
-      newEvent = new Event(title, id, dtStart, dtEnd);
-      
-      // custom properties for Nowhere EVM
-      newEvent.teamId = currentTeam._id, // allows searching for team-specific rotas
-      newEvent.requiresApproval = requiresApproval,
-      newEvent.spacesAvailable = spacesAvailable,
-      newEvent.volunteers = [], // array of simple user objects, to simplify display = {_id = int, name = string }
-      newEvent.requests = [], // array of userId integers
-    
-      Events.insert(newEvent);
-
-      // increment loop position
-      dtStart = dtEnd;
-    }
-  },
-  */
   'click button.add-shift-rota': function(evt, tmpl) {
     // show new shift / rota wizard modal 
     $('#addShiftRotaModal').modal('show');
   }
 });
-
-
-// Template.team.rendered = function(){
-//   // Since the #confirmationmodal item is not directly in the template, I suppose,
-//   // we are forced to define our click events here rather than in Template.team.events
-//   $("#confirmationmodal .positive").click(function() {
-//     $('.ui.dropdown.user-role-dropdown').each(function() {
-//       var elem = $(this);
-//       elem.dropdown("restore defaults");
-//     });
-//   });
-//   
-//   startDatePicker = $('#shiftFirstStartDate')
-//                       .pickadate({'today': ''})
-//                       .pickadate('picker');
-//   startTimePicker = $('#shiftFirstStartTime')
-//                       .pickatime()
-//                       .pickatime('picker');
-//   endDatePicker   = $('#shiftLastEndDate')
-//                       .pickadate({'today': ''})
-//                       .pickadate('picker');
-//   endTimePicker   = $('#shiftLastEndTime')
-//                       .pickatime()
-//                       .pickatime('picker');
-//   
-//   datePickerOptions = {
-//     min: new Date(2015,5,1),
-//     max: new Date(2015,6,31),
-//     set: new Date(2015,5,1)
-//   };
-//       
-//   startDatePicker.set(datePickerOptions);
-//   endDatePicker.set(datePickerOptions);
-// }

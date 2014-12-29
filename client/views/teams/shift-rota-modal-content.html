@@ -1,0 +1,80 @@
+<template name="shiftRotaModalContent">
+  <div class="content">
+    <div class="ui grid">
+
+      <div class="sixteen wide column">
+        <div class="ui header">
+          Add Shift or Rota
+        </div>        
+      </div>
+
+      <div class="sixteen wide column">
+        <ol class="rotaSteps">
+          <li id="rotaStep1" class="rotaStep visible">
+            I want to create a 
+            <input data-key="type" type="radio" name="createType" class="createType" value="Shift" id="createShift">&nbsp;<label for="createShift">Single Shift</label>
+            <input data-key="type" type="radio" name="createType" class="createType" value="Rota" id="createRota">&nbsp;<label for="createRota">Rota</label>
+          </li>
+
+          <li id="rotaStep2" class="rotaStep" data-dependson='rotaStep1'>
+            Called 
+            <input data-key="name" id="eventName" type="text" placeholder="Name">
+            with 
+            <input data-key="numVolunteers" id="numVolunteers" type="text" class="numeric" maxlength="2">
+            volunteers
+          </li>
+
+          <li id="rotaStep3" class="rotaStep" data-dependson='rotaStep2'>
+            It will be 
+            <input data-key="shiftLength" id="numLength" type="text" class="numeric" maxlength="2">
+            <select data-key="shiftHoursDays" id="durationOption">
+              <option selected>hours</option>
+              <option>days</option>
+            </select>
+            long.
+          
+            <div class="ui grid">
+              <div class="eight wide column">
+                From <br>
+                <input data-key="startDate" type="text" id="startDate" placeholder="Start date">
+                <input data-key="startTime" type="text" id="startTime" placeholder="Time" class="time">
+              </div>
+
+              <div class="eight wide column">
+                To <br>
+                <input data-key="endDate" type="text" id="endDate" placeholder="End date">
+                <input data-key="endTime" type="text" id="endTime" placeholder="Time" class="time">
+              </div>
+            </div>
+          
+            Which 
+            <input data-key="dailyDuration" type="radio" name="dailyDuration" class="dailyDuration" value="24h" id="duration24h">&nbsp;<label for="duration24h">runs 24 hours</label>
+            <input data-key="dailyDuration" type="radio" name="dailyDuration" class="dailyDuration" value="limited" id="durationLimited">&nbsp;<label for="durationLimited">is limited from</label>
+            <input data-key="dailyStart" type="text" id="dailyStart" placeholder="Time" class="time" disabled>
+            &nbsp;to&nbsp;
+            <input data-key="dailyEnd" type="text" id="dailyEnd" placeholder="Time" class="time" disabled>
+          </li>
+
+          <li id="rotaStep4" class="rotaStep" data-dependson='rotaStep3'>
+            <input data-key="requiresApproval" type="checkbox" id="requiresApproval"><label for="requiresApproval">&nbsp;And I will review applicants</label>
+          </li>
+      
+        </ol>
+      </div>
+
+      <div class="actions">
+        <div class="two fluid ui buttons">
+          <div class="ui negative labeled icon button">
+            <i class="remove icon"></i>
+            <span>Cancel</span>
+          </div>
+          <div class="ui positive right labeled icon button disabled">
+            <span>Next</span>
+            <i class="chevron right icon"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</template>
