@@ -1,4 +1,4 @@
-var shiftRotaProperties, 
+var eventProps, 
     validateStep,
     validationFunctions,
     changeHandlerFunctions,
@@ -8,7 +8,9 @@ var shiftRotaProperties,
     
     currentStep = 1;
 
-shiftRotaProperties = {
+eventProps = {
+  teamId: null,
+  
   // step 1
   type: null,
   
@@ -33,15 +35,15 @@ shiftRotaProperties = {
 
 validationFunctions = {
   3: function() {
-    return shiftRotaProperties.dailyDuration === '24h' 
-           || (shiftRotaProperties.dailyDuration === 'limited'
-              && shiftRotaProperties.dailyStart
-              && shiftRotaProperties.dailyEnd);
+    return eventProps.dailyDuration === '24h' 
+           || (eventProps.dailyDuration === 'limited'
+              && eventProps.dailyStart
+              && eventProps.dailyEnd);
   }
 };
 
 changeHandlerFunctions = {
-	dailyDuration: function() {
+	dailyDuration: function(elem, key) {
 	  var limited = 'limited' === $('.dailyDuration:checked').val();
 
     $('#dailyStart').attr('disabled', !limited);
@@ -53,10 +55,10 @@ changeHandlerFunctions = {
 	shiftLength: function(elem, key) {
 	  isNumeric(elem, key);
 	}, 
-	dailyStart: function(elem, key) {
-	  console.log(elem, key);
-    // $('#dailyEnd').pickatime('picker').set('select', 10 * 60)
-	}
+  // dailyStart: function(elem, key) {
+  //   console.log(elem, key);
+  //     // $('#dailyEnd').pickatime('picker').set('select', 10 * 60)
+  // }
 };
 
 nextStep = function() {
@@ -88,7 +90,7 @@ validateStep = function() {
       validationFunc = validationFunctions[currentStep];
       
   _.each(keys, function(key) {
-    keysValid = keysValid && shiftRotaProperties[key];
+    keysValid = keysValid && eventProps[key];
   });
   
   if (keysValid && (!validationFunc || validationFunc())) {
@@ -99,65 +101,37 @@ validateStep = function() {
 
 isNumeric = function(elem, key) {
   if (isNaN(parseInt(elem.value))) {
-    shiftRotaProperties[key] = null;
+    eventProps[key] = null;
     elem.value = '';
     elem.focus();
   }
 }
 
 createShiftOrRota = function(evt, tmpl) {  
-  // var id                = currentTeam._id + "_" + $('#shiftName').val(), 
-  //     rotaStartDateTime = new Date(shiftRotaProperties.startDate + ' ' + shiftRotaProperties.startTime),
-  //     rotaEndDateTime   = new Date(shiftRotaProperties.endDate + ' ' + shiftRotaProperties.endTime),
-  //     getEndDateTime    = function(dtStart, hours) {
-  //       var dtEnd = new Date(dtStart);
-  //       dtEnd.setTime(dtEnd.getTime() + (hours*60*60*1000)); 
-  //       return dtEnd;
-  //     }, 
-  //     dtStart,
-  //     dtEnd,
-  //     newEvent;
+  var startDateTime  = new Date(eventProps.startDate + ' ' + eventProps.startTime),
+      endDateTime    = new Date(eventProps.endDate + ' ' + eventProps.endTime),
+      getEndDateTime = function(dtStart) {
+        return new Date(dtStart.getTime() + (eventProps.shiftLength*60*60*1000))
+      }, 
+      dtStart,
+      dtEnd;
   
-  if ("Shift" === shiftRotaProperties.type) {
-    console.log('shift', shiftRotaProperties);
-    // createEvent(shiftRotaProperties);
+  if ("Shift" === eventProps.type) {
+    Events.insert(new Event(eventProps));
   }
-  else if ("Rota" === shiftRotaProperties.type) {
-    console.log('rota', shiftRotaProperties);
-    // Rotas.insert({name: shiftRotaProperties.name, teamId: currentTeam._id});
-    // 
-    // for (dtStart = rotaStartDateTime; dtStart < rotaEndDateTime;) {
-    //   dtEnd = getEndDateTime(dtStart, length);
-    // 
-    //   newEvent = new Event(title, id, dtStart, dtEnd);
-    //   
-    //   // custom properties for Nowhere EVM
-    //   newEvent.teamId = currentTeam._id, // allows searching for team-specific rotas
-    //   newEvent.requiresApproval = requiresApproval,
-    //   newEvent.spacesAvailable = spacesAvailable,
-    //   newEvent.volunteers = [], // array of simple user objects, to simplify display = {_id = int, name = string }
-    //   newEvent.requests = [], // array of userId integers
-    // 
-    //   Events.insert(newEvent);
-    // 
-    //   // increment loop position
-    //   dtStart = dtEnd;
-    // }
+  else if ("Rota" === eventProps.type) {
+    Rotas.insert({name: eventProps.name, teamId: eventProps.teamId});
+    
+    for (dtStart = startDateTime; dtStart < endDateTime;) {
+      dtEnd = getEndDateTime(dtStart, length);
+      Events.insert(new Event(eventProps, dtStart, dtEnd));
+    
+      // TODO: implement limited (non-24h) functionality 
+      
+      // increment loop position
+      dtStart = dtEnd;
+    }
   }
-  
-  // dailyDuration: "24h" || "limited"
-  // dailyEnd: "00:00"
-  // dailyStart: "00:00"
-  // name: "fnord"
-  // numVolunteers: "4"
-  // requiresApproval: "on" || false
-  // startDate: "29 December, 2014"
-  // startTime: "00:00"
-  // shiftHoursDays: "hours"
-  // endDate: "12 January, 2015"
-  // endTime: "00:00"
-  // shiftLength: "6"
-  // type: "Shift" || "Rota"
 };
 
 Template.shiftRotaModalContent.events({
@@ -167,7 +141,7 @@ Template.shiftRotaModalContent.events({
         changeFunc = changeHandlerFunctions[key];
     
     if (key) {
-      shiftRotaProperties[key] = target.value;
+      eventProps[key] = target.value;
 
       if (changeFunc) {
         changeFunc(target, key);
@@ -202,6 +176,8 @@ Template.shiftRotaModalContent.rendered = function() {
         }
       }
     });
+    
+  eventProps.teamId = currentTeam._id;
 
   // set focus on first input 
   // $('#rotaStep1 input:first').focus(); // doesn't set focus for some reason
