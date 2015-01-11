@@ -5,6 +5,7 @@ var eventProps,
     nextStep,
     isNumeric,
     createShiftOrRota,
+    createRotaEvents,
     
     currentStep = 1;
 
@@ -105,16 +106,13 @@ isNumeric = function(elem, key) {
     elem.value = '';
     elem.focus();
   }
-}
+};
 
 createShiftOrRota = function(evt, tmpl) {  
-  var startDateTime  = new Date(eventProps.startDate + ' ' + eventProps.startTime),
-      endDateTime    = new Date(eventProps.endDate + ' ' + eventProps.endTime),
-      getEndDateTime = function(dtStart) {
-        return new Date(dtStart.getTime() + (eventProps.shiftLength*60*60*1000))
-      }, 
-      dtStart,
-      dtEnd;
+  var startDay, 
+      endDay, 
+      startHourMin, 
+      endHourMin;
   
   if ("Shift" === eventProps.type) {
     Events.insert(new Event(eventProps));
@@ -122,17 +120,48 @@ createShiftOrRota = function(evt, tmpl) {
   else if ("Rota" === eventProps.type) {
     Rotas.insert({name: eventProps.name, teamId: eventProps.teamId});
     
-    for (dtStart = startDateTime; dtStart < endDateTime;) {
-      dtEnd = getEndDateTime(dtStart, length);
-      Events.insert(new Event(eventProps, dtStart, dtEnd));
-    
-      // TODO: implement limited (non-24h) functionality 
-      
-      // increment loop position
-      dtStart = dtEnd;
+    // rota shifts run 24 hours a day
+    if ($('#duration24h:checked').length) {
+      createRotaEvents(
+        eventProps.startDate + ' ' + eventProps.startTime,
+        eventProps.endDate + ' ' + eventProps.endTime
+      );
+    }
+    // rota shifts are limited in duration (example: 08:00 - 20:00)
+    else {
+      startDay = new Date(eventProps.startDate);
+      endDay   = new Date(eventProps.endDate);
+
+      for (; startDay.getDate() < endDay.getDate(); startDay.setHours(startDay.getHours() + 24)) {         
+        startHourMin = eventProps.dailyStart.split(':');
+        endHourMin   = eventProps.dailyEnd.split(':');
+
+        createRotaEvents(
+          startDay.setHours(startHourMin[0], startHourMin[1]),
+          startDay.setHours(endHourMin[0], endHourMin[1])
+        );
+      }
     }
   }
 };
+
+createRotaEvents = function(startDateTime, endDateTime) {
+  var dtStart, 
+      dtEnd, 
+      getEndDateTime; 
+      
+  startDateTime = new Date(startDateTime);
+  endDateTime   = new Date(endDateTime);
+      
+  for (dtStart = startDateTime; dtStart < endDateTime;) {
+    dtEnd = new Date(dtStart.getTime() + (eventProps.shiftLength*60*60*1000));
+    Events.insert(new Event(eventProps, dtStart, dtEnd));
+      
+    // increment loop position
+    dtStart = dtEnd;
+  }  
+};
+
 
 Template.shiftRotaModalContent.events({
   'change input, change select, input .numeric': function(evt, tmpl) {
