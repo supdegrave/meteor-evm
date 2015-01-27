@@ -201,7 +201,7 @@ Template.shiftRotaModalContent.rendered = function() {
         }
         else {
           createShiftOrRota();
-          return false;
+          return true;
         }
       }
     });
