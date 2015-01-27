@@ -132,7 +132,7 @@ createShiftOrRota = function(evt, tmpl) {
       startDay = new Date(eventProps.startDate);
       endDay   = new Date(eventProps.endDate);
 
-      for (; startDay.getDate() < endDay.getDate(); startDay.setHours(startDay.getHours() + 24)) {         
+      for (; startDay < endDay; startDay.setHours(startDay.getHours() + 24)) {         
         startHourMin = eventProps.dailyStart.split(':');
         endHourMin   = eventProps.dailyEnd.split(':');
 
