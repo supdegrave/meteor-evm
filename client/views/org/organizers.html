@@ -36,7 +36,7 @@
       <ul class="roles">
         <li class="role">Lead:
           {{#if lead}}
-          <a href="{{pathFor 'users' id=lead}}">{{displayName lead}}</a>
+          <a href="{{pathFor 'user' id=lead}}">{{displayName lead}}</a>
           {{else}}
             {{#if isUser}}
             <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
@@ -45,7 +45,7 @@
         </li>
         <li class="role">Co-Lead:
           {{#if colead}}
-          <a href="{{pathFor 'users' id=lead}}">{{displayName colead}}</a>
+          <a href="{{pathFor 'user' id=lead}}">{{displayName colead}}</a>
           {{else}}
             {{#if isUser}}
             <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
@@ -55,7 +55,7 @@
         <li class="role">
           Mentor:
           {{#if mentor}}
-          <a href="{{pathFor 'users' id=mentor}}">{{displayName mentor}}</a>
+          <a href="{{pathFor 'user' id=mentor}}">{{displayName mentor}}</a>
           {{else}}
             {{#if isUser}}
             <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
