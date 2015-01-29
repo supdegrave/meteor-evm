@@ -188,12 +188,21 @@ Template.shiftRotaModalContent.rendered = function() {
   $('#addShiftRotaModal')
     .modal('setting', 'transition', 'vertical flip')
     .modal({
-      // // initialization on display of modal 
-      // onShow: function() {
-      // },
+      // initialization on display of modal 
+      onShow: function() {
+        // set up 'Enter' key listener 
+        this.addEventListener('keyup', function(evt) {
+          
+          // Enter key pressed & Next button is enabled
+          if (evt.keyIdentifier === "Enter" && !_.contains(btnNext.classList, 'disabled')) {
+            btnNext.click();
+          }
+        });
+      },
       // cancel button functionality
       onDeny: function() {
         console.log('cancel');
+        this.removeEventListener('keyup');
       },
       // create button functionality 
       onApprove: function() {
@@ -203,6 +212,8 @@ Template.shiftRotaModalContent.rendered = function() {
         }
         else {
           createShiftOrRota();
+          // TODO: these should only occur on successful creation 
+          this.removeEventListener('keyup');
           return true;
         }
       }
