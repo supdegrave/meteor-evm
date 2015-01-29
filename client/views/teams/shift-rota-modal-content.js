@@ -70,6 +70,8 @@ nextStep = function() {
       
   $(current).addClass('completed');
   $(next).addClass('visible');
+  
+  $(next + ' input:first').focus();
 
   currentStep += 1;
   
