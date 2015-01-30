@@ -70,6 +70,8 @@ nextStep = function() {
       
   $(current).addClass('completed');
   $(next).addClass('visible');
+  
+  $(next + ' input:first').focus();
 
   currentStep += 1;
   
@@ -132,7 +134,7 @@ createShiftOrRota = function(evt, tmpl) {
       startDay = new Date(eventProps.startDate);
       endDay   = new Date(eventProps.endDate);
 
-      for (; startDay.getDate() < endDay.getDate(); startDay.setHours(startDay.getHours() + 24)) {         
+      for (; startDay < endDay; startDay.setHours(startDay.getHours() + 24)) {         
         startHourMin = eventProps.dailyStart.split(':');
         endHourMin   = eventProps.dailyEnd.split(':');
 
@@ -186,12 +188,21 @@ Template.shiftRotaModalContent.rendered = function() {
   $('#addShiftRotaModal')
     .modal('setting', 'transition', 'vertical flip')
     .modal({
-      // // initialization on display of modal 
-      // onShow: function() {
-      // },
+      // initialization on display of modal 
+      onShow: function() {
+        // set up 'Enter' key listener 
+        this.addEventListener('keyup', function(evt) {
+          
+          // Enter key pressed & Next button is enabled
+          if (evt.keyIdentifier === "Enter" && !_.contains(btnNext.classList, 'disabled')) {
+            btnNext.click();
+          }
+        });
+      },
       // cancel button functionality
       onDeny: function() {
         console.log('cancel');
+        this.removeEventListener('keyup');
       },
       // create button functionality 
       onApprove: function() {
@@ -201,7 +212,9 @@ Template.shiftRotaModalContent.rendered = function() {
         }
         else {
           createShiftOrRota();
-          return false;
+          // TODO: these should only occur on successful creation 
+          this.removeEventListener('keyup');
+          return true;
         }
       }
     });
