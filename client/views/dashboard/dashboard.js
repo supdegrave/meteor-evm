@@ -1,5 +1,3 @@
-var logged = false;
-
 Template.dashboard.rendered = function(){
   $('#calendar').fullCalendar({
     events: function(start, end, timezone, callback) {
@@ -7,17 +5,10 @@ Template.dashboard.rendered = function(){
     },
     
     eventRender: function(event, element) {
-      if (!logged) {
-        // console.log(event);
-        console.log(element.context);
-        // console.log(element.parent());
-        logged = true;
-      }
+      var node = element.context;
+      node.removeChild(node.childNodes[0]);
       
-      // element.context appends to the parent td element
-      // Blaze.renderWithData(Template.calendarEvent, event, element.context);
-      // element.parent().context replaces the parent td element
-      Blaze.renderWithData(Template.calendarEvent, event, element.parent().context);
+      Blaze.renderWithData(Template.calendarEvent, event, node);
     },
     
     eventClick: function(calEvent, jsEvent, view) {
