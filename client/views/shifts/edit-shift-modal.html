@@ -1,20 +1,13 @@
-Template.calendarEvent.events({
-  'click #spaces': function(evt, tmpl) {
-    console.log(evt, tmpl.data);
-  }
-});
+<template name="editShiftModal">
+  <div id="editShiftModal" class="ui small modal" >
+  </div>
+</template>
 
-Template.calendarEvent.helpers({
-  spacesTaken: function() {
-    return this.spacesAvailable - this.requests.length;
-  },
-  
-  formatTime: function(moment) {
-    return moment.format('HH');
-  }
-});
+<template name="editShiftModalContent">
+  {{title}}
+</template>
 
-/*
+<!--
 {
   "_id": "2LRqMMkJzkC8jkMZj",
   "title": "Limited Rota Test",
@@ -35,5 +28,4 @@ Template.calendarEvent.helpers({
   "_start": "2015-01-13T07:00:00.000Z",
   "_end": "2015-01-13T11:00:00.000Z"
 }
-  
-*/
+-->
