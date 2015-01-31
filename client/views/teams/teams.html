@@ -40,7 +40,7 @@
           <div class="ui teal header">Members:</div>
           <div class="ui horizontal divided list">
             {{#each members}}
-            <a class="item">
+            <a class="item" href="{{pathFor 'user' id=this}}">
               {{#if canEdit}}<i class="remove-member remove icon"></i>{{/if}}
               {{displayName this}}
             </a>
@@ -57,7 +57,7 @@
       </div>
 
     </div>
-                                                  
+    {{#if canEdit}}                                              
     <div class="ui divider"></div>
     
     <!-- create / show rotas -->
@@ -94,7 +94,8 @@
         </div>
       </div>
     </div>
-    
+    {{/if}}
+
     {{>confirmationModal}}
     {{>addMemberModal}}
     {{>shiftRotaModal}}
