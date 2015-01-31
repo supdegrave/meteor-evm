@@ -1,29 +1,43 @@
-var logged = false;
-
-Template.dashboard.rendered = function(){
+Template.dashboard.rendered = function() {
+  // initialize calendar view
   $('#calendar').fullCalendar({
+    // populate events 
     events: function(start, end, timezone, callback) {
       callback(Events.find().fetch()); 
     },
-    
+    // when event is rendered, rewrite its default contents
     eventRender: function(event, element) {
-      if (!logged) {
-        // console.log(event);
-        console.log(element.context);
-        // console.log(element.parent());
-        logged = true;
-      }
-      
-      // element.context appends to the parent td element
-      // Blaze.renderWithData(Template.calendarEvent, event, element.context);
-      // element.parent().context replaces the parent td element
-      Blaze.renderWithData(Template.calendarEvent, event, element.parent().context);
+      var node = element.context;
+      node.removeChild(node.childNodes[0]);
+      Blaze.renderWithData(Template.calendarEvent, event, node);
     },
-    
-    eventClick: function(calEvent, jsEvent, view) {
-      console.log(calEvent, jsEvent, view);
+    // when event is clicked, show edit modal 
+    eventClick: function(calEvent, jsEvent, calView) {
+      var editShiftModal = $('#editShiftModal');
+      editShiftModal.modal('show');
+      Blaze.renderWithData(Template.editShiftModalContent, calEvent, editShiftModal[0]);
     }
   });
+
+
+  // initialize modal dialog
+  $('#editShiftModal')
+    .modal('setting', 'transition', 'vertical flip')
+    .modal({
+      // initialization on display of modal 
+      onShow: function() {
+        // clear HTML content before resetting in calendar.eventClick() 
+        this.innerHTML = '';
+      },
+      // cancel button functionality
+      onDeny: function() {
+        console.log('onDeny');
+      },
+      // create button functionality 
+      onApprove: function() {
+        console.log('onApprove');
+      }
+    });
 };
 
 Template.dashboard.helpers({
