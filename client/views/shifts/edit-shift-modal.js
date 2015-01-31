@@ -1,12 +1,17 @@
-// Template.editShiftModalContent.events({
-// });
+Template.editShiftModalContent.events({
+  'click .button.join' : function() {
+    Session.set('requesterId', Meteor.userId());
+  },
+  'click .button.request' : function() {
+    Session.set('requesterId', Meteor.userId());
+  }
+});
 
 Template.editShiftModalContent.helpers({
   sameDate: function(start, end) {
     return start.date() === end.date();
   },
   hasSpaces: function() {
-    // TODO: determine if this should be volunteers + requests if requiresApproval
     return this.spacesAvailable - this.volunteers.length;
   }
 });

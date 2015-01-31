@@ -31,7 +31,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -54,9 +53,12 @@
     <div class="sixteen wide column">
       {{#if hasSpaces}}
         {{#if requiresApproval}}
-          [Request]
-        {{else}}
-          [Join]
+          <div>Volunteers for this shift must be approved by the team lead.</div>
+          <div>{{volunteers.length}}/{{spacesAvailable}} spaces are filled, and there are {{requests.length}} requests</div>
+          <div class="ui button request">Ask to join this shift</div>
+        {{else}}  
+          <div>{{volunteers.length}}/{{spacesAvailable}} spaces are filled.</div>
+          <div class="ui button join">Sign up for this shift</div>
         {{/if}}
       {{else}}
         Shift full, sorry! wub wub 
