@@ -57,6 +57,9 @@ Template.registerHelper("isUser", function(){
 Template.registerHelper("getSkills", function(){
   return Skills.find().fetch();
 });
+Template.registerHelper('formatDateTime', function(moment, formatString) {
+  return moment.format(formatString);
+});
 Template.loginDropdown.helpers({
   myID:function(){
     return Meteor.userId();

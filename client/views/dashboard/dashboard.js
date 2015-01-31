@@ -1,4 +1,8 @@
+var modalContent; // used for manipulating modal content per event 
+
 Template.dashboard.rendered = function() {
+  modalContent = document.getElementById('modalContent');
+  
   // initialize calendar view
   $('#calendar').fullCalendar({
     // populate events 
@@ -11,11 +15,15 @@ Template.dashboard.rendered = function() {
       node.removeChild(node.childNodes[0]);
       Blaze.renderWithData(Template.calendarEvent, event, node);
     },
-    // when event is clicked, show edit modal 
+    // when event is clicked, show edit modal and load event template
     eventClick: function(calEvent, jsEvent, calView) {
-      var editShiftModal = $('#editShiftModal');
-      editShiftModal.modal('show');
-      Blaze.renderWithData(Template.editShiftModalContent, calEvent, editShiftModal[0]);
+      $('#editShiftModal').modal('show');
+      Blaze.renderWithData(
+        Template.editShiftModalContent, // template to use for rendering event data
+        calEvent,                       // event data
+        modalContent,                   // node to render within
+        modalContent.firstChild         // node to render before
+      );
     }
   });
 
@@ -27,7 +35,14 @@ Template.dashboard.rendered = function() {
       // initialization on display of modal 
       onShow: function() {
         // clear HTML content before resetting in calendar.eventClick() 
-        this.innerHTML = '';
+        // convert childNodes to a JavaScript array
+        var nodeArray = Array.prototype.slice.call(modalContent.childNodes);
+        // iterate array, removing all nodes other than #editActions
+        nodeArray.forEach(function(node) { 
+          if ('editActions' !== node.id) {
+            modalContent.removeChild(node);
+          }; 
+        });
       },
       // cancel button functionality
       onDeny: function() {

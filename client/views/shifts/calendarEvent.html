@@ -1,8 +1,7 @@
 <template name="calendarEvent">
   <div id="spaces">
-    {{title}} - {{formatTime start}}h-{{formatTime end}}h <br/>
-    {{spacesTaken}}/{{spacesAvailable}} spaces available
+    {{title}} - {{formatDateTime start 'HH'}}h-{{formatDateTime end 'HH'}}h <br/>
+    {{spacesTaken}}/{{spacesAvailable}} spaces available 
   </div>
-  <!-- full layout for rendering event here -->
 </template>
 

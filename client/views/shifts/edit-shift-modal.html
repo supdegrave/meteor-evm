@@ -1,10 +1,76 @@
 <template name="editShiftModal">
-  <div id="editShiftModal" class="ui small modal" >
+  <div id="editShiftModal" class="ui small modal">
+    <div class="content">
+      <div id="modalContent" class="ui grid">
+        <div id="editActions">
+          <div class="actions">
+            <div class="two fluid ui buttons">
+              <div class="ui negative labeled icon button">
+                <i class="remove icon"></i>
+                <span>Cancel</span>
+                <!-- 
+                click > 
+                  requestId = joinId = null
+                  dismiss
+                -->
+              </div>
+              <div class="ui positive right labeled icon button">
+                <span>Done</span>
+                <!-- 
+                click > 
+                  if requiresApproval
+                    add requestId to requests
+                  else 
+                    add joinId to volunteers
+            
+                  save event
+                  dismiss
+                -->
+                <i class="chevron checkmark icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </template>
 
 <template name="editShiftModalContent">
-  {{title}}
+
+    <div class="sixteen wide column">
+      <div class="ui header">
+        {{teamName}}: 
+        {{title}} :: 
+        {{#if sameDate start end}}
+          {{formatDateTime start 'DD/MM'}} {{formatDateTime start 'HH'}}h - {{formatDateTime end 'HH'}}h
+        {{else}}
+          {{formatDateTime start 'DD/MM'}} {{formatDateTime start 'HH'}}h - {{formatDateTime end 'DD/MM'}} {{formatDateTime end 'HH'}}h <br>
+        {{/if}}
+      </div>        
+    </div>
+
+    <div class="sixteen wide column">
+      {{#if hasSpaces}}
+        {{#if requiresApproval}}
+          [Request]
+        {{else}}
+          [Join]
+        {{/if}}
+      {{else}}
+        Shift full, sorry! wub wub 
+      {{/if}}
+      <!-- 
+      if spacesTaken < spacesAvailable
+        if requiresApproval 
+          show [Request] click > set var requestId = userId
+        else 
+          show [Join] click > set var joinId = userId
+      else 
+        show 'Shift Full' 
+      -->
+    </div>
 </template>
 
 <!--

@@ -5,11 +5,8 @@ Template.calendarEvent.events({
 
 Template.calendarEvent.helpers({
   spacesTaken: function() {
-    return this.spacesAvailable - this.requests.length;
-  },
-  
-  formatTime: function(moment) {
-    return moment.format('HH');
+    // TODO: determine if this should be volunteers + requests if requiresApproval
+    return this.spacesAvailable - this.volunteers.length;
   }
 });
 
