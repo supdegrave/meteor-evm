@@ -57,9 +57,16 @@ Template.registerHelper("isUser", function(){
 Template.registerHelper("getSkills", function(){
   return Skills.find().fetch();
 });
-Template.registerHelper('formatDateTime', function(moment, formatString) {
-  return moment.format(formatString);
+Template.registerHelper('formatDateTime', function(momentObj, formatString) {
+  var m = (moment.format) ? momentObj : moment(momentObj);
+  return m.format(formatString);
 });
+Template.registerHelper('sameDate', function(start, end) {
+  var mStart = (moment.format) ? start : moment(start),
+      mEnd   = (moment.format) ? end : moment(end);
+  return mStart.date() === mEnd.date();
+});
+
 Template.loginDropdown.helpers({
   myID:function(){
     return Meteor.userId();

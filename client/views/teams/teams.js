@@ -33,6 +33,9 @@ Template.team.helpers({
   userInScope: function() {
     return Session.get('userInScope');
   },
+  openRequests: function() {
+    return Events.find({requiresApproval: true, requests: {$ne: []}});
+  },
 });
 
 Template.recursiveParentBreadcrumb.helpers({

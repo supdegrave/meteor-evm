@@ -36,11 +36,12 @@
       <div>Team: {{teamName}}</div>
 
       <div>
-      {{#if sameDate start end}}
-        {{formatDateTime start 'D MMMM'}} {{formatDateTime start 'hh:mm'}} - {{formatDateTime end 'hh:mm'}}
-      {{else}}
-        {{formatDateTime start 'D MMMM'}} {{formatDateTime start 'hh:mm'}} - {{formatDateTime end 'D MMMM'}} {{formatDateTime end 'hh:mm'}} <br>
-      {{/if}}
+        {{formatDateTime start 'D MMMM'}} {{formatDateTime start 'HH:mm'}} - 
+        {{#if sameDate start end}}
+          {{formatDateTime end 'HH:mm'}}
+        {{else}}
+          {{formatDateTime end 'D MMMM'}} {{formatDateTime end 'HH:mm'}} <br>
+        {{/if}}
       </div>
 
       {{#if hasSpaces}}

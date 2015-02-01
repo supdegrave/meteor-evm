@@ -2,9 +2,6 @@
 // });
 
 Template.editShiftModalContent.helpers({
-  sameDate: function(start, end) {
-    return start.date() === end.date();
-  },
   hasSpaces: function() {
     return this.spacesAvailable - this.volunteers.length;
   }
