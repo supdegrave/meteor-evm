@@ -13,7 +13,7 @@ Template.dashboard.rendered = function() {
     
     // populate events 
     events: function(start, end, timezone, callback) {
-      callback(Events.find().fetch()); 
+      callback(Events.find({published: true}).fetch()); 
     },
     // when event is rendered, rewrite its default contents
     eventRender: function(event, element) {

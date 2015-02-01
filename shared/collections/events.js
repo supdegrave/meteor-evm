@@ -23,6 +23,7 @@ Event = function(eventProps, start, end) {
   this.end              = end || new Date(eventProps.endDate + ' ' + eventProps.endTime);
   this.requiresApproval = !!eventProps.requiresApproval;
   this.spacesAvailable  = eventProps.numVolunteers;
+  this.published        = false;
 }
 Event.prototype = { 
   id: null,
