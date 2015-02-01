@@ -10,8 +10,12 @@ Template.editShiftModalContent.helpers({
   }
 });
 
-// Template.editShiftModalContent.rendered = function() {
-// };
+Template.editShiftModalContent.rendered = function() {
+  var shift = this.data;
+  if (shift.volunteers.length === parseInt(shift.spacesAvailable)) {
+    $('div.positive.button').addClass('disabled');
+  }
+};
 
 Template.editShiftModal.helpers({
   selectedShift: function() {
