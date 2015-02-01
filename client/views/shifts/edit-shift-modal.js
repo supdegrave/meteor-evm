@@ -11,9 +11,14 @@ Template.editShiftModalContent.helpers({
 });
 
 Template.editShiftModalContent.rendered = function() {
-  var shift = this.data;
+  var shift = this.data,
+      button = $('div.positive.button');
+      
   if (shift.volunteers.length === parseInt(shift.spacesAvailable)) {
-    $('div.positive.button').addClass('disabled');
+    button.addClass('disabled');
+  }
+  else {
+    button.removeClass('disabled');
   }
 };
 
