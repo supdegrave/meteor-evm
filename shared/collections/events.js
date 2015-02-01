@@ -17,7 +17,8 @@ Events.allow({
 Event = function(eventProps, start, end) { 
   this.title            = eventProps.name.trim(); 
   this.teamId           = eventProps.teamId;
-  this.id               = this.teamId + '_' + this.title.replace(' ', '_');
+  this.teamName         = eventProps.teamName;
+  this.id               = this.teamId + '_' + this.title.replace(/ /g, '_');
   this.start            = start || new Date(eventProps.startDate + ' ' + eventProps.startTime); 
   this.end              = end || new Date(eventProps.endDate + ' ' + eventProps.endTime);
   this.requiresApproval = !!eventProps.requiresApproval;

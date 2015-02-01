@@ -219,7 +219,8 @@ Template.shiftRotaModalContent.rendered = function() {
       }
     });
     
-  eventProps.teamId = currentTeam._id;
+  eventProps.teamId = currentTeam._id;  
+  eventProps.teamName = currentTeam.name;
 
   // set focus on first input 
   // $('#rotaStep1 input:first').focus(); // doesn't set focus for some reason
