@@ -1,6 +1,4 @@
 Template.calendarEvent.events({
-  'click #spaces': function(evt, tmpl) {
-  }
 });
 
 Template.calendarEvent.helpers({
@@ -11,6 +9,16 @@ Template.calendarEvent.helpers({
 });
 
 Template.calendarEvent.rendered = function() {
+  var shift = this.data, 
+      tmpl  = this.firstNode,
+      color = (shift.volunteers.length === parseInt(shift.spacesAvailable))
+                ? 'goldenrod'
+                : shift.requiresApproval
+                  ? 'lightcoral'
+                  : 'LightSteelBlue';
+      
+  tmpl.parentNode.style.backgroundColor = color;
+  tmpl.parentNode.style.color = 'black';
 };
 
 /*
