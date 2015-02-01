@@ -1,11 +1,5 @@
-Template.editShiftModalContent.events({
-  'click .button.join' : function() {
-    Session.set('requesterId', Meteor.userId());
-  },
-  'click .button.request' : function() {
-    Session.set('requesterId', Meteor.userId());
-  }
-});
+// Template.editShiftModalContent.events({
+// });
 
 Template.editShiftModalContent.helpers({
   sameDate: function(start, end) {
@@ -18,6 +12,12 @@ Template.editShiftModalContent.helpers({
 
 // Template.editShiftModalContent.rendered = function() {
 // };
+
+Template.editShiftModal.helpers({
+  selectedShift: function() {
+    return Session.get('selectedShift');
+  }
+});
 
 // Template.editShiftModal.rendered = function() {
 // };

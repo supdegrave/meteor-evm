@@ -1,5 +1,5 @@
-var modalContent, // used for manipulating modal content per event 
-    event;        // holds current event 
+var modalContent,  // used for manipulating modal content per event 
+    selectedShift; // holds current event 
     
 Template.dashboard.rendered = function() {
   modalContent = document.getElementById('modalContent');
@@ -18,7 +18,8 @@ Template.dashboard.rendered = function() {
     },
     // when event is clicked, show edit modal and load event template
     eventClick: function(calEvent, jsEvent, calView) {
-      event = calEvent;
+      selectedShift = calEvent;
+      Session.set('selectedShift', selectedShift);
 
       $('#editShiftModal').modal('show');
       Blaze.renderWithData(
@@ -53,16 +54,16 @@ Template.dashboard.rendered = function() {
       },
       // create button functionality 
       onApprove: function() {
-        if (event.requiresApproval) {
-          event.requests.push(Session.get('requesterId'));
+        if (selectedShift.requiresApproval) {
+          selectedShift.requests.push(Meteor.userId());
         }
         else {
-          event.volunteers.push(Session.get('requesterId'));
+          selectedShift.volunteers.push(Meteor.userId());
         }
         
-        Session.set('requesterId', null); 
-
-        console.log(event);
+        // TODO: persist event or call server method to update
+        Session.set(selectedShift, null); 
+        selectedShift = null;
       }
     });
 };

@@ -8,25 +8,17 @@
               <div class="ui negative labeled icon button">
                 <i class="remove icon"></i>
                 <span>Cancel</span>
-                <!-- 
-                click > 
-                  requestId = joinId = null
-                  dismiss
-                -->
               </div>
               <div class="ui positive right labeled icon button">
-                <span>Done</span>
-                <!-- 
-                click > 
-                  if requiresApproval
-                    add requestId to requests
-                  else 
-                    add joinId to volunteers
-            
-                  save event
-                  dismiss
-                -->
-                <i class="chevron checkmark icon"></i>
+                {{#with selectedShift}}
+                  {{#if requiresApproval}}
+                  <span>Ask to join</span>
+                  <i class="chevron help icon"></i>
+                  {{else}}
+                  <span>Sign me up!</span> 
+                  <i class="chevron checkmark icon"></i>
+                  {{/if}}
+                {{/with}}
               </div>
             </div>
           </div>
@@ -53,25 +45,14 @@
     <div class="sixteen wide column">
       {{#if hasSpaces}}
         {{#if requiresApproval}}
-          <div>Volunteers for this shift must be approved by the team lead.</div>
-          <div>{{volunteers.length}}/{{spacesAvailable}} spaces are filled, and there are {{requests.length}} requests</div>
-          <div class="ui button request">Ask to join this shift</div>
+          <div>{{volunteers.length}}/{{spacesAvailable}} spaces are filled, and there are {{requests.length}} requests.</div>
+          <div style="color: red;">Please note: volunteers for this shift must be approved by the team lead.</div>
         {{else}}  
           <div>{{volunteers.length}}/{{spacesAvailable}} spaces are filled.</div>
-          <div class="ui button join">Sign up for this shift</div>
         {{/if}}
       {{else}}
         Shift full, sorry! wub wub 
       {{/if}}
-      <!-- 
-      if spacesTaken < spacesAvailable
-        if requiresApproval 
-          show [Request] click > set var requestId = userId
-        else 
-          show [Join] click > set var joinId = userId
-      else 
-        show 'Shift Full' 
-      -->
     </div>
 </template>
 
