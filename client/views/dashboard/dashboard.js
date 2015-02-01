@@ -6,11 +6,6 @@ Template.dashboard.rendered = function() {
   
   // initialize calendar view
   $('#calendar').fullCalendar({
-    // TODO: use eventSources with multiple queries, in order to set backgroundColor
-    // - full shifts
-    // - non-full, requiresApproval=true
-    // - non-full, requiresApproval=false
-    
     // populate events 
     events: function(start, end, timezone, callback) {
       callback(Events.find({published: true}).fetch()); 
