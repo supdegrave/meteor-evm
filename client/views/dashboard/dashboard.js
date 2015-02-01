@@ -50,18 +50,20 @@ Template.dashboard.rendered = function() {
       },
       // cancel button functionality
       onDeny: function() {
-        Session.set('requesterId', null);
+        Session.set(selectedShift, null); 
+        selectedShift = null;
       },
       // create button functionality 
       onApprove: function() {
-        if (selectedShift.requiresApproval) {
-          selectedShift.requests.push(Meteor.userId());
-        }
-        else {
-          selectedShift.volunteers.push(Meteor.userId());
-        }
+        var serverMethod = selectedShift.requiresApproval ? 'addVolunteerRequest' : 'addVolunteer';
+
+        Meteor.call(serverMethod, selectedShift._id, Meteor.userId(), function(error, response) {
+          if (error) {
+            // TODO: properly handle error
+            console.error('%s failed: %o', serverMethod, error); 
+          }
+        });
         
-        // TODO: persist event or call server method to update
         Session.set(selectedShift, null); 
         selectedShift = null;
       }

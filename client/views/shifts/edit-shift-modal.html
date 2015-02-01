@@ -31,18 +31,18 @@
 <template name="editShiftModalContent">
 
     <div class="sixteen wide column">
-      <div class="ui header">
-        {{teamName}}: 
-        {{title}} :: 
-        {{#if sameDate start end}}
-          {{formatDateTime start 'DD/MM'}} {{formatDateTime start 'HH'}}h - {{formatDateTime end 'HH'}}h
-        {{else}}
-          {{formatDateTime start 'DD/MM'}} {{formatDateTime start 'HH'}}h - {{formatDateTime end 'DD/MM'}} {{formatDateTime end 'HH'}}h <br>
-        {{/if}}
-      </div>        
-    </div>
+      <div class="ui header">Shift: {{title}}</div>
+      
+      <div>Team: {{teamName}}</div>
 
-    <div class="sixteen wide column">
+      <div>
+      {{#if sameDate start end}}
+        {{formatDateTime start 'D MMMM'}} {{formatDateTime start 'hh:mm'}} - {{formatDateTime end 'hh:mm'}}
+      {{else}}
+        {{formatDateTime start 'D MMMM'}} {{formatDateTime start 'hh:mm'}} - {{formatDateTime end 'D MMMM'}} {{formatDateTime end 'hh:mm'}} <br>
+      {{/if}}
+      </div>
+
       {{#if hasSpaces}}
         {{#if requiresApproval}}
           <div>{{volunteers.length}}/{{spacesAvailable}} spaces are filled, and there are {{requests.length}} requests.</div>
