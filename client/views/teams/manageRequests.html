@@ -10,11 +10,13 @@
 
   <div>
     {{#each requests}}
-    {{displayName .}}
+    <a href="#userprofile" class="modalCallButton" data-userid='{{.}}' data-target="#userprofile">{{displayName .}}</a>
+    
     <div style="float: right;">
       <a href="#"><i data-userid='{{.}}' class="small green checkmark icon"></i></a>
       <a href="#"><i data-userid='{{.}}' class="small red remove icon"></i></a>
     </div>
     {{/each}}
   </div>
+  {{> userProfileModal}}  
 </template>
