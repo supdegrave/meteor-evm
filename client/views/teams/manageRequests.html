@@ -1,0 +1,20 @@
+<template name="manageRequests">
+  <b>{{title}}</b>: 
+
+  {{formatDateTime start 'D MMMM'}} {{formatDateTime start 'HH:mm'}} - 
+  {{#if sameDate start end}}
+    {{formatDateTime end 'HH:mm'}}
+  {{else}}
+    {{formatDateTime end 'D MMMM'}} {{formatDateTime end 'HH:mm'}} <br>
+  {{/if}}
+
+  <div>
+    {{#each requests}}
+    {{displayName .}}
+    <div style="float: right;">
+      <a href="#"><i data-userid='{{.}}' class="small green checkmark icon"></i></a>
+      <a href="#"><i data-userid='{{.}}' class="small red remove icon"></i></a>
+    </div>
+    {{/each}}
+  </div>
+</template>

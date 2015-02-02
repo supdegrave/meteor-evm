@@ -70,24 +70,7 @@
           
           <div class="ui list teal labels">
             {{#each openRequests}}
-              <b>{{title}}</b>: 
-
-              {{formatDateTime start 'D MMMM'}} {{formatDateTime start 'HH:mm'}} - 
-              {{#if sameDate start end}}
-                {{formatDateTime end 'HH:mm'}}
-              {{else}}
-                {{formatDateTime end 'D MMMM'}} {{formatDateTime end 'HH:mm'}} <br>
-              {{/if}}
-
-              <div style="border-top: 1px solid gray;">
-                {{#each requests}}
-                {{displayName .}}
-                <div style="float: right;">
-                <a href="#"><i class="small green checkmark icon"></i></a>
-                <a href="#"><i class="small red remove icon"></i></a>
-                </div>
-                {{/each}}
-              </div>
+            {{> Template.dynamic template='manageRequests' data=. }} 
             {{/each}}
           </div>
         </div>        

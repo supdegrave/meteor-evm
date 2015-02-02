@@ -42,4 +42,23 @@ Meteor.methods({
       return Teams.update({_id: teamId }, {$pull: {members: userId}});
     }
   },
+
+  // approve a volunteer request (remove from requests array, add to volunteers array)
+  approveVolunteerRequest: function(eventId, userId) {
+    return Events.update(
+      {_id: eventId}, 
+      {
+        $addToSet: {volunteers: userId}, 
+        $pull: {requests: userId}
+      }
+    );
+  },
+
+  // deny a volunteer request (remove from requests array)
+  denyVolunteerRequest: function(eventId, userId) {
+    return Events.update(
+      {_id: eventId}, 
+      {$pull: {requests: userId}}
+    );
+  }  
 });
