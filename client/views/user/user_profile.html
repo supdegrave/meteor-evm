@@ -1,11 +1,29 @@
 <template name="userProfile">
   <div class="userProfile">
-      <div class="ui grid">
-        <h3 class="ui header">{{displayName}}{{#if 'profile.playaName'}} : {{profile.playaName}}{{/if}}</h3>
-        <div class="four wide column" href="#">
+      <div class="ui stackable grid">
+        <!-- <h3 class="ui header">{{displayName}}{{#if 'profile.playaName'}} : {{profile.playaName}}{{/if}}</h3> -->
+        <div class="five wide column" href="#">
+          <div class="ui card">
+            {{> avatar userId=this._id shape="circle" class="image profilePic" size="large" }}
+            <div class="content">
+              <div class="header">{{displayName}}</div>
+                {{#if 'profile.playaName'}}
+                <div class="meta">
+                  <i class="small left quote icon"></i>
+                  <span>{{profile.playaName}}</span>
+                  <i class="small right quote icon"></i>
+                </div>
+                {{/if}}
+            </div>
+          </div>
+          <!-- {{#if currentUser.profile.picture}}
+          <img class="circular ui image profilePic" src="{{currentUser.profile.picture}}">
+          {{else}}
           <img class="circular ui image profilePic" src="http://www.empireonline.com/images/features/100greatestcharacters/photos/88.jpg">
-          
-          <div class="ui divided list">
+          {{/if}} -->
+
+
+          <!-- <div class="ui divided list">
             {{#if roleIn 'lead'}}
             <div class="item roleInTeam">
               <div class="ui small purple horizontal label">Lead of</div>
@@ -30,113 +48,174 @@
               {{#each memberOf}}<a class="teamName" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>{{/each}}
             </div>
             {{/if}}
-          </div>         
+          </div>  -->        
         </div>
         
-        <div class="ui six wide column">
-
-        <!-- just display first email -->
-        {{#each emails}}
-        <div class="form-group col-md-12">
-          <label class="col-xs-1">
-            <abbr title="E-mail address" class="fa fa-envelope-o"></abbr>
-          </label>
-          <div class="col-sm-11">
-            <a href="mailto:{{address}}">{{address}}</a>
-          </div>
-        </div>
-        {{/each}}
-        
-        {{#with profile}}
-          {{#with gender}}          
-          <div class="form-group col-md-12 ">
-            <label class="col-xs-1">
-              <abbr title="Gender" class="fa fa-leaf"></abbr>
-            </label>
-            <div class="col-sm-11">
-              {{.}}
+        <div class="five wide column">
+          <div class="ui segment">
+          <!-- just display first email -->
+              <label class="ui ribbon label">
+                Account
+              </label>
+          <div class="ui divided list">
+            {{#each emails}}
+            <div class="item">
+                <abbr title="E-mail address"><i class="icon envelope"></i></abbr>
+                <!-- {{#if editing}}
+                  {{> m_editable type="text" value=address position="right"}}
+                {{else}} -->
+                  <a href="mailto:{{address}}">{{address}}</a>
+                <!-- {{/if}} -->
             </div>
+            {{/each}}
+          
+            {{#with profile}}
+              {{#with gender}}          
+              <div class="item">
+                  <abbr title="Gender"> <i class="icon transgender"></i></abbr>
+                <span class="content">
+                  {{.}}
+                </span>
+              </div>
+              {{/with}}
+
+              {{#with skype}}
+              <div class="item">
+                <abbr title="Skype I.D."><i class="icon skype"></i></abbr>
+                <span class="content">
+                  {{.}}
+                </span>
+              </div>
+              {{/with}}
+
+              {{#if phones}}
+              <div class="item">
+                <abbr title="Phone number"><i class="icon call"></i></abbr>
+                <span class="ui list" style="display: inline-block;">
+                {{#each phones}}
+                  <span class="item">
+                    {{#if countryCode}}(+{{countryCode}}) {{/if}}{{number}}
+                  </span>
+                {{/each}}
+                </span>
+              </div>
+              {{/if}}
+            {{/with}}
+            </div>
+              
+            {{#with profile}}
+              {{#with diet}}
+                <label class="ui ribbon label"><i class="food icon"></i>Diet
+                </label>
+            <div class="ui divided list">
+                <!-- <p><b>DIET</b></p> -->
+              <div class="item">
+                Preferences: 
+                <div class="ui horizontal list">
+                  {{#each preferences}}
+                    <div class="item">
+                      {{.}}
+                    </div>
+                  {{/each}}
+                </div>
+              </div>
+              
+              <div class="item">
+                Allergies:
+                <div class="ui horizontal list">
+                {{#each allergies}}
+                    <div class="item">
+                      {{.}}
+                    </div>
+                {{/each}}
+                </div>
+              </div>
+            </div>
+
+              {{/with}}
+
+              {{#with medical}}
+                <label class="ui ribbon label">
+                  <i class="first aid icon"></i>
+                  Medical
+                </label>
+            <div class="ui divided list">
+            <div class="item">
+              
+              Medications: 
+              <div class="ui horizontal list">
+              {{#each medications}}
+                  <div class="item">
+                    {{.}}
+                  </div>
+              {{/each}}
+              </div>
+            </div>
+              
+            <div class="item">
+                Allergies:
+              <div class="ui horizontal list">
+                {{#each allergies}}
+                  <div class="item">
+                    {{.}}
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+                
+            {{#if notes}}
+            <div class="item">
+                <p>{{notes}}</p>
+            </div>
+            {{/if}}
           </div>
           {{/with}}
 
-          {{#with skype}}
-          <div class="form-group col-md-12 ">
-            <label class="col-xs-1">
-              <abbr title="Skype I.D." class="fa fa-skype"></abbr>
-            </label>
-            <div class="col-sm-11">
-              {{.}}
+              {{#with emergencyContact}}
+                <label class="ui ribbon label">
+                  <i class="warning sign icon"></i>
+                  Emergency Contact
+                </label>
+            <div class="ui divided list">
+                <div class="item">
+                    <p>Name: {{name}}</p>
+                </div>
+                <div class="item">
+                 <p>Relation: {{relation}}</p>
+                </div>
+                <div class="item">
+                 <p>Email: {{email}}</p>
+                </div>
+                <div class="item">
+                  <p>Phone: {{phone.countryCode}} {{phone.number}}</p>
+                </div>
+                <div class="item">
+                 <p>Time Zone: {{timezone}}</p>
+                </div>
             </div>
-          </div>
-          {{/with}}
+              {{/with}}
 
-          {{#each phones}}
-          <div class="form-group col-md-12">
+          {{/with}}
+          <!-- only one address for now -->
+          <!-- {{#each address}}
+          <div class="form-group col-md-12 address">
             <label class="col-xs-1">
-              <abbr title="Phone number" class="fa fa-phone"></abbr>
+              <abbr title="Address" class="fa fa-home"></abbr>
             </label>
             <div class="col-sm-11">
-              {{#if countryCode}}(+{{countryCode}}) {{/if}}{{number}}
+              <p>{{streetNumber}}, {{address1}}</p>
+              <p>{{address2}}</p>
+              <p>{{postalCode}} {{city}}, {{country}}</p>
             </div>
           </div>
           {{/each}}
-          
-          {{#with diet}}
-            <p><b>DIET</b></p>
-            Preferences: 
-            {{#each preferences}}
-              {{.}}<br>
-            {{/each}}
-          
-            Allergies:
-            {{#each allergies}}
-              {{.}}<br>
-            {{/each}}
-          {{/with}}
-
-          {{#with medical}}
-            <p><b>MEDICAL</b></p>
-            Medications: 
-            {{#each medications}}
-              {{.}}<br>
-            {{/each}}
-          
-            Allergies:
-            {{#each allergies}}
-              {{.}}<br>
-            {{/each}}
-            
-            <p>{{notes}}</p>
-          {{/with}}
-
-          {{#with emergencyContact}}
-            <p><b>EMERGENCY CONTACT</b></p>
-            <p>Name: {{name}}</p>
-            <p>Relation: {{relation}}</p>
-            <p>Email: {{email}}</p>
-            <p>Phone: {{phone.countryCode}} {{phone.number}}</p>
-            <p>Time Zone: {{timezone}}</p>
-          {{/with}}
-        {{/with}}
-
-        <!-- only one address for now -->
-        <!-- {{#each address}}
-        <div class="form-group col-md-12 address">
-          <label class="col-xs-1">
-            <abbr title="Address" class="fa fa-home"></abbr>
-          </label>
-          <div class="col-sm-11">
-            <p>{{streetNumber}}, {{address1}}</p>
-            <p>{{address2}}</p>
-            <p>{{postalCode}} {{city}}, {{country}}</p>
-          </div>
-        </div>
-        {{/each}}
-        <div class="horizontalDivider col-sm-12"></div> -->
+          <div class="horizontalDivider col-sm-12"></div> -->
+      </div>
       </div>
 
 
       <div class="ui six wide column">
+        {{> myTeams header="Teams"}}
         <!-- Skills 
         (Aqua: editable table. Skills should have a description/explanation, 
         including skill levels. Gender should go under skills for shift 

@@ -1,0 +1,55 @@
+<template name="myTeams">
+<div class="ui segment myTeams">
+  <label class="ui ribbon label">
+    <i class="users icon"></i>
+    {{#if this.header}}
+      {{this.header}}
+    {{else}}
+      My Teams
+    {{/if}}
+  </label>
+  <div class="ui divided list">
+    {{#if roleIn 'owner'}}
+    <div class="item roleInTeam horizontal list">
+      <div class="ui small green horizontal label">Board supervisor</div>
+      <div class="ui horizontal list">
+      {{#each roleIn 'owner'}}<a class="teamName item" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>{{/each}}
+      </div>
+    </div>
+    {{/if}}
+    {{#if roleIn 'lead'}}
+    <div class="item roleInTeam horizontal list">
+      <div class="ui small purple horizontal label">Lead</div>
+      <div class="ui horizontal list">
+      {{#each roleIn 'lead'}}<a class="teamName item" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>{{/each}}
+      </div>
+    </div>
+    {{/if}}
+    {{#if roleIn 'colead'}}
+    <div class="item roleInTeam horizontal list">
+      <div class="ui small teal horizontal label">Co-lead</div>
+      <div class="ui horizontal list">
+      {{#each roleIn 'colead'}}<a class="teamName item" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>{{/each}}
+      </div>
+    </div>
+    {{/if}}
+    {{#if roleIn 'mentor'}}
+    <div class="item roleInTeam horizontal list">
+      <div class="ui small blue horizontal label">Mentor</div>
+      <div class="ui horizontal list">
+      {{#each roleIn 'mentor'}}<a class="teamName item" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>{{/each}}
+      </div>
+    </div>
+    {{/if}}
+    {{#if memberOf}}
+    <div class="item roleInTeam horizontal list">
+      <div class="ui small orange horizontal label">Member</div>
+      <div class="ui horizontal list">
+      {{#each memberOf}}<a class="teamName item" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>{{/each}}
+      </div>
+    </div>
+    {{/if}} 
+  </div>
+
+</div>
+</template>

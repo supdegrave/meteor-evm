@@ -45,6 +45,11 @@ Tracker.autorun(function(){
   Meteor.subscribe("allUserData");
 });
 
+Avatar.options = {
+  fallbackType: "default image",
+  gravatarDefault: "identicon"
+};
+
 Template.registerHelper("userInScope", function(){
   return Session.get('userInScope');
 });
