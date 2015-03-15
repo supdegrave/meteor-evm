@@ -37,29 +37,17 @@
         <li class="role">Lead:
           {{#if lead}}
           <a href="{{pathFor 'user' id=lead}}">{{displayName lead}}</a>
-          {{else}}
-            {{#if isUser}}
-            <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
-            {{/if}}
           {{/if}}
         </li>
         <li class="role">Co-Lead:
           {{#if colead}}
-          <a href="{{pathFor 'user' id=lead}}">{{displayName colead}}</a>
-          {{else}}
-            {{#if isUser}}
-            <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
-            {{/if}}
+          <a href="{{pathFor 'user' id=colead}}">{{displayName colead}}</a>
           {{/if}}
         </li>
         <li class="role">
           Mentor:
           {{#if mentor}}
           <a href="{{pathFor 'user' id=mentor}}">{{displayName mentor}}</a>
-          {{else}}
-            {{#if isUser}}
-            <a class="ui link orange button"><i class="add icon"></i>Fill this role</a>
-            {{/if}}
           {{/if}}
         </li>
       </ul>

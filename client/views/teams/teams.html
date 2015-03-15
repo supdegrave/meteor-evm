@@ -58,48 +58,7 @@
 
     </div>
     {{#if canEdit}}                                              
-    <div class="ui divider"></div>
-    
-    <!-- create / show rotas -->
-    <div class="ui two column stackable grid">
-      <div class="column">
-        <div class="ui blue segment">
-          <div class="ui blue header">
-            <div class="active section">Shifts with open requests</div>
-          </div>
-          
-          <div class="ui list teal labels">
-            {{#each openRequests}}
-            {{> Template.dynamic template='manageRequests' data=. }} 
-            {{/each}}
-          </div>
-        </div>        
-      </div>
-      
-      <div class="column">
-        <div class="ui teal segment">
-          <div class="ui teal header">
-            <div class="active section">Shift Rotas</div>
-          </div>
-            
-            <div class="ui list teal labels">
-              {{#each rotas}}
-              <div>
-                {{name}}      
-              </div>
-              {{/each}}
-            </div>
-  
-            {{#if canEdit}}
-            <div class="clear ui divider"></div>
-            <button class="ui teal action button add-shift-rota" data-target="addShiftRotaModal">
-              <i class="plus icon"></i> 
-              Add Shift or Rota
-            </button>
-            {{/if}}
-        </div>
-      </div>
-    </div>
+    <!-- <div class="ui divider"></div> -->
     {{/if}}
 
     {{>confirmationModal}}

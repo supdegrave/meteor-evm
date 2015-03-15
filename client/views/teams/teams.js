@@ -25,16 +25,8 @@ Template.team.helpers({
   roles: function() {
     return TEAM_ROLES;
   },
-  rotas: function() {
-    if (currentTeam) {
-      return Rotas.find({teamId: currentTeam._id});
-    }
-  },
   userInScope: function() {
     return Session.get('userInScope');
-  },
-  openRequests: function() {
-    return Events.find({requiresApproval: true, requests: {$ne: []}});
   },
 });
 
@@ -85,7 +77,7 @@ Template.team.events({
   'click .remove-member': function(evt, tmpl) { 
     console.log("this: "+this.toString());
     var targetMember = this.toString();
-    // console.log("this.toString(): "+this.toString());
+
     $("#confirmationmodal .content .right").html("<p>Are you sure you want to remove user {{displayName this}} from this team?</p>");
     $("#confirmationmodal").modal({
       onApprove : function() {
@@ -102,10 +94,6 @@ Template.team.events({
       }
     })
     .modal("show");
-  },
-  
-  'click button.add-shift-rota': function(evt, tmpl) {
-    // show new shift / rota wizard modal 
-    $('#addShiftRotaModal').modal('show');
   }
+  
 });
