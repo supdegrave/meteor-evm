@@ -78,22 +78,46 @@ Template.team.events({
     console.log("this: "+this.toString());
     var targetMember = this.toString();
 
-    $("#confirmationmodal .content .right").html("<p>Are you sure you want to remove user {{displayName this}} from this team?</p>");
-    $("#confirmationmodal").modal({
-      onApprove : function() {
-        if (currentTeam) {
-        Meteor.call('removeUserFromTeam', targetMember, currentTeam._id, function(err, res) {
-          if (res) {
-            console.log('add_to_team_modal.js // TODO: add verification after save');
+    $("#confirmationmodal .content .right")
+      .html("<p>Are you sure you want to remove user {{displayName this}} from this team?</p>");
+      
+    $("#confirmationmodal")
+      .modal({
+        onApprove : function() {
+          if (currentTeam) {
+          Meteor.call('removeUserFromTeam', targetMember, currentTeam._id, function(err, res) {
+            if (res) {
+              console.log('add_to_team_modal.js // TODO: add verification after save');
+            }
+            else if (err) {
+              console.log(err);
+            }
+            });
           }
-          else if (err) {
-            console.log(err);
-          }
-          });
         }
-      }
-    })
-    .modal("show");
+      })
+      .modal("show");
+  }, 
+  
+  'click button.action.add-member': function(evt, tmpl) {
+    $('#addmember.modal')
+      .modal({
+        onApprove : function() {
+          var newMember = $('#addmember #user-to-add').val();
+          if (currentTeam && newMember) {
+            
+            Meteor.call('addUserToTeam', newMember, currentTeam._id, function(err, res) {
+              if (res) {
+                console.log('TODO: add verification after save');
+              }
+              else if (err) {
+                console.log(err);
+              }
+            });
+          }
+        }
+      })
+      .modal('show');
   }
   
 });

@@ -1,14 +1,18 @@
 <template name="addMemberModal">
   <div id="addmember" class="ui small modal" >
     <div class="header">
-      Add a user
+      Add a member to {{currentTeam.name}}
     </div>
     <div class="content">
       <div class="left">
         <i class="user icon"></i>
       </div>
       <div class="right">
-        <p>Here, we still have to code something, possibly a typeahead input?</p>
+        <select id="user-to-add">
+          {{#each possibleMembers}}
+          <option value="{{_id}}">{{displayName}}</option>
+          {{/each}}
+        </select>
       </div>
     </div>
     <div class="actions">

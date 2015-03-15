@@ -38,7 +38,7 @@
       <div class="column">
         <div class="ui teal segment">
           <div class="ui teal header">Members:</div>
-          <div class="ui horizontal divided list">
+          <div class="ui vertical list">
             {{#each members}}
             <a class="item" href="{{pathFor 'user' id=this}}">
               {{#if canEdit}}<i class="remove-member remove icon"></i>{{/if}}
@@ -48,7 +48,7 @@
           </div>
           {{#if canEdit}}
           <div class="clear ui divider"></div>
-          <button class="ui teal action button add-member" data-target="#addmember">
+          <button class="ui teal action button add-member">
             <i class="plus icon"></i> 
             Add Member
           </button>
