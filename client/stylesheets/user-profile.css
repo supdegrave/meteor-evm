@@ -1,6 +1,6 @@
 .userProfile .profilePic{
-  width: 140px !important;
-  height: 140px !important;
+  width: 100% !important;
+  height: auto !important;
   border:10px solid #eee;
   transition: all 0.2s ease-in-out;
 }
