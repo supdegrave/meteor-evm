@@ -1,20 +1,37 @@
 <template name="dashboard">
   <div class="main container">
-    <h2> Welcome to the dashboard</h2>
+    <h1 class="ui header">
+      <i class="child icon"></i>
+      <div class="content">
+        Welcome to the Volunteer Management System
+      <div class="sub header">Nowhere Festival</div>
+      </div>
+    </h1>
    {{#if firstlogin}}
       {{> firstLogin}}
     {{else}}
-      <div>
-        TODO: determine dashboard content
+      <div class="ui grid ">
+      <div class="sixteen wide column">
+        <div>
+          intro blurb
+        </div>
       </div>
-      <ul>
-        <li>intro blurb</li>
-        <li>link to edit profile</li>
-        <li>[if org member / lead / co-lead] Link to my teams</li>
-      </ul>
+        <div class="six wide column">
+          <div class="ui top attached segment">
+            <h3 class="ui header">
+              <i class="circle help icon"></i>
+              <div class="content">Lost?</div>
+            </h3>
+            <p>You can start by filling your profile:</p>
+          </div>
+          <a class="ui bottom attached primary button" href="{{pathFor 'user' id=currentUser._id }}"><i class="user icon"></i>Edit my profile</a>
+        </div>
+        <div class="eight wide column">  
+        {{> myTeams}}
+        </div>
+      </div>
     {{/if}}
  </div>
  
  {{>editShiftModal}}
 </template>
-

@@ -9,5 +9,5 @@ Template.dashboard.helpers({
       && user.services.resume 
       && user.services.resume.loginTokens 
       && user.services.resume.loginTokens.length<1;
-  }
-})
+  },   
+});
