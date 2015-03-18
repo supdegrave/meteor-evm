@@ -2,9 +2,9 @@ Template.addSkillModal.helpers({
   availableSkills: function() {
     var skillsIHave = Meteor.users.findOne(Meteor.userId(),{fields:{"profile.skills":1}})
     // console.log(skillsIHave);
-    var skillNames= _.pluck(skillsIHave.profile.skills, 'name');
+    var skillIds= _.pluck(skillsIHave.profile.skills, '_id');
     //Returns only the skills the user does not already have
-    var query = Skills.find({ name: { $nin: skillNames } });
+    var query = Skills.find({ _id: { $nin: skillIds } });
     // console.log("availableSkills: "+query.fetch())
     return query;
   },
