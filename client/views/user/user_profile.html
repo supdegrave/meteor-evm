@@ -237,14 +237,24 @@
           </label>
          
           <div class="ui divided list">
-            {{#each profile.skills}}
-              <span class="skill item">{{name}}</span>
-            {{/each}}
+            
             {{#if myself}}
+              {{#each profile.skills}}
+                <span class="skill item">
+                  {{name}}
+                  <span class="ui mini compact icon red basic button right floated deleteSkill">
+                    <i class="close icon"></i>
+                  </span>
+                </span>
+              {{/each}}
               <div class="ui small fluid basic labeled icon button modalCallButton" data-target="#addSkill">
                 <i class="plus icon"></i>
                 I can do more stuff!
               </div>
+            {{else}}
+              {{#each profile.skills}}
+                <span class="skill item">{{name}}</span>
+              {{/each}}
             {{/if}}
           </div>
         </div>
