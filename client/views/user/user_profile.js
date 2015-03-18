@@ -10,6 +10,8 @@ Template.userProfile.events({
 
 Template.userProfile.rendered = function() {
   modalContent = document.getElementById('modalContent');
+      console.log('url:', Avatar.getUrl());
+
 };
 
 

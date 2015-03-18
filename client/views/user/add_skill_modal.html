@@ -6,8 +6,10 @@
     </div>
     <div class="content addToTeamSelect">
       {{#checkboxListWrapper}}
-      {{#each getSkills}}
+      {{#each availableSkills}}
       {{> checkboxListItem}}
+      {{else}} 
+        <span> Looks like you already have all the skills, you beast!</span>
       {{/each}}
       {{/checkboxListWrapper}}
     </div>

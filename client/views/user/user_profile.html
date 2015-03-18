@@ -4,7 +4,9 @@
         <!-- <h3 class="ui header">{{displayName}}{{#if 'profile.playaName'}} : {{profile.playaName}}{{/if}}</h3> -->
         <div class="five wide column" href="#">
           <div class="ui card">
-            {{> avatar userId=this._id shape="circle" class="image profilePic" size="large" }}
+          
+            <!-- {{> avatar class="image profilePic"}} -->
+            {{> avatar user=this shape="circle" class="image profilePic" size="large" }}
             <div class="content">
               <div class="header">{{displayName}}</div>
                 {{#if 'profile.playaName'}}
@@ -235,7 +237,9 @@
           </label>
          
           <div class="ui divided list">
-            {{#each skills}}<span class="skill item">{{name}}</span>{{/each}}
+            {{#each profile.skills}}
+              <span class="skill item">{{name}}</span>
+            {{/each}}
             {{#if myself}}
               <div class="ui small fluid basic labeled icon button modalCallButton" data-target="#addSkill">
                 <i class="plus icon"></i>
