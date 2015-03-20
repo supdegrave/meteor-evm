@@ -1,7 +1,10 @@
 <template name="addMemberModal">
   <div id="addmember" class="ui small modal" >
     <div class="header">
-      Add a member to {{currentTeam.name}}
+      Add a member
+      {{#with currentTeam}}
+       to  {{name}}
+       {{/with}}
     </div>
     <div class="content">
       <div class="left">
