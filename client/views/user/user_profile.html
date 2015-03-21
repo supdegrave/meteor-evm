@@ -8,49 +8,23 @@
             <!-- {{> avatar class="image profilePic"}} -->
             {{> avatar user=this shape="circle" class="image profilePic" size="large" }}
             <div class="content">
-              <div class="header">{{displayName}}</div>
-                {{#if 'profile.playaName'}}
-                <div class="meta">
-                  <i class="small left quote icon"></i>
-                  <span>{{profile.playaName}}</span>
-                  <i class="small right quote icon"></i>
-                </div>
-                {{/if}}
+              {{#if profile.playaName}}
+              <div class="header">
+                <i class="small disabled left quote icon"></i>
+                <span>{{profile.playaName}}</span>
+                <i class="small disabled right quote icon"></i>
+              </div>
+              {{/if}}
+              <div class="meta">
+              {{displayName}}
+              </div>
             </div>
           </div>
           <!-- {{#if currentUser.profile.picture}}
           <img class="circular ui image profilePic" src="{{currentUser.profile.picture}}">
           {{else}}
           <img class="circular ui image profilePic" src="http://www.empireonline.com/images/features/100greatestcharacters/photos/88.jpg">
-          {{/if}} -->
-
-
-          <!-- <div class="ui divided list">
-            {{#if roleIn 'lead'}}
-            <div class="item roleInTeam">
-              <div class="ui small purple horizontal label">Lead of</div>
-              {{#each roleIn 'lead'}}<a class="teamName" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>{{/each}}
-            </div>
-            {{/if}}
-            {{#if roleIn 'colead'}}
-            <div class="item roleInTeam">
-              <div class="ui small teal horizontal label">Co-lead of</div>
-              {{#each roleIn 'colead'}}<a class="teamName" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>{{/each}}
-            </div>
-            {{/if}}
-            {{#if roleIn 'mentor'}}
-            <div class="item roleInTeam">
-              <div class="ui small blue horizontal label">Mentor of</div>
-              {{#each roleIn 'mentor'}}<a class="teamName" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>{{/each}}
-            </div>
-            {{/if}}
-            {{#if memberOf}}
-            <div class="item roleInTeam">
-              <div class="ui small orange horizontal label">Member of</div>
-              {{#each memberOf}}<a class="teamName" href="{{pathFor 'team' name=name id=_id}}">{{name}}</a>{{/each}}
-            </div>
-            {{/if}}
-          </div>  -->        
+          {{/if}} -->     
         </div>
         
         <div class="five wide column">
