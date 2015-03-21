@@ -40,8 +40,12 @@
           <div class="ui teal header">Members:</div>
           <div class="ui vertical list">
             {{#each members}}
+            {{#if canEdit}}
+              <span class="ui mini compact icon red basic button right floated remove-member">
+                <i class="remove icon"></i>
+              </span>
+            {{/if}}
             <a class="item" href="{{pathFor 'user' id=this}}">
-              {{#if canEdit}}<i class="remove-member remove icon"></i>{{/if}}
               {{displayName this}}
             </a>
             {{/each}}

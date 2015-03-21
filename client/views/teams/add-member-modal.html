@@ -3,26 +3,35 @@
     <div class="header">
       Add a member
       {{#with currentTeam}}
-       to  {{name}}
+       to team {{name}}
        {{/with}}
     </div>
     <div class="content">
-      <div class="left">
+      <div class="image">
         <i class="user icon"></i>
       </div>
-      <div class="right">
-        <select id="user-to-add">
+      <div class="description">
+        <h4>Select a user from this list:</h4>
+        <div class="ui fluid selection dropdown">
+          <input type="hidden" id="user-to-add" value="">
+          <div class="default text">Available users</div>
+          <i class="dropdown icon"></i>
+          <div class="menu">
           {{#each possibleMembers}}
-          <option value="{{_id}}">{{displayName}}</option>
+            <div class="item" data-value="{{_id}}">{{displayName}}</div>
           {{/each}}
-        </select>
-      </div>
+          </div>
+          {{dropdownCaller}}
+        </div>
     </div>
+  </div>
+
+
     <div class="actions">
       <div class="two fluid ui buttons">
         <div class="ui negative labeled icon button">
           <i class="remove icon"></i>
-          Nah, I changed my mind
+          I changed my mind
         </div>
         <div class="ui positive right labeled icon button">
           Yeah, baby, do it !

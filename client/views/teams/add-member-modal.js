@@ -13,5 +13,11 @@ Template.addMemberModal.helpers({
   
   possibleMembers: function() {
     return Meteor.users.find( {_id: {$nin: currentTeam.members}} );
+  },
+
+  dropdownCaller: function() {
+  	_.delay(function (){
+	  $('.ui.dropdown').dropdown();
+	}, 500);
   }
 })
