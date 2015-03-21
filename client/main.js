@@ -77,3 +77,8 @@ Template.loginDropdown.helpers({
     return Meteor.userId();
   }
 });
+Template.registerHelper('dropdownCaller', function() {
+  _.delay(function (){
+    $('.ui.dropdown').dropdown();
+  }, 500);
+});

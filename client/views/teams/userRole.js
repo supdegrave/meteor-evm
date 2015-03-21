@@ -34,10 +34,6 @@ Template.userRole.events({
   }
 });
 
-//Dropdown initializer with a throttle to prevent it being called after each dropdown element is added
-Template.userRole.dropdownCaller = _.throttle(function (){
-  $('.ui.dropdown.user-role-dropdown').dropdown();
-}, 600);
 
 Template.userRole.rendered = function(){
   setSelectedUser();
