@@ -1,10 +1,11 @@
 <template name="dashboard">
   <div class="main container">
+  <div class="ui hidden divider"></div>
     <h1 class="ui header">
       <i class="child icon"></i>
       <div class="content">
-        Welcome to the Volunteer Management System
-      <div class="sub header">Nowhere Festival</div>
+        Welcome, you sexy volunteer!
+      <div class="sub header">Nowhere Festival Volunteer Management</div>
       </div>
     </h1>
    {{#if firstlogin}}
@@ -12,17 +13,33 @@
     {{else}}
       <div class="ui grid ">
       <div class="sixteen wide column">
-        <div>
-          intro blurb
-        </div>
+        <p>
+          This website aims to centralise information about our sexy volunteers and simplify the volunteering process.
+          Although currently in development, it will soon provide tools to
+          <ul>
+            <li>help manage teams</li>
+            <li>create shifts and rotas</li>
+            <li>allow volunteers to sign up for shifts</li>
+            <li>summarize a volunteer's schedule for pre-, during and post-event</li>
+          </ul>
+
+          In the meantime, please fill in your information <a href="{{pathFor 'user' id=currentUser._id }}">on your profile</a>, hopefully for the last time EVER !<br/>
+          Sensitive information (eg: medical, personnal, emergency contact details) are made available on a strict need-to-know basis.<br/><br/>
+
+          If you encounter any problem, please report it, along with a description of the problem and/or a screenshot, to <a href="mailto:evm@goingnowhere.org">evm@goingnowhere.org</a>. 
+
+          <h4>We love you !</h4>
+        </p>
       </div>
-        <div class="six wide column">
+      <div class="ui divider"></div>
+        <div class="six wide right floated column">
           <div class="ui top attached segment">
             <h3 class="ui header">
               <i class="circle help icon"></i>
-              <div class="content">Lost?</div>
+              <div class="content">Where to start?</div>
             </h3>
-            <p>You can start by filling your profile:</p>
+            <p>Not sure what to do?<br/>
+            How about filling up your profile?</p>
           </div>
           <a class="ui bottom attached primary button" href="{{pathFor 'user' id=currentUser._id }}"><i class="user icon"></i>Edit my profile</a>
         </div>
