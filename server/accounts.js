@@ -13,7 +13,26 @@ volunteer profile. \r\n\r\n"
         + url
         + "\r\n\r\nThanks! \r\n-Nowhere Volunteers"
     }
-  }
+  },
+  resetPassword: {
+    subject: function () {
+      return "So you forgot your password, huh? — Nowhere Volunteer Manager";
+    },
+    text: function (user, url) {
+      return "Hey there! So you've had one drink too many, \
+or you've been distracted by a passing muse, \
+and you forgot your password. It happens to the best of us. \
+Go on and click this link to make it all better: \r\n"
+        + url +
+"\r\n\r\nThat being said, if you didn't ask fo anything, \
+then someone else might be trying access your account. \
+Why the hell would someone do that? \
+Sign you up for shifts? \
+\r\nPlease send us an e-mail at volunteers@goingnowhere.org \
+if that is the case, and we will track the baddies !"
+        + "\r\n\r\nThanks! \r\n-Nowhere Volunteers"
+    }
+  },
 }; 
 
 Accounts.onLogin(function(loginAttempt) {
