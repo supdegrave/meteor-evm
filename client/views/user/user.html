@@ -9,7 +9,11 @@
           </span>
         </h1>
 
+        {{#if editMode}}
+        {{> editProfile}}
+        {{else}}
         {{> userProfile}}
+        {{/if}}
 <!--     {{#if myself}}
     <div class="col-sm-12 col-md-6">
       {{> teamsDashboard}}

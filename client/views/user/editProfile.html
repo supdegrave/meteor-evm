@@ -1,0 +1,77 @@
+<template name="editProfile">
+  <div class="userProfile">
+    <div id="editProfileForm" class="ui stackable grid">
+      <div class="five wide column" href="#">
+        <div class="ui card">          
+          <!-- {{> avatar class="image profilePic"}} -->
+          {{> avatar user=this shape="circle" class="image profilePic" size="large" }}
+        </div>
+      </div>
+      
+      <div class="ten wide column">
+      {{#autoForm type="update" collection="Meteor.users" schema="userSchema" doc=user autosave=true}}
+        
+        <!-- privacy notice -->
+        <div class="ui segment">
+          <label style="width: 45%; margin-bottom: 10px;" class="ui ribbon label"><i class="info circle icon"></i>About your information</label>
+          
+          <div>
+            Blah blah privacy blurb... 
+          </div>
+        </div>
+
+        <!-- Profile information: first and last name, playa name, gender -->
+        <div class="ui segment">
+          <label style="width: 45%; margin-bottom: 10px;" class="ui ribbon label"><i class="user icon"></i>Profile Information</label>
+
+          {{> afQuickField name="profile.firstName"}}
+          {{> afQuickField name="profile.lastName"}}
+          {{> afQuickField name="profile.playaName"}}
+          {{> afQuickField name="profile.gender" options="allowed"}}
+        </div>
+
+        <!-- Contact Information: email, phone, skype -->
+        <div class="ui segment">
+          <label style="width: 45%; margin-bottom: 10px;" class="ui ribbon label"><i class="mail outline icon"></i>Contact Information</label>
+          
+          {{> afQuickField name="emails.0.address" label="Email address"}}
+          {{> afQuickField name="profile.phones.0.countryCode" label="Phone country code"}} 
+          {{> afQuickField name="profile.phones.0.number" label="Phone number"}} 
+          {{> afQuickField name="profile.skype"}} 
+        </div>
+
+        <!-- Diet: preferences, allergies -->  
+        <div class="ui segment">
+          <label style="width: 45%; margin-bottom: 10px;" class="ui ribbon label"><i class="food icon"></i>Diet</label>
+
+          {{> afQuickField name="profile.diet.preferences"}} 
+          {{> afQuickField name="profile.diet.allergies"}} 
+        </div>
+          
+        <!-- Medical information: medications, allergies -->  
+        <div class="ui segment">
+          <label style="width: 45%; margin-bottom: 10px;" class="ui ribbon label"><i class="first aid icon"></i>Medical information</label>
+
+          {{> afQuickField name="profile.medical.medications"}} 
+          {{> afQuickField name="profile.medical.allergies"}}
+          {{> afQuickField name="profile.medical.notes" rows=5}}
+        </div>
+
+        <!-- emergency contact information -->
+        <div class="ui segment">
+          <label style="width: 45%; margin-bottom: 10px;" class="ui ribbon label"> <i class="warning circle icon"></i>Emergency Contact</label>
+
+          {{> afQuickField name="profile.emergencyContact.name"}}
+          {{> afQuickField name="profile.emergencyContact.relation"}}
+          {{> afQuickField name="profile.emergencyContact.email"}} 
+          {{> afQuickField name="profile.emergencyContact.phone.countryCode" label="Phone country code"}}
+          {{> afQuickField name="profile.emergencyContact.phone.number" label="Phone number"}}
+          {{> afQuickField name="profile.emergencyContact.timezone" options="allowed"}}
+        </div>
+
+      {{/autoForm}}
+      </div>
+      
+    </div>
+  </div>
+</template>

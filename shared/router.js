@@ -68,6 +68,19 @@ Router.map(function() {
     }
   });
   
+  // *** edit user profile ********************* //
+  this.route('edit_user', {
+    name: 'edit_user',
+    template: 'user',
+    path: '/users/:id/edit',
+    data: function() {
+      if (Meteor.user()) {
+        Session.set('edit_profile', true);
+        return Meteor.users.findOne({_id: this.params.id});
+      }
+    }
+  });
+  
   // *** display team by name ******************* //
   this.route('team', {
     name:'team',

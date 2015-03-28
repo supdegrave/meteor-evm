@@ -19,26 +19,24 @@ userProfileSchema = new SimpleSchema({
   playaName: {
     type: String,
     regEx: /^[a-zA-Z- ]{2,40}$/,
-    label: "Playa Name",
+    label: "Playa name",
     optional: true
     // custom: function() {/* verify uniqueness */}
   },
   skype: {
     type: String,
     regEx: /^[a-z][a-z0-9\.,\-_]{5,31}$/i,
-    label: "Skype Username",
+    label: "Skype username",
     optional: true, 
     restricted: true
   },
   firstName: {
     type: String,
-    regEx: /^[a-zA-Z-]{2,25}$/,
-    optional: true
+    regEx: /^[a-zA-Z-]{2,25}$/
   },
   lastName: {
     type: String,
-    regEx: /^[a-zA-Z]{2,25}$/,
-    optional: true
+    regEx: /^[a-zA-Z]{2,25}$/
   },
   gender: {
     type: String,
@@ -59,10 +57,12 @@ userProfileSchema = new SimpleSchema({
     label: "Dietary Information (preferences, allergies)"
   }  ,
   "diet.allergies": {
-    type: [String]
+    type: [String], 
+    optional: true
   }  ,
   "diet.preferences": {
-    type: [String]
+    type: [String], 
+    optional: true
   },
 
   emergencyContact: {
@@ -84,7 +84,41 @@ userProfileSchema = new SimpleSchema({
     type: String
   },
   "emergencyContact.timezone": {
-    type: String
+    type: String, 
+    allowedValues: [
+      '(UTC-12) Eniwetok, Kwajalein', 
+      '(UTC-11) Midway Island, Samoa', 
+      '(UTC-10) Hawaii (US)', 
+      '(UTC-9)  Alaska (US & Canada)', 
+      '(UTC-8) Pacific Time (US & Canada)', 
+      '(UTC-7) Mountain Time (US & Canada)', 
+      '(UTC-6) Central Time (US & Canada)', 
+      '(UTC-5) Eastern Time (US & Canada)', 
+      '(UTC-4)  Atlantic Time (Canada)', 
+      '(UTC-3:30) Canada/Newfoundland', 
+      '(UTC-3) Brasilia, Buenos Aires, Georgetown', 
+      '(UTC-2) Mid-Atlantic', 
+      '(UTC-1) Azores, Cape Verde Is.', 
+      '(UTC±0) Greenwich Mean Time (London, Lisbon)', 
+      '(UTC+1) Amsterdam, Berlin, Paris, Rome, Madrid', 
+      '(UTC+2) Athens, Helsinki, Istanbul, Cairo, E. Europe', 
+      '(UTC+3) Baghdad, Kuwait, Nairobi, Moscow', 
+      '(UTC+3:30) Tehran', 
+      '(UTC+4) Abu Dhabi, Kazan, Muscat', 
+      '(UTC+4:30) Kabul', 
+      '(UTC+5) Islamabad, Karachi, Tashkent', 
+      '(UTC+5:30) Bombay, Calcutta, New Delhi', 
+      '(UTC+5:45) Nepal', 
+      '(UTC+6) Almaty, Dhaka', 
+      '(UTC+6:30) Cocos Islands, Yangon', 
+      '(UTC+7) Bangkok, Jakarta, Hanoi', 
+      '(UTC+8) Beijing, Hong Kong, Singapore, Taipei', 
+      '(UTC+9) Tokyo, Osaka, Sapporto, Seoul, Yakutsk', 
+      '(UTC+9:30) Adelaide, Darwin', 
+      '(UTC+10) Brisbane, Melbourne, Sydney, Guam', 
+      '(UTC+11) Magadan, Solomon Is., New Caledonia', 
+      '(UTC+12) Fiji, Kamchatka, Marshall Is., Wellington'
+    ]
   },
 
   medical: {
@@ -93,13 +127,16 @@ userProfileSchema = new SimpleSchema({
     label: "Medical Information"
   },
   "medical.allergies": {
-    type: [String]
+    type: [String], 
+    optional: true
   },
   "medical.medications": {
-    type: [String]
+    type: [String], 
+    optional: true
   },
   "medical.notes": {
-    type: String
+    type: String, 
+    optional: true
   },
 
   skills: {
